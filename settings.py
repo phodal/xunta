@@ -244,12 +244,11 @@ INSTALLED_APPS = (
     "mezzanine.core",
     "mezzanine.generic",
     "mezzanine.accounts",
-    #"mezzanine.blog",
-    #"mezzanine.forms",
-    #"mezzanine.pages",
-    #"mezzanine.galleries",
-    #"mezzanine.twitter",
-    #"mezzanine.mobile",
+    "mezzanine.blog",
+    "mezzanine.forms",
+    "mezzanine.pages",
+    "mezzanine.galleries",
+    "mezzanine.mobile",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -265,6 +264,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.tz",
     "mezzanine.conf.context_processors.settings",
+    "mezzanine.pages.context_processors.page",
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
@@ -286,7 +286,7 @@ MIDDLEWARE_CLASSES = (
     "mezzanine.core.middleware.SitePermissionMiddleware",
     # Uncomment the following if using any of the SSL settings:
     # "mezzanine.core.middleware.SSLRedirectMiddleware",
-    # "mezzanine.pages.middleware.PageMiddleware",
+    "mezzanine.pages.middleware.PageMiddleware",
     "mezzanine.core.middleware.FetchFromCacheMiddleware",
 )
 

@@ -12,13 +12,13 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def order_comments_by_score_for(context, link):
+def order_comments_by_score_for(context, juba):
     """
     Preloads threaded comments in the same way Mezzanine initially does,
     but here we order them by score.
     """
     comments = defaultdict(list)
-    qs = link.comments.visible().select_related("user", "user__profile")
+    qs = juba.comments.visible().select_related("user", "user__profile")
     for comment in order_by_score(qs, CommentList.score_fields, "submit_date"):
         comments[comment.replied_to_id].append(comment)
     context["all_comments"] = comments

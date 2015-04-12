@@ -176,4 +176,4 @@ class CommentList(ScoreOrderingView):
 
 
 class TagList(TemplateView):
-    template_name = "links/tag_list.html"
+    template_name = "juba/tag_list.html"

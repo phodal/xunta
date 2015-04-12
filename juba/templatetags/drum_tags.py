@@ -4,8 +4,8 @@ from collections import defaultdict
 from django import template
 from django.template.defaultfilters import timesince
 
-from links.utils import order_by_score
-from links.views import CommentList
+from juba.utils import order_by_score
+from juba.views import CommentList
 
 
 register = template.Library()

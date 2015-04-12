@@ -9,8 +9,7 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Link'
-        db.create_table(u'links_link', (
+        db.create_table(u'juba_juba', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             (u'comments_count', self.gf('django.db.models.fields.IntegerField')(default=0)),
             (u'keywords_string', self.gf('django.db.models.fields.CharField')(max_length=500, blank=True)),
@@ -30,29 +29,14 @@ class Migration(SchemaMigration):
             ('expiry_date', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
             ('short_url', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
             ('in_sitemap', self.gf('django.db.models.fields.BooleanField')(default=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(related_name=u'links', to=orm['auth.User'])),
-            ('link', self.gf('django.db.models.fields.URLField')(max_length=200)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(related_name=u'juba', to=orm['auth.User'])),
+            ('juba', self.gf('django.db.models.fields.URLField')(max_length=200)),
         ))
-        db.send_create_signal(u'links', ['Link'])
-
-        # Adding model 'Profile'
-        db.create_table(u'links_profile', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
-            ('website', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
-            ('bio', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('karma', self.gf('django.db.models.fields.IntegerField')(default=0)),
-        ))
-        db.send_create_signal(u'links', ['Profile'])
-
+        db.send_create_signal(u'links', ['Juba'])
 
     def backwards(self, orm):
         # Deleting model 'Link'
-        db.delete_table(u'links_link')
-
-        # Deleting model 'Profile'
-        db.delete_table(u'links_profile')
-
+        db.delete_table(u'juba_juba')
 
     models = {
         u'auth.group': {
@@ -91,7 +75,7 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'links.link': {
+        u'juba.juba': {
             'Meta': {'object_name': 'Link'},
             '_meta_title': ('django.db.models.fields.CharField', [], {'max_length': '500', 'null': 'True', 'blank': 'True'}),
             u'comments_count': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
@@ -102,7 +86,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'in_sitemap': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             u'keywords_string': ('django.db.models.fields.CharField', [], {'max_length': '500', 'blank': 'True'}),
-            'link': ('django.db.models.fields.URLField', [], {'max_length': '200'}),
+            'juba': ('django.db.models.fields.URLField', [], {'max_length': '200'}),
             'publish_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
             u'rating_average': ('django.db.models.fields.FloatField', [], {'default': '0'}),
             u'rating_count': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
@@ -113,15 +97,7 @@ class Migration(SchemaMigration):
             'status': ('django.db.models.fields.IntegerField', [], {'default': '2'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
             'updated': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'links'", 'to': u"orm['auth.User']"})
-        },
-        u'links.profile': {
-            'Meta': {'object_name': 'Profile'},
-            'bio': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'karma': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['auth.User']", 'unique': 'True'}),
-            'website': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'juba'", 'to': u"orm['auth.User']"})
         },
         u'sites.site': {
             'Meta': {'ordering': "(u'domain',)", 'object_name': 'Site', 'db_table': "u'django_site'"},

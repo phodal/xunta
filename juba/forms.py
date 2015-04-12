@@ -6,14 +6,14 @@ from django.forms import ValidationError
 from .models import Juba
 
 
-BaseLinkForm = modelform_factory(Juba, fields=["title", "link", "description"])
+BaseLinkForm = modelform_factory(Juba, fields=["title", "juba", "description"])
 
 
-class LinkForm(BaseLinkForm):
+class JubaForm(BaseLinkForm):
 
     def clean(self):
-        link = self.cleaned_data.get("link", None)
+        juba = self.cleaned_data.get("juba", None)
         description = self.cleaned_data.get("description", None)
-        if not link and not description:
+        if not juba and not description:
             raise ValidationError("Either a link or description is required")
         return self.cleaned_data

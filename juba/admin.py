@@ -10,17 +10,17 @@ from .models import Juba
 
 class JubaAdmin(DisplayableAdmin):
 
-    list_display = ("id", "title", "link", "status", "publish_date",
+    list_display = ("id", "title", "juba", "status", "publish_date",
                     "user", "comments_count", "rating_sum")
     list_display_links = ("id",)
-    list_editable = ("title", "link", "status")
+    list_editable = ("title", "juba", "status")
     list_filter = ("status", "user__username")
-    search_fields = ("title", "link", "user__username", "user__email")
+    search_fields = ("title", "juba", "user__username", "user__email")
     ordering = ("-publish_date",)
 
     fieldsets = (
         (None, {
-            "fields": ("title", "link", "status", "publish_date", "user"),
+            "fields": ("title", "juba", "status", "publish_date", "user"),
         }),
     )
 
@@ -33,7 +33,7 @@ def delete_keywords(modeladmin, request, queryset):
     cursor.execute("DELETE FROM generic_keyword WHERE id IN (%s);" % ids)
 
 
-class KeywordAdmin(admin.ModelAdmin):
+class JubaKeywordAdmin(admin.ModelAdmin):
 
     ordering = ["title"]
     list_display = ["id", "title", "slug"]
@@ -44,14 +44,9 @@ class KeywordAdmin(admin.ModelAdmin):
         css = {"all": ["css/keywords.css"]}
 
     def get_actions(self, request):
-        actions = super(KeywordAdmin, self).get_actions(request)
+        actions = super(JubaKeywordAdmin, self).get_actions(request)
         actions.pop("delete_selected")
         return actions
 
 
 admin.site.register(Juba, JubaAdmin)
-
-if getattr(settings, "AUTO_TAG", False):
-    from mezzanine.generic.models import Keyword
-    admin.site.register(Keyword, KeywordAdmin)
-

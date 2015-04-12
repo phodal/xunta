@@ -10,12 +10,12 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
 
         # Changing field 'Link.link'
-        db.alter_column(u'links_link', 'link', self.gf('django.db.models.fields.URLField')(max_length=200, null=True))
+        db.alter_column(u'juba_juba', 'juba', self.gf('django.db.models.fields.URLField')(max_length=200, null=True))
 
     def backwards(self, orm):
 
         # Changing field 'Link.link'
-        db.alter_column(u'links_link', u'link', self.gf(u'django.db.models.fields.URLField')(default='', max_length=200))
+        db.alter_column(u'juba_juba', u'juba', self.gf(u'django.db.models.fields.URLField')(default='', max_length=200))
 
     models = {
         u'auth.group': {
@@ -54,8 +54,8 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'links.link': {
-            'Meta': {'object_name': 'Link'},
+        u'juba.juba': {
+            'Meta': {'object_name': 'Juba'},
             '_meta_title': ('django.db.models.fields.CharField', [], {'max_length': '500', 'null': 'True', 'blank': 'True'}),
             u'comments_count': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'created': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
@@ -65,7 +65,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'in_sitemap': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             u'keywords_string': ('django.db.models.fields.CharField', [], {'max_length': '500', 'blank': 'True'}),
-            'link': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True'}),
+            'juba': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True'}),
             'publish_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
             u'rating_average': ('django.db.models.fields.FloatField', [], {'default': '0'}),
             u'rating_count': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
@@ -76,15 +76,7 @@ class Migration(SchemaMigration):
             'status': ('django.db.models.fields.IntegerField', [], {'default': '2'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
             'updated': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'links'", 'to': u"orm['auth.User']"})
-        },
-        u'links.profile': {
-            'Meta': {'object_name': 'Profile'},
-            'bio': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'karma': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['auth.User']", 'unique': 'True'}),
-            'website': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'juba'", 'to': u"orm['auth.User']"})
         },
         u'sites.site': {
             'Meta': {'ordering': "(u'domain',)", 'object_name': 'Site', 'db_table': "u'django_site'"},
@@ -94,4 +86,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['links']
+    complete_apps = ['juba']

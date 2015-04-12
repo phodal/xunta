@@ -8,7 +8,7 @@ from django.core.management.base import BaseCommand
 from mezzanine.generic.models import AssignedKeyword, Keyword
 from mezzanine.utils.urls import slugify
 
-from links.models import Link
+from juba.models import Juba
 
 
 class Command(BaseCommand):
@@ -30,10 +30,10 @@ class Command(BaseCommand):
             self.generate(options["generate"])
         if options["assign"]:
             cursor.execute("DELETE FROM generic_assignedkeyword;")
-            Link.objects.update(keywords_string="")
-            for link in Link.objects.all():
-                print("Assigning to %s" % link)
-                link.save()
+            Juba.objects.update(keywords_string="")
+            for juba in Juba.objects.all():
+                print("Assigning to %s" % juba)
+                juba.save()
 
     def generate(self, size):
 
@@ -45,7 +45,7 @@ class Command(BaseCommand):
 
         extractor = extract.TermExtractor()
         extractor.filter = extract.permissiveFilter
-        titles = Link.objects.values_list("title", flat=True)
+        titles = Juba.objects.values_list("title", flat=True)
         tags = extractor(" ".join(titles))
         tags.sort(key=lambda tag: tag[1], reverse=True)
 

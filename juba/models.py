@@ -1,10 +1,9 @@
 from __future__ import unicode_literals
-from future import standard_library
-from future.builtins import int
-
 from string import punctuation
-from time import time
 from operator import ior
+from drum.links.models import Profile
+
+from future.builtins import int
 
 try:
     from urllib.parse import urlparse
@@ -22,18 +21,16 @@ from mezzanine.core.models import Displayable, Ownable
 from mezzanine.core.request import current_request
 from mezzanine.generic.models import Rating, Keyword, AssignedKeyword
 from mezzanine.generic.fields import RatingField, CommentsField
-from mezzanine.utils.urls import slugify
 
 
 class Juba(Displayable, Ownable):
-
-    link = models.URLField(null=True,
-        blank=(not getattr(settings, "LINK_REQUIRED", False)))
+    juba = models.URLField(null=True,
+                           blank=(not getattr(settings, "JUBA_REQUIRED", False)))
     rating = RatingField()
     comments = CommentsField()
 
     def get_absolute_url(self):
-        return reverse("link_detail", kwargs={"slug": self.slug})
+        return reverse("juba_detail", kwargs={"slug": self.slug})
 
     @property
     def domain(self):
@@ -41,8 +38,8 @@ class Juba(Displayable, Ownable):
 
     @property
     def url(self):
-        if self.link:
-            return self.link
+        if self.juba:
+            return self.juba
         return current_request().build_absolute_uri(self.get_absolute_url())
 
     def save(self, *args, **kwargs):
@@ -54,17 +51,6 @@ class Juba(Displayable, Ownable):
             lookup = reduce(ior, [Q(title__iexact=k) for k in keywords])
             for keyword in Keyword.objects.filter(lookup):
                 self.keywords.add(AssignedKeyword(keyword=keyword))
-
-
-class Profile(models.Model):
-
-    user = models.OneToOneField("auth.User")
-    website = models.URLField(blank=True)
-    bio = models.TextField(blank=True)
-    karma = models.IntegerField(default=0, editable=False)
-
-    def __unicode__(self):
-        return "%s (%s)" % (self.user, self.karma)
 
 
 @receiver(post_save, sender=Rating)

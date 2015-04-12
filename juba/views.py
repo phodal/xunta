@@ -14,7 +14,7 @@ from mezzanine.conf import settings
 from mezzanine.generic.models import ThreadedComment, Keyword
 from mezzanine.utils.views import paginate
 
-from .forms import LinkForm
+from .forms import JubaForm
 from .models import Juba
 from .utils import order_by_score
 
@@ -105,7 +105,7 @@ class JubaList(JubaView, ScoreOrderingView):
         if context["by_score"]:
             return ""  # Homepage
         if context["profile_user"]:
-            return "Links by %s" % context["profile_user"].profile
+            return "Jubas by %s" % context["profile_user"].profile
         else:
             return "Newest"
 
@@ -117,26 +117,26 @@ class JubaCreate(CreateView):
     so that we can provide our own descriptions.
     """
 
-    form_class = LinkForm
+    form_class = JubaForm
     model = Juba
 
     def form_valid(self, form):
-        hours = getattr(settings, "ALLOWED_DUPLICATE_LINK_HOURS", None)
-        if hours and form.instance.link:
+        hours = getattr(settings, "ALLOWED_DUPLICATE_JUBA_HOURS", None)
+        if hours and form.instance.juba:
             lookup = {
-                "link": form.instance.link,
+                "juba": form.instance.juba,
                 "publish_date__gt": now() - timedelta(hours=hours),
             }
             try:
-                link = Juba.objects.get(**lookup)
+                juba = Juba.objects.get(**lookup)
             except Juba.DoesNotExist:
                 pass
             else:
-                error(self.request, "Link exists")
-                return redirect(link)
+                error(self.request, "Juba exists")
+                return redirect(juba)
         form.instance.user = self.request.user
         form.instance.gen_description = False
-        info(self.request, "Link created")
+        info(self.request, "Juba created")
         return super(JubaCreate, self).form_valid(form)
 
 

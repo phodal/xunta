@@ -1,20 +1,22 @@
 {% load mezzanine_tags rating_tags i18n future %}
 
-<span id="rating-{{ rating_object.id }}">
-    {% if rating_average %}
-    {% trans "Current rating" %}: {{ rating_average|floatformat }}
-    {% else %}
-    {% trans "Currently unrated" %}
-    {% endif %}
-</span>
+<div class="rating">
 
-{% if not rated or request.user.is_authenticated %}
-<form class="form-inline" role="form" method="post" action="{% url "rating" %}">
-    {% nevercache %}
-    {% csrf_token %}
-    {% endnevercache %}
-    <ul class="radio radio-inline">{{ rating_form.as_ul }}</ul>
-    <input type="submit" class="btn btn-default btn-sm" value="{% trans "Rate" %}"
-        onclick="return $(this.form).find('input:checked').length == 1;">
-</form>
-{% endif %}
+    <form method="post" action="{% url "rating" %}">
+        {% fields_for rating_form %}
+    </form>
+
+    <span class="arrows">
+        <a href="#"><i class="icon icon-arrow-up"></i></a>
+        <a href="#"><i class="icon icon-arrow-down"></i></a>
+    </span>
+
+    <span class="score">
+        {% with rating_obj.comments_count|default:0 as comments_count %}
+        <!--{{ rating_sum|add:comments_count }}-->
+        {{ rating_sum }}
+        {% endwith %}
+    </span>
+
+</div>
+

@@ -1,9 +1,12 @@
 from __future__ import unicode_literals
 from string import punctuation
 from operator import ior
+
 from drum.links.models import Profile
 
 from future.builtins import int
+from mezzanine.core.fields import HtmlField
+
 
 try:
     from urllib.parse import urlparse
@@ -24,7 +27,7 @@ from mezzanine.generic.fields import RatingField, CommentsField
 
 
 class Juba(Displayable, Ownable):
-    juba = models.URLField(null=True,
+    content = HtmlField(null=True,
                            blank=(not getattr(settings, "JUBA_REQUIRED", False)))
     rating = RatingField()
     comments = CommentsField()
@@ -38,8 +41,8 @@ class Juba(Displayable, Ownable):
 
     @property
     def url(self):
-        if self.juba:
-            return self.juba
+        if self.content:
+            return self.content
         return current_request().build_absolute_uri(self.get_absolute_url())
 
     def save(self, *args, **kwargs):

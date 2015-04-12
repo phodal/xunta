@@ -10,17 +10,17 @@ from .models import Juba
 
 class JubaAdmin(DisplayableAdmin):
 
-    list_display = ("id", "title", "juba", "status", "publish_date",
+    list_display = ("id", "title", "content", "status", "publish_date",
                     "user", "comments_count", "rating_sum")
     list_display_links = ("id",)
-    list_editable = ("title", "juba", "status")
+    list_editable = ("title", "content", "status")
     list_filter = ("status", "user__username")
-    search_fields = ("title", "juba", "user__username", "user__email")
+    search_fields = ("title", "content", "user__username", "user__email")
     ordering = ("-publish_date",)
 
     fieldsets = (
         (None, {
-            "fields": ("title", "juba", "status", "publish_date", "user"),
+            "fields": ("title", "content", "status", "publish_date", "user"),
         }),
     )
 

@@ -1,3 +1,4 @@
+south
 drum
 feedparser
 Mezzanine==3.1.10

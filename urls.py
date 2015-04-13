@@ -10,9 +10,9 @@ admin.autodiscover()
 urlpatterns = patterns("",
     url("^$", direct_to_template, {"template": "index.html"}, name="home"),
     ("^admin/", include(admin.site.urls)),
-    ("^", include("mezzanine.urls")),
     ("^", include("drum.links.urls")),
     ("^", include("juba.urls")),
+    ("^", include("mezzanine.urls")),
 )
 
 # Adds ``STATIC_URL`` to the context.

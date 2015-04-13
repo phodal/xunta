@@ -12,7 +12,7 @@
     {% if not profile_user %}{% rating_for juba %}{% endif %}
     <div class="link-detail{% if link.rating_sum < 0 %} link-negative{% endif %}">
         <h2>
-            <a href="{{ link.url }}">{{ juba.title }}</a>
+            <a href="{{ juba.slug }}">{{ juba.title }}</a>
         </h2>
         <p>
             {% editable juba.content %}

@@ -4,7 +4,7 @@ from django.forms import ValidationError
 from .models import Juba
 
 
-BaseJubaForm = modelform_factory(Juba, fields=["title", "content", "description"])
+BaseJubaForm = modelform_factory(Juba, fields=["title", "content", "description", "slug"])
 
 
 class JubaForm(BaseJubaForm):

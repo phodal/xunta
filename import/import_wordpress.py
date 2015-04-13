@@ -80,11 +80,12 @@ class Command(BaseImporterCommand):
                                      old_url=entry.id, slug=url)
 
             elif entry.wp_post_type == "page":
+                url = entry.links[0].href.replace("http://www.xuntayizhan.com/", "")
                 old_id = getattr(entry, "wp_post_id")
                 parent_id = getattr(entry, "wp_post_parent")
                 self.add_page(title=entry.title, content=content,
                               tags=terms["tag"], old_id=old_id,
-                              old_parent_id=parent_id)
+                              old_parent_id=parent_id, slug=url)
 
     def wp_caption(self, post):
         """

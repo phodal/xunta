@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}css/flat-ui.css">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/drum.css">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap2-responsive.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
 {% endcompress %}
 
 {% compress js %}
@@ -81,7 +82,7 @@
 {% endif %}
 {% endnevercache %}
 
-<ul class="breadcrumb">
+<ul class="breadcrumb" itemscope="itemscope" itemtype="http://schema.org/Breadcrumb">
 {% spaceless %}
 {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
 {% endspaceless %}

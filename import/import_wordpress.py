@@ -63,8 +63,6 @@ class Command(BaseImporterCommand):
             # the updated date if we can't.
             pub_date = getattr(entry, "published_parsed", entry.updated_parsed)
             if pub_date is None:
-                print "-----------"
-                print "Invalid pubDate, entry skipped"
                 continue
             pub_date = datetime.fromtimestamp(mktime(pub_date))
             pub_date -= timedelta(seconds=timezone)
@@ -75,10 +73,11 @@ class Command(BaseImporterCommand):
                 terms[item.scheme].add(item.term)
 
             if entry.wp_post_type == "post":
+                url = entry.links[0].href.replace("http://www.xuntayizhan.com/person/", "")
                 post = self.add_post(title=entry.title, content=content,
                                      pub_date=pub_date, tags=terms["tag"],
                                      categories=terms["category"],
-                                     old_url=entry.id)
+                                     old_url=entry.id, slug=url)
 
             elif entry.wp_post_type == "page":
                 old_id = getattr(entry, "wp_post_id")

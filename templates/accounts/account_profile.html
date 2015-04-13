@@ -27,8 +27,7 @@
     <a href="{% url "comment_list_user" profile_user.username %}">评论 ({{ profile_user.comment_comments.count }})</a> |
     <a href="{% url "link_list_user" profile_user.username %}">推啦 ({{ profile_user.links.published.count }})</a>
     <a href="{% url "juba_list_user" profile_user.username %}">聚啊 ({{ profile_user.jubas.published.count }})</a>
-    {{ profile_user }}
-    <a href="{% url "blog_post_list_author" profile_user.username %}">博客 ({{ profile_user.post_count }})</a>
+    <a href="{% url "blog_post_list_author" profile_user.username %}">博客 ({{ profile_user.blog_post.post_count }})</a>
 </div>
 
 

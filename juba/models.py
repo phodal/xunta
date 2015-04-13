@@ -2,10 +2,9 @@ from __future__ import unicode_literals
 from string import punctuation
 from operator import ior
 
-from drum.links.models import Profile
-
 from future.builtins import int
 from mezzanine.core.fields import HtmlField
+from mezzanine.utils.models import get_user_model
 
 
 try:
@@ -25,6 +24,8 @@ from mezzanine.core.request import current_request
 from mezzanine.generic.models import Rating, Keyword, AssignedKeyword
 from mezzanine.generic.fields import RatingField, CommentsField
 
+
+User = get_user_model()
 
 class Juba(Displayable, Ownable):
     content = HtmlField(null=True,
@@ -71,5 +72,5 @@ def karma(sender, **kwargs):
         value *= 2
     content_object = rating.content_object
     if rating.user != content_object.user:
-        queryset = Profile.objects.filter(user=content_object.user)
+        queryset = User.objects.filter(user=content_object.user)
         queryset.update(karma=models.F("karma") + value)

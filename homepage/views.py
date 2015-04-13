@@ -1,21 +1,12 @@
 from __future__ import unicode_literals
-from calendar import month_name
-from django.http import Http404
-from future.builtins import super
 
-from django.contrib.auth.models import User
-
-from django.shortcuts import get_object_or_404, render
-from django.views.generic import ListView
-from mezzanine.blog.models import BlogPost, BlogCategory
-
+from django.shortcuts import render
+from mezzanine.blog.models import BlogPost
 from mezzanine.conf import settings
-from mezzanine.generic.models import Keyword
 from mezzanine.utils.models import get_user_model
 from mezzanine.utils.views import paginate
 
 from drum.links.models import Link
-from drum.links.utils import order_by_score
 from juba.models import Juba
 
 

@@ -312,7 +312,6 @@ OPTIONAL_APPS = (
 DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 
 # Drum-specific Mezzanine settings
-AUTH_PROFILE_MODULE = "links.Profile"
 SITE_TITLE = "Xunta"
 RATINGS_RANGE = (-1, 1)
 RATINGS_ACCOUNT_REQUIRED = True

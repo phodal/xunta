@@ -7,6 +7,7 @@
 
 {% block main %}
 
+<div class="span4">
 {% for blog_post in blog_posts.object_list %}
 {% block blog_post_list_post_title %}
 
@@ -49,7 +50,9 @@
 {% endeditable %}
 {% endblock %}
 {% endfor %}
+</div>
 
+<div class="span3">
 {% for link in links %}
 <div class="link-item clearfix">
     {% if not profile_user %}{% rating_for link %}{% endif %}
@@ -70,10 +73,11 @@
 {% empty %}
 <p>{{ no_data }}</p>
 {% endfor %}
+</div>
 
+<div class="span3">
 {% for juba in jubas %}
 <div class="link-item clearfix">
-    {% if not profile_user %}{% rating_for juba %}{% endif %}
     <div class="link-detail{% if link.rating_sum < 0 %} link-negative{% endif %}">
         <h2>
             <a href="{{ link.url }}">{{ juba.title }}</a>
@@ -95,6 +99,6 @@
 {% empty %}
 <p>{{ no_data }}</p>
 {% endfor %}
-
+</div>
 
 {% endblock %}

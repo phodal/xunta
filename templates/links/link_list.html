@@ -7,6 +7,11 @@
 
 {% block main %}
 
+{% for blog_post in blog_posts.object_list %}
+
+        {{blog_post}}
+
+{% endfor %}
 {% for link in object_list %}
 <div class="link-item clearfix">
     {% if not profile_user %}{% rating_for link %}{% endif %}

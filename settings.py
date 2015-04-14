@@ -323,8 +323,8 @@ SOCIAL_AUTH_PIPELINE = (
 
 AUTHENTICATION_BACKENDS = (
     'social.backends.douban.DoubanOAuth2',
-    'social.backends.google.GoogleOAuth',
-    'social.backends.google.GooglePlusAuth',
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.github.GithubOAuth2',	
     'social.backends.weibo.WeiboOAuth2',
     'social.backends.qq.QQOAuth2',
     'social.backends.email.EmailAuth',

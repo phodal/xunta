@@ -26,3 +26,13 @@
   margin: 20px 0;
   border-radius: 4px;
 }
+
+.link-item .rating, .link-detail {
+    float:none;
+}
+
+.link-item .rating {
+    float:right;
+    position: relative;
+    right: 0px;
+}

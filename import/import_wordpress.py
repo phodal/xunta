@@ -73,14 +73,14 @@ class Command(BaseImporterCommand):
                 terms[item.scheme].add(item.term)
 
             if entry.wp_post_type == "post":
-                url = entry.links[0].href.replace("http://www.xuntayizhan.com/person/", "")
+                url = entry.links[0].href.replace("http://www.xuntayizhan.com/person/", "")[:-1]
                 post = self.add_post(title=entry.title, content=content,
                                      pub_date=pub_date, tags=terms["tag"],
                                      categories=terms["category"],
                                      old_url=entry.id, slug=url)
 
             elif entry.wp_post_type == "page":
-                url = entry.links[0].href.replace("http://www.xuntayizhan.com/", "")
+                url = entry.links[0].href.replace("http://www.xuntayizhan.com/", "")[:-1]
                 old_id = getattr(entry, "wp_post_id")
                 parent_id = getattr(entry, "wp_post_parent")
                 self.add_page(title=entry.title, content=content,

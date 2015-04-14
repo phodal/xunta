@@ -4,4 +4,6 @@ feedparser
 django-avatar
 djangorestframework
 markdown
+django-uuslug
+gunicorn
 Mezzanine==3.1.10

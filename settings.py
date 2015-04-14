@@ -14,9 +14,9 @@ from __future__ import absolute_import, unicode_literals
 # Controls the ordering and grouping of the admin menu.
 #
 ADMIN_MENU_ORDER = (
-    ("Content", ("links.Link", "generic.Keyword", "generic.ThreadedComment")),
-    ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
-    ("Users", ("auth.User", "auth.Group",)),
+    ("Content", ("blog.BlogPost", "juba.Juba", "links.Link", "generic.Keyword")),
+    ("Site", ("pages.Page", "sites.Site", "redirects.Redirect", "conf.Setting")),
+    ("Users", ("auth.User", "auth.Group", "generic.ThreadedComment")),
 )
 
 # A three item sequence, each containing a sequence of template tags

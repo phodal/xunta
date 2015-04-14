@@ -251,7 +251,16 @@ INSTALLED_APPS = (
     "mezzanine.galleries",
     "mezzanine.mobile",
     "avatar",
+    "rest_framework",
 )
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 # List of processors used by RequestContext to populate the context.
 # Each one should be a callable that takes the request object as its

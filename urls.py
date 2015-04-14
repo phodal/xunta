@@ -12,6 +12,7 @@ urlpatterns += patterns("",
     ("^admin/", include(admin.site.urls)),
     ("^", include("links.urls")),
     ("^", include("juba.urls")),
+    ("^api/", include("api.urls")),
     ("^avatar/", include("avatar.urls")),
     ("^", include("mezzanine.urls")),
 )

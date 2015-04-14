@@ -2,4 +2,6 @@ south
 drum
 feedparser
 django-avatar
+djangorestframework
+markdown
 Mezzanine==3.1.10

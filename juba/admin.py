@@ -4,16 +4,15 @@ from django.conf import settings
 from django.contrib import admin
 from django.db import connection
 
-from mezzanine.core.admin import DisplayableAdmin
+from mezzanine.core.admin import DisplayableAdmin, OwnableAdmin
 from .models import Juba
 
 
-class JubaAdmin(DisplayableAdmin):
+class JubaAdmin(DisplayableAdmin, OwnableAdmin):
 
     list_display = ("id", "title", "content", "status", "publish_date",
                     "user", "comments_count", "rating_sum")
-    list_display_links = ("id",)
-    list_editable = ("title", "content", "status")
+    list_filter = ("status", "user__username")
     list_filter = ("status", "user__username")
     search_fields = ("title", "content", "user__username", "user__email")
     ordering = ("-publish_date",)

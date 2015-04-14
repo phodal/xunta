@@ -15,8 +15,8 @@ from __future__ import absolute_import, unicode_literals
 #
 ADMIN_MENU_ORDER = (
     ("Content", ("blog.BlogPost", "juba.Juba", "links.Link", "generic.Keyword")),
+    ("Users", ("auth.User", "auth.Group", "generic.ThreadedComment", "avatar.Avatar")),
     ("Site", ("pages.Page", "sites.Site", "redirects.Redirect", "conf.Setting")),
-    ("Users", ("auth.User", "auth.Group", "generic.ThreadedComment")),
 )
 
 # A three item sequence, each containing a sequence of template tags
@@ -142,8 +142,6 @@ TEMPLATE_LOADERS = (
     "django.template.loaders.app_directories.Loader",
 )
 
-AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
-
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -252,6 +250,8 @@ INSTALLED_APPS = (
     "mezzanine.mobile",
     "avatar",
     "rest_framework",
+    "social.apps.django_app.default",
+    "homepage",
 )
 
 REST_FRAMEWORK = {
@@ -261,6 +261,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+SOCIAL_AUTH_STORAGE = 'social.apps.django_app.me.models.DjangoStorage'
 
 # List of processors used by RequestContext to populate the context.
 # Each one should be a callable that takes the request object as its
@@ -276,6 +278,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "mezzanine.conf.context_processors.settings",
     "mezzanine.pages.context_processors.page",
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
@@ -300,6 +304,45 @@ MIDDLEWARE_CLASSES = (
     "mezzanine.pages.middleware.PageMiddleware",
     "mezzanine.core.middleware.FetchFromCacheMiddleware",
 )
+
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.mail.mail_validation',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.debug.debug',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+    'social.pipeline.debug.debug'
+)
+
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.douban.DoubanOAuth2',
+    'social.backends.google.GoogleOAuth',
+    'social.backends.google.GooglePlusAuth',
+    'social.backends.weibo.WeiboOAuth2',
+    'social.backends.qq.QQOAuth2',
+    'social.backends.email.EmailAuth',
+    'social.backends.username.UsernameAuth',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/done/'
+URL_PATH = ''
+SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
+SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
+SOCIAL_AUTH_GOOGLE_OAUTH_SCOPE = [
+    'https://www.googleapis.com/auth/drive',
+    'https://www.googleapis.com/auth/userinfo.profile'
+]
+
+SOCIAL_AUTH_RAISE_EXCEPTIONS = DEBUG
 
 # Store these package names here as they may change in the future since
 # at the moment we are using custom forks of them.

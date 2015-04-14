@@ -250,6 +250,7 @@ INSTALLED_APPS = (
     "mezzanine.pages",
     "mezzanine.galleries",
     "mezzanine.mobile",
+    "avatar",
 )
 
 # List of processors used by RequestContext to populate the context.

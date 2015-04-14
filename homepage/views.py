@@ -6,7 +6,7 @@ from mezzanine.conf import settings
 from mezzanine.utils.models import get_user_model
 from mezzanine.utils.views import paginate
 
-from drum.links.models import Link
+from links.models import Link
 from juba.models import Juba
 
 

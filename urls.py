@@ -10,7 +10,7 @@ urlpatterns = patterns("homepage.views",
 
 urlpatterns += patterns("",
     ("^admin/", include(admin.site.urls)),
-    ("^", include("drum.links.urls")),
+    ("^", include("links.urls")),
     ("^", include("juba.urls")),
     ("^", include("mezzanine.urls")),
 )

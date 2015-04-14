@@ -1,104 +1,105 @@
 {% extends "base.html" %}
 
-{% load i18n mezzanine_tags rating_tags keyword_tags drum_tags future %}
+{% load i18n mezzanine_tags rating_tags keyword_tags drum_tags future cache %}
 
 {% block meta_title %}{{ title|default:"Home" }}{% endblock %}
 {% block title %}{{ title }}{% endblock %}
 
 {% block main %}
+{% cache 600 blogpost  %}
+    <div class="span4">
+    {% for blog_post in blog_posts.object_list %}
+    {% block blog_post_list_post_title %}
 
-<div class="span4">
-{% for blog_post in blog_posts.object_list %}
-{% block blog_post_list_post_title %}
+    <h2>
+    <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+    </h2>
 
-<h2>
-<a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
-</h2>
+    {% endblock %}
+    {% block blog_post_list_post_metainfo %}
+    <h6 class="post-meta">
+        {% trans "Posted by" %}:
+        {% with blog_post.user as author %}
+        <a href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
+        {% endwith %}
+        {% with blog_post.categories.all as categories %}
+        {% if categories %}
+        {% trans "in" %}
+        {% for category in categories %}
+        <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}
+    </h6>
+    {% endblock %}
 
-{% endblock %}
-{% block blog_post_list_post_metainfo %}
-{% editable blog_post.publish_date %}
-<h6 class="post-meta">
-    {% trans "Posted by" %}:
-    {% with blog_post.user as author %}
-    <a href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
-    {% endwith %}
-    {% with blog_post.categories.all as categories %}
-    {% if categories %}
-    {% trans "in" %}
-    {% for category in categories %}
-    <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
-    {% endfor %}
+    {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
+    {% block blog_post_list_post_featured_image %}
+    <a href="{{ blog_post.get_absolute_url }}">
+        <img class="img-thumbnail pull-left" src="{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 90 90 %}">
+    </a>
+    {% endblock %}
     {% endif %}
-    {% endwith %}
-    {% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}
-</h6>
-{% endeditable %}
-{% endblock %}
 
-{% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
-{% block blog_post_list_post_featured_image %}
-<a href="{{ blog_post.get_absolute_url }}">
-    <img class="img-thumbnail pull-left" src="{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 90 90 %}">
-</a>
-{% endblock %}
-{% endif %}
-
-{% block blog_post_list_post_content %}
-{% editable blog_post.content %}
-{{ blog_post.description_from_content|safe }}
-{% endeditable %}
-{% endblock %}
-{% endfor %}
-</div>
-
-<div class="span3">
-{% for link in links %}
-<div class="link-item clearfix">
-    {% if not profile_user %}{% rating_for link %}{% endif %}
-    <div class="link-detail{% if link.rating_sum < 0 %} link-negative{% endif %}">
-        <h2>
-            <a href="{{ link.url }}">{{ link.title }}</a>
-            <span class="domain">({{ link.domain }})</span>
-        </h2>
-        by <a class="profile" href="{% url "profile" link.user.username %}">{{ link.user.profile }}</a>
-        {{ link.publish_date|short_timesince }} ago |
-        {% keywords_for link as tags %}
-        {% for tag in tags %}
-        <a href="{% url "link_list_tag" tag.slug %}">{{ tag }}</a> |
-        {% endfor %}
-        <a class="comments" href="{{ link.get_absolute_url }}">{{ link.comments_count }} comment{{ link.comments_count|pluralize }} </a>
+    {% block blog_post_list_post_content %}
+    {{ blog_post.description_from_content|safe }}
+    {% endblock %}
+    {% endfor %}
     </div>
-</div>
-{% empty %}
-<p>{{ no_data }}</p>
-{% endfor %}
-</div>
+{% endcache %}
 
-<div class="span3">
-{% for juba in jubas %}
-<div class="link-item clearfix">
-    <div class="link-detail{% if link.rating_sum < 0 %} link-negative{% endif %}">
-        <h2>
-            <a href="{{ link.url }}">{{ juba.title }}</a>
-        </h2>
-        <p>
-            {% editable juba.content %}
-            {{ juba.content|richtext_filters|safe }}
-            {% endeditable %}
-        </p>
-        by <a class="profile" href="{% url "profile" juba.user.username %}">{{ juba.user.profile }}</a>
-        {{ juba.publish_date|short_timesince }} ago |
-        {% keywords_for link as tags %}
-        {% for tag in tags %}
-        <a href="{% url "link_list_tag" tag.slug %}">{{ tag }}</a> |
-        {% endfor %}
-        <a class="comments" href="{{ link.get_absolute_url }}">{{ juba.comments_count }} comment{{ juba.comments_count|pluralize }} </a>
+{% cache 600 links  %}
+    <div class="span3">
+    {% for link in links %}
+    <div class="link-item clearfix">
+        {% if not profile_user %}{% rating_for link %}{% endif %}
+        <div class="link-detail{% if link.rating_sum < 0 %} link-negative{% endif %}">
+            <h2>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+                <span class="domain">({{ link.domain }})</span>
+            </h2>
+            by <a class="profile" href="{% url "profile" link.user.username %}">{{ link.user.profile }}</a>
+            {{ link.publish_date|short_timesince }} ago |
+            {% keywords_for link as tags %}
+            {% for tag in tags %}
+            <a href="{% url "link_list_tag" tag.slug %}">{{ tag }}</a> |
+            {% endfor %}
+            <a class="comments" href="{{ link.get_absolute_url }}">{{ link.comments_count }} comment{{ link.comments_count|pluralize }} </a>
+        </div>
     </div>
-</div>
-{% empty %}
-<p>{{ no_data }}</p>
-{% endfor %}
-</div>
+    {% empty %}
+    <p>{{ no_data }}</p>
+    {% endfor %}
+    </div>
+{% endcache %}
+
+{% cache 600 jubas  %}
+    <div class="span3">
+    {% for juba in jubas %}
+    <div class="link-item clearfix">
+        <div class="link-detail{% if link.rating_sum < 0 %} link-negative{% endif %}">
+            <h2>
+                <a href="{{ link.url }}">{{ juba.title }}</a>
+            </h2>
+            <p>
+                {% editable juba.content %}
+                {{ juba.content|richtext_filters|safe }}
+                {% endeditable %}
+            </p>
+            by <a class="profile" href="{% url "profile" juba.user.username %}">{{ juba.user.profile }}</a>
+            {{ juba.publish_date|short_timesince }} ago |
+            {% keywords_for link as tags %}
+            {% for tag in tags %}
+            <a href="{% url "link_list_tag" tag.slug %}">{{ tag }}</a> |
+            {% endfor %}
+            <a class="comments" href="{{ link.get_absolute_url }}">{{ juba.comments_count }} comment{{ juba.comments_count|pluralize }} </a>
+        </div>
+    </div>
+    {% empty %}
+    <p>{{ no_data }}</p>
+    {% endfor %}
+    </div>
+{% endcache %}
 
 {% endblock %}

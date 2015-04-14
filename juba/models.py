@@ -23,13 +23,14 @@ from mezzanine.core.models import Displayable, Ownable
 from mezzanine.core.request import current_request
 from mezzanine.generic.models import Rating, Keyword, AssignedKeyword
 from mezzanine.generic.fields import RatingField, CommentsField
-
+from uuslug import uuslug
 
 User = get_user_model()
 
+
 class Juba(Displayable, Ownable):
     content = HtmlField(null=True,
-                           blank=(not getattr(settings, "JUBA_REQUIRED", False)))
+                        blank=(not getattr(settings, "JUBA_REQUIRED", False)))
     rating = RatingField()
     comments = CommentsField()
 
@@ -48,6 +49,7 @@ class Juba(Displayable, Ownable):
 
     def save(self, *args, **kwargs):
         keywords = []
+        self.slug = uuslug(self.title, instance=self)
         if not self.keywords_string and getattr(settings, "AUTO_TAG", False):
             keywords = self.title.rstrip(punctuation).split()
         super(Juba, self).save(*args, **kwargs)

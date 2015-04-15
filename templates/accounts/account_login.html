@@ -3,18 +3,6 @@
 
 {% block main  %}
  {% load backend_utils %}
-    <style>
-      h1 { padding: 0 30px; }
-      .col-md-2 { width: 18.6667%; }
-      .buttons { display: block; table-layout: fixed; border-radius: 7px; border: 1px solid #ccc;
-                 margin: 20px; background: #eee; padding: 30px; }
-      .buttons > div a { margin: 5px 10px; }
-      .buttons > div:not(:first-child) { margin-top: 10px; border-top: 1px solid #ccc;
-                                         padding-top: 10px; text-align: center; }
-      .user-details { text-align: center; font-size: 16px; font-weight: bold; }
-      .disconnect-form { padding: 0; margin: 0px 10px; }
-      .disconnect-form > a { display: block; margin: 5px 0 !important; }
-    </style>
     <div class="buttons">
       {% if user.is_authenticated %}
         <div class="user-details">
@@ -23,59 +11,34 @@
       {% endif %}
 
       <div class="social">
-        {% for sublist in available_backends|social_backends %}
           <div class="row">
-            {% for name, backend in sublist %}
-              {% associated backend %}
-              {% if association %}
-                <form class="disconnect-form col-md-2" action="{% url "social:disconnect_individual" backend=association.provider association_id=association.id %}" method="post">{% csrf_token %}
-                  <a class="btn btn-danger" name="{{ backend|backend_class }}" href="#">
-                    <i class="fa fa-{{ name|icon_name }}"></i>
-                    Disconnect {{ backend|backend_name }}
-                  </a>
-                </form>
-              {% else %}
-                <a class="col-md-2 btn btn-default" name="{{ backend|backend_class }}" href="{% url "social:begin" backend=name %}">
-                  <i class="fa fa-{{ name|icon_name }}"></i>
-                  {{ backend|backend_name }}
-                </a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endfor %}
-      </div>
-
-      <div class="legacy">
-        {% for name, backend in available_backends|legacy_backends %}
-          {% associated backend %}
-          {% if association %}
-            <form class="disconnect-form" action="{% url "social:disconnect_individual" backend=association.provider association_id=association.id %}" method="post">{% csrf_token %}
-              <a class="btn btn-danger" name="{{ backend|backend_class }}" href="#">
-                <i class="fa fa-{{ name|icon_name }}"></i>
-                Disconnect {{ backend|backend_name }}
+              <a class="col-md-2 btn btn-default" name="qq" href="{% url "social:begin" backend="qq" %}">
+                  <i class="fa fa-qq"></i>
+                  QQ
               </a>
-            </form>
-          {% else %}
-            <a class="btn btn-default" name="{{ backend|backend_class }}" href="{% url "social:begin" backend=name %}">
-              <i class="fa fa-{{ name|icon_name }}"></i>
-              {{ backend|backend_name }}
-            </a>
-          {% endif %}
-        {% endfor %}
-
-        <a class="btn btn-info" name="ajax-login" href="#">
-          <i class="fa fa-refresh"></i>
-          Ajax
-        </a>
+              <a class="col-md-2 btn btn-default" name="douban oauth2" href="{% url "social:begin" backend="douban-oauth2" %}">
+                  <i class="fa fa-douban"></i>
+                  豆瓣
+              </a>
+              <a class="col-md-2 btn btn-default" name="google oauth2" href="{% url "social:begin" backend="google-oauth2" %}">
+                  <i class="fa fa-google"></i>
+                  Google
+              </a>
+              <a class="col-md-2 btn btn-default" name="weibo" href="{% url "social:begin" backend="weibo" %}">
+                  <i class="fa fa-weibo"></i>
+                  微博
+              </a>
+              <br /><br />
+              <a class="btn btn-default" name="email" href="{% url "social:begin" backend="email" %}">
+                  <i class="fa fa-envelope"></i>
+                  邮箱
+               </a>
+              <a class="btn btn-default" name="username" href="{% url "social:begin" backend="username" %}">
+                  <i class="fa fa-user"></i>
+                  用户名
+                </a>
+          </div>
       </div>
-
-      <div>
-        <a class="btn btn-primary" href="/logout/">
-          <i class="fa fa-sign-out"></i>
-          Logout
-        </a>
-      </div>
-    </div>
 
     <div id="username-modal" class="modal fade">
       <form action="{% url "social:complete" "username" %}" method="post" role="form">{% csrf_token %}
@@ -95,11 +58,6 @@
               <div class="form-group">
                 <label class="control-label" for="password">Password:</label>
                 <input class="form-control" id="password" type="password" name="password" value="" />
-              </div>
-
-              <div class="form-group">
-                <label class="control-label" for="fullname">Full name:</label>
-                <input class="form-control" id="fullname" type="text" name="fullname" value="" />
               </div>
             </div>
 
@@ -135,31 +93,6 @@
               <div class="form-group">
                 <label class="control-label" for="fullname">Full name:</label>
                 <input class="form-control" id="fullname" type="text" name="fullname" value="" />
-              </div>
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Login</button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <div id="livejournal-modal" class="modal fade">
-      <form action="{% url "social:begin" "livejournal" %}" method="post" role="form">{% csrf_token %}
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">LiveJournal OpenId Authentication</h4>
-            </div>
-
-            <div class="modal-body">
-              <div class="form-group">
-                <label class="control-label" for="openid_lj_identifier">LiveJournal ID:</label>
-                <input class="form-control" id="openid_lj_identifier" type="text" value="" name="openid_lj_user" />
               </div>
             </div>
 

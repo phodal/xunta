@@ -6,9 +6,9 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block main %}
-<div class="span12">
+<div class="span12" id="masonry">
 {% for juba in object_list %}
-<div class="link-item clearfix">
+<div class="link-item">
     {% if not profile_user %}{% rating_for juba %}{% endif %}
     <div class="link-detail{% if link.rating_sum < 0 %} link-negative{% endif %}">
         <h2>
@@ -34,4 +34,15 @@
 
 {% pagination_for object_list "page" "pjax" %}
 </div>
+ <script>
+  $(function(){
+  var $masonry = $('#masonry');
+    // initialize
+    $masonry.masonry({
+      columnWidth: 20,
+      gutter: 10,
+      itemSelector: '.link-item'
+    });
+  });
+  </script>
 {% endblock %}

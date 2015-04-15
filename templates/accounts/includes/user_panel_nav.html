@@ -1,4 +1,4 @@
-{% load i18n future mezzanine_tags %}
+{% load i18n future mezzanine_tags backend_utils %}
 
 <ul class="nav pull-right"><li class="divider-vertical"></li></ul>
 
@@ -7,10 +7,19 @@
     <a href="{% url "logout" %}?next={{ request.path }}"
         class="btn btn-primary btn-small">{% trans "Log out" %}</a>
     {% else %}
-    <a href="{% url "login" %}?next={{ request.path }}"
-        class="btn btn-primary btn-small">{% trans "Log in" %}</a>
-    <a href="{% url "signup" %}?next={{ request.path }}"
-        class="btn btn-primary btn-small">{% trans "Sign up" %}</a>
+        <a class="col-md-2 btn btn-default" name="qq" href="{% url "social:begin" backend="qq" %}">
+          <i class="fa fa-qq"></i>
+        </a>
+        <a class="col-md-2 btn btn-default" name="douban oauth2" href="{% url "social:begin" backend="douban-oauth2" %}">
+          <i class="fa fa-douban"></i>
+          豆
+        </a>
+        <a class="col-md-2 btn btn-default" name="google oauth2" href="{% url "social:begin" backend="google-oauth2" %}">
+          <i class="fa fa-google"></i>
+        </a>
+        <a class="col-md-2 btn btn-default" name="weibo" href="{% url "social:begin" backend="weibo" %}">
+          <i class="fa fa-weibo"></i>
+        </a>
     {% endif %}
 </div>
 

@@ -5,18 +5,13 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-from django.contrib.messages import info
-from django.contrib.auth import (login as auth_login, logout as auth_logout)
-from django.utils.translation import ugettext_lazy as _
-from mezzanine.accounts.forms import LoginForm
-from mezzanine.utils.urls import login_redirect
-from mezzanine.utils.views import render
+from django.contrib.auth import (logout as auth_logout)
 from social.backends.oauth import BaseOAuth1, BaseOAuth2
 from social.backends.google import GooglePlusAuth
 from social.backends.utils import load_backends
 from social.apps.django_app.utils import psa
 
-from app.decorators import render_to
+from auth.decorators import render_to
 
 
 def logout(request):

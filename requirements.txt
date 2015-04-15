@@ -6,4 +6,5 @@ djangorestframework
 markdown
 django-uuslug
 gunicorn
+python-social-auth
 Mezzanine==3.1.10

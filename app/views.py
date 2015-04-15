@@ -4,8 +4,13 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout as auth_logout, login
-
+from django.contrib.auth import login
+from django.contrib.messages import info
+from django.contrib.auth import (login as auth_login, logout as auth_logout)
+from django.utils.translation import ugettext_lazy as _
+from mezzanine.accounts.forms import LoginForm
+from mezzanine.utils.urls import login_redirect
+from mezzanine.utils.views import render
 from social.backends.oauth import BaseOAuth1, BaseOAuth2
 from social.backends.google import GooglePlusAuth
 from social.backends.utils import load_backends
@@ -28,12 +33,24 @@ def context(**extra):
     }, **extra)
 
 
-@render_to('index.html')
-def home(request):
+@render_to('accounts/account_login.html')
+def login(request):
     """Home view, displays login mechanism"""
     if request.user.is_authenticated():
         return redirect('done')
     return context()
+
+def login_origin(request, template='accounts/account_login.html'):
+    form = LoginForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        authenticated_user = form.save()
+        info(request, _("Successfully logged in"))
+        auth_login(request, authenticated_user)
+        return login_redirect(request)
+    if request.user.is_authenticated():
+        return redirect('done')
+    context = {"form": form, "title": _("Log in")}
+    return render(request, template, context)
 
 
 @login_required

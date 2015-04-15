@@ -20,13 +20,13 @@
             <a href="{{ link.url }}">{{ link.title }}</a>
             <span class="domain">({{ link.domain }})</span>
         </h2>
-        by <a class="profile" href="{% url "profile" link.user.username %}">{{ link.user.profile }}</a>
-        {{ link.publish_date|short_timesince }} ago |
+        by <a class="profile" href="{% url "profile" link.user.username %}">{{ link.user.get_full_name }}</a>
+        {{ link.publish_date|short_timesince }} 以前
         {% keywords_for link as tags %}
         {% for tag in tags %}
         <a href="{% url "link_list_tag" tag.slug %}">{{ tag }}</a> |
         {% endfor %}
-        <a class="comments" href="{{ link.get_absolute_url }}">{{ link.comments_count }} comment{{ link.comments_count|pluralize }} </a>
+        <a class="comments" href="{{ link.get_absolute_url }}">{{ link.comments_count }} 回复 </a>
     </div>
 </div>
 {% empty %}

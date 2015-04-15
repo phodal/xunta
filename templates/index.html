@@ -56,7 +56,7 @@
                 <a rel="nofollow" href="{{ link.url }}">{{ link.title }}</a>
                 <span class="domain">({{ link.domain }})</span>
             </h2>
-            by <a class="profile" href="{% url "profile" link.user.username %}">{{ link.user.profile }}</a>
+            by <a class="profile" href="{% url "profile" link.user.username %}">{{ link.user.get_full_name }}</a>
             <a class="comments" href="{{ link.get_absolute_url }}">{{ link.comments_count }} 回复</a>
         </div>
     </div>
@@ -74,7 +74,7 @@
                 <a href="{{ link.url }}">{{ juba.title }}</a>
             </h2>
             {{ juba.content|richtext_filters|safe }}
-            by <a class="profile" href="{% url "profile" juba.user.username %}">{{ juba.user }}</a>
+            by <a class="profile" href="{% url "profile" juba.user.username %}">{{ juba.user.get_full_name }}</a>
             <a class="comments" href="{{ link.get_absolute_url }}">{{ juba.comments_count }} 回复 </a>
         </div>
     </div>

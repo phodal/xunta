@@ -19,13 +19,13 @@
             {{ juba.content|richtext_filters|safe }}
             {% endeditable %}
         </p>
-        by <a class="profile" href="{% url "profile" juba.user.username %}">{{ juba.user.profile }}</a>
-        {{ juba.publish_date|short_timesince }} ago |
+        by <a class="profile" href="{% url "profile" juba.user.username %}">{{ juba.user.get_full_name }}</a>
+        {{ juba.publish_date|short_timesince }} 以前 |
         {% keywords_for link as tags %}
         {% for tag in tags %}
         <a href="{% url "link_list_tag" tag.slug %}">{{ tag }}</a> |
         {% endfor %}
-        <a class="comments" href="{{ link.get_absolute_url }}">{{ juba.comments_count }} comment{{ juba.comments_count|pluralize }} </a>
+        <a class="comments" href="{{ link.get_absolute_url }}">{{ juba.comments_count }} 回复 </a>
     </div>
 </div>
 {% empty %}

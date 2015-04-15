@@ -13,8 +13,7 @@
 {% endif %}
 <div class="clearfix">
 
-    <a href="{% url 'avatar_change' %}">Change your avatar</a>
-
+    <a href="{% url 'avatar_change' %}">修改头像</a>
     {% avatar user %}
     {% with profile_user.profile as profile %}
     {% if profile.bio %}

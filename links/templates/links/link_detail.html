@@ -14,8 +14,8 @@
     <p class="description">{{ object.description }}</p>
     <div class="link-meta">
         {% rating_for object %}
-        by <a href="{% url "profile" object.user.username %}">{{ object.user.profile }}</a>
-        {{ object.publish_date|short_timesince }} ago
+        by <a href="{% url "profile" object.user.username %}">{{ object.user.get_full_name }}</a>
+        {{ object.publish_date|short_timesince }} 以前
         {% keywords_for link as tags %}
         {% for tag in tags %}
         | <a href="{% url "link_list_tag" tag.slug %}">{{ tag }}</a>

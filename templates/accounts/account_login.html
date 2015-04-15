@@ -29,6 +29,7 @@
                   用户名
                </a>
       </div>
+    </div>
 
     <div id="username-modal" class="modal fade">
       <form action="{% url "social:complete" "username" %}" method="post" role="form">{% csrf_token %}
@@ -60,4 +61,5 @@
       </form>
     </div>
 </div>
+
 {% endblock %}

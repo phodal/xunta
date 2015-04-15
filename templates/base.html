@@ -32,6 +32,7 @@
 <script src="{% static "js/bootstrap.js" %}"></script>
 <script src="{% static "js/bootstrap-extras.js" %}"></script>
 <script src="{% static "js/jquery.autocomplete.min.js" %}"></script>
+<script src="{% static "js/drum.js" %}"></script>
 <script src="{% static "js/main.js" %}"></script>
 {% block extra_js %}{% endblock %}
 {% endcompress %}
@@ -57,11 +58,12 @@
 
     {% if settings.SITE_TITLE %}<a class="brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
     <div class="nav-collapse">
+        {% if request.user.is_authenticated %}
         <div class="pull-right">
-
-            <a class="btn btn-small btn-warning no-pjax" href="{% url "link_create" %}">New Link</a>
-            <a class="btn btn-small btn-warning no-pjax" href="{% url "juba_create" %}">New Juba</a>
+            <a class="btn btn-small btn-warning no-pjax" href="{% url "link_create" %}">新荐</a>
+            <a class="btn btn-small btn-warning no-pjax" href="{% url "juba_create" %}">新聚</a>
         </div>
+        {% endif %}
         <ul class="nav pull-right"><li class="divider-vertical"></li></ul>
         {% search_form %}
         {% page_menu "pages/menus/dropdown.html" %}

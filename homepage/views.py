@@ -8,6 +8,7 @@ from mezzanine.utils.views import paginate
 
 from links.models import Link
 from juba.models import Juba
+from links.utils import order_by_score
 
 
 User = get_user_model()

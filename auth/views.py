@@ -32,11 +32,11 @@ def context(**extra):
 def login(request):
     """Home view, displays login mechanism"""
     if request.user.is_authenticated():
-        return redirect('done')
+        return redirect('profile')
     return context()
 
 @login_required
-@render_to('index.html')
+@render_to('accounts/account_profile.html')
 def done(request):
     """Login complete view, displays user data"""
     return context()

@@ -7,9 +7,6 @@ from links.views import LinkList, LinkCreate, LinkDetail, CommentList, TagList
 
 
 urlpatterns = patterns("",
-    url("^$",
-        LinkList.as_view(),
-        name="home"),
     url("^newest/$",
         LinkList.as_view(), {"by_score": False},
         name="link_list_latest"),

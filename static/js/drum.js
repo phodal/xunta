@@ -7,13 +7,6 @@ var contents = function(html, tag) {
 };
 
 var setRatingClick = function() {
-    // Drum hides the radio buttons for +1 -1 ratings, and uses
-    // up/down arrow anchors. Attach click handlers to the arrow
-    // anchors that when clicked, check the relevant hidden radio
-    // button, and submits the form via AJAX. If the user is not
-    // authenticated, the JSON response will include a ``location``
-    // value to redirect to, otherwise it will contain the new
-    // rating score, which we update the page with.
     $('.arrows a').click(function() {
 
         var arrow = $(this);

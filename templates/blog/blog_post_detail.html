@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block main %}
-
+<div class="span12">
 {% block blog_post_detail_postedby %}
 {% editable blog_post.publish_date %}
 <h6 class="post-meta">
@@ -115,5 +115,5 @@
 {% block blog_post_detail_comments %}
 {% if blog_post.allow_comments %}{% comments_for blog_post %}{% endif %}
 {% endblock %}
-
+</div>
 {% endblock %}

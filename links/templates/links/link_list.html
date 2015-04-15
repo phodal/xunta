@@ -6,7 +6,7 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block main %}
-
+<div class="span12">
 {% for link in object_list %}
 <div class="link-item clearfix">
     {% if not profile_user %}{% rating_for link %}{% endif %}
@@ -29,5 +29,5 @@
 {% endfor %}
 
 {% pagination_for object_list "page" "pjax" %}
-
+</div>
 {% endblock %}

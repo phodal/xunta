@@ -6,7 +6,6 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block main %}
-
     <div class="span5">
     {% cache 600 blogpost  %}
     {% for blog_post in blog_posts.object_list %}

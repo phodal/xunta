@@ -7,19 +7,18 @@
 
 {% block main %}
 
-{% for blog_post in blog_posts.object_list %}
-
-        {{blog_post}}
-
-{% endfor %}
+<div class="span12">
 {% for link in object_list %}
 <div class="link-item clearfix">
     {% if not profile_user %}{% rating_for link %}{% endif %}
     <div class="link-detail{% if link.rating_sum < 0 %} link-negative{% endif %}">
         <h2>
-            <a href="{{ link.url }}">{{ link.title }}</a>
+            <a rel="nofollow" href="{{ link.url }}">{{ link.title }}</a>
             <span class="domain">({{ link.domain }})</span>
         </h2>
+        <p>
+            {{ link.description }}
+        </p>
         by <a class="profile" href="{% url "profile" link.user.username %}">{{ link.user.get_full_name }}</a>
         {{ link.publish_date|short_timesince }} 以前
         {% keywords_for link as tags %}
@@ -34,5 +33,5 @@
 {% endfor %}
 
 {% pagination_for object_list "page" "pjax" %}
-
+</div>
 {% endblock %}

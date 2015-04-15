@@ -10,7 +10,12 @@
 {% endblock %}
 
 {% block main %}
+<div class="span12">
 <div class="link-view">
+    <h2>
+        <a rel="nofollow" href="{{ link.url }}">{{ link.title }}</a>
+        <span class="domain">({{ link.domain }})</span>
+    </h2>
     <p class="description">{{ object.description }}</p>
     <div class="link-meta">
         {% rating_for object %}
@@ -23,5 +28,6 @@
     </div>
     {% order_comments_by_score_for object %}
     {% comments_for object %}
+</div>
 </div>
 {% endblock %}

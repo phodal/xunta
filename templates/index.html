@@ -52,7 +52,7 @@
     <div class="link-item clearfix">
         <div class="link-detail{% if link.rating_sum < 0 %} link-negative{% endif %}">
             <h2>
-                <a rel="nofollow" href="{{ link.url }}">{{ link.title }}</a>
+                <a rel="nofollow" href="{{ link.get_absolute_url }}">{{ link.title }}</a>
                 <span class="domain">({{ link.domain }})</span>
             </h2>
             by <a class="profile" href="{% url "profile" link.user.username %}">{{ link.user.get_full_name }}</a>

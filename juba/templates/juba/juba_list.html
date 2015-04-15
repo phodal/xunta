@@ -23,9 +23,9 @@
         {{ juba.publish_date|short_timesince }} 以前 |
         {% keywords_for link as tags %}
         {% for tag in tags %}
-        <a href="{% url "link_list_tag" tag.slug %}">{{ tag }}</a> |
+        <a href="{% url "juba_list_tag" tag.slug %}">{{ tag }}</a> |
         {% endfor %}
-        <a class="comments" href="{{ link.get_absolute_url }}">{{ juba.comments_count }} 回复 </a>
+        <a class="comments" href="{{ juba.get_absolute_url }}">{{ juba.comments_count }} 回复 </a>
     </div>
 </div>
 {% empty %}

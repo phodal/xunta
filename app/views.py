@@ -40,39 +40,11 @@ def login(request):
         return redirect('done')
     return context()
 
-def login_origin(request, template='accounts/account_login.html'):
-    form = LoginForm(request.POST or None)
-    if request.method == "POST" and form.is_valid():
-        authenticated_user = form.save()
-        info(request, _("Successfully logged in"))
-        auth_login(request, authenticated_user)
-        return login_redirect(request)
-    if request.user.is_authenticated():
-        return redirect('done')
-    context = {"form": form, "title": _("Log in")}
-    return render(request, template, context)
-
-
 @login_required
 @render_to('index.html')
 def done(request):
     """Login complete view, displays user data"""
     return context()
-
-
-@render_to('index.html')
-def validation_sent(request):
-    return context(
-        validation_sent=True,
-        email=request.session.get('email_validation_address')
-    )
-
-
-@render_to('index.html')
-def require_email(request):
-    backend = request.session['partial_pipeline']['backend']
-    return context(email_required=True, backend=backend)
-
 
 @psa('social:complete')
 def ajax_auth(request, backend):

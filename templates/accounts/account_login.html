@@ -11,7 +11,6 @@
       {% endif %}
 
       <div class="social">
-          <div class="row">
               <a class="col-md-2 btn btn-default" name="qq" href="{% url "social:begin" backend="qq" %}">
                   <i class="fa fa-qq"></i>
                   QQ
@@ -29,15 +28,10 @@
                   微博
               </a>
               <br /><br />
-              <a class="btn btn-default" name="email" href="{% url "social:begin" backend="email" %}">
-                  <i class="fa fa-envelope"></i>
-                  邮箱
-               </a>
               <a class="btn btn-default" name="username" href="{% url "social:begin" backend="username" %}">
                   <i class="fa fa-user"></i>
                   用户名
                 </a>
-          </div>
       </div>
 
     <div id="username-modal" class="modal fade">
@@ -70,55 +64,6 @@
       </form>
     </div>
 
-    <div id="email-modal" class="modal fade">
-      <form action="{% url "social:complete" "email" %}" method="post" role="form">{% csrf_token %}
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Email Authentication</h4>
-            </div>
-
-            <div class="modal-body">
-              <div class="form-group">
-                <label class="control-label" for="email">Email address:</label>
-                <input class="form-control" id="email" type="email" name="email" value="" />
-              </div>
-
-              <div class="form-group">
-                <label class="control-label" for="password">Password:</label>
-                <input class="form-control" id="password" type="password" name="password" value="" />
-              </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Login</button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <div id="validation-sent-modal" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Email Validation Sent</h4>
-          </div>
-
-          <div class="modal-body">
-            <p>An email validation was sent{% if email %} to <code>{{ email }}</code>{% endif %}.</p>
-            <p>Click the link sent to finish the authentication process.</p>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <script type="text/javascript">
       var signInCallback = function (result) {
           if (result['error']) {
@@ -126,7 +71,6 @@
           } else {
             $('#code').attr('value', result['code']);
             $('#at').attr('value', result['access_token']);
-            $('#google-plus').submit();
           }
       };
 
@@ -151,12 +95,9 @@
       };
 
       $(function () {
-        var $validationModal, $emailRequired;
+        var $validationModal;
 
-        modalDialog('#email-modal', 'email');
         modalDialog('#username-modal', 'username');
-        $validationModal = modalDialog('#validation-sent-modal');
-        $emailRequired = modalDialog('#email-required-modal');
 
         modalDialog('#ajax-login-modal', 'ajax-login', function (event) {
           var $backend, $accessToken, $accessTokenSecret, $fields, $result;
@@ -181,29 +122,10 @@
           }, 'json')
         });
 
-        modalDialog('#persona-modal', 'persona', function (event) {
-          var $form;
-          event.preventDefault();
-
-          $form = $(this).closest('form');
-          navigator.id.get(function (assertion) {
-            if (assertion) {
-              $form.find('[name="assertion"]').val(assertion)
-              $form.submit();
-            } else {
-              alert('An error occurred while getting your assertion, try again.');
-            }
-          });
-        });
-
         $('.disconnect-form').on('click', 'a.btn', function (event) {
           event.preventDefault();
           $(event.target).closest('form').submit();
         });
-
-        {% if email_required %}
-          $emailRequired.modal('show');
-        {% endif %}
       });
     </script>
 {% endblock %}

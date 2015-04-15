@@ -51,3 +51,76 @@
 a {
     text-decoration:none;
 }
+
+@font-face {
+  font-family: 'phodal';
+  src: url('../fonts/phodal.eot');
+  src: url('../fonts/phodal.eot') format('embedded-opentype'),
+       url('../fonts/phodal.woff') format('woff'),
+       url('../fonts/phodal.ttf') format('truetype'),
+       url('../fonts/phodal.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'phodal';
+    src: url('../font/phodal.svg?61793245#phodal') format('svg');
+  }
+}
+*/
+
+ [class^="fa-"]:before, [class*=" fa-"]:before {
+  font-family: "phodal";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.fa-wechat:before { content: '\e800'; } /* '' */
+.fa-weibo:before { content: '\e801'; } /* '' */
+.fa-windows:before { content: '\e802'; } /* '' */
+.fa-github:before { content: '\e803'; } /* '' */
+.fa-git-squared:before { content: '\e804'; } /* '' */
+.fa-git:before { content: '\e805'; } /* '' */
+.fa-github-squared:before { content: '\e806'; } /* '' */
+.fa-github-circled:before { content: '\e807'; } /* '' */
+.fa-qq:before { content: '\e808'; } /* '' */
+.fa-google:before { content: '\e809'; } /* '' */
+.fa-gplus:before { content: '\e80a'; } /* '' */
+.fa-gplus-squared:before { content: '\e80b'; } /* '' */
+.fa-thumbs-up:before { content: '\e80c'; } /* '' */
+.fa-thumbs-down:before { content: '\e80d'; } /* '' */
+.fa-thumbs-up-alt:before { content: '\e80e'; } /* '' */
+.fa-thumbs-down-alt:before { content: '\e80f'; } /* '' */

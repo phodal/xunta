@@ -47,3 +47,7 @@
 #username-modal.modal.fade {
     top:10%;
 }
+
+a {
+    text-decoration:none;
+}

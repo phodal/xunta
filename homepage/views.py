@@ -20,9 +20,9 @@ def homepage(request, tag=None, year=None, month=None, username=None,
     author = None
 
     prefetch = ("categories", "keywords__keyword")
-    blog_posts = blog_posts.select_related("user").prefetch_related(*prefetch)[:5]
-    links = Link.objects.published().select_related("user", "user__profile").prefetch_related()
-    jubas = Juba.objects.published().select_related("user", "user__profile").prefetch_related()
+    blog_posts = blog_posts.select_related("user", "user__profile").prefetch_related(*prefetch)[:5]
+    links = Link.objects.published().select_related("user", "user__profile").prefetch_related()[:5]
+    jubas = Juba.objects.published().select_related("user", "user__profile").prefetch_related()[:5]
 
     blog_posts = paginate(blog_posts, request.GET.get("page", 1),
                           settings.BLOG_POST_PER_PAGE,

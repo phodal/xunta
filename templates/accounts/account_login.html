@@ -2,7 +2,7 @@
 {% load i18n future backend_utils %}
 
 {% block main  %}
- {% load backend_utils %}
+<div class="span12">
     <div class="buttons">
       {% if user.is_authenticated %}
         <div class="user-details">
@@ -13,25 +13,21 @@
       <div class="social">
               <a class="col-md-2 btn btn-default" name="qq" href="{% url "social:begin" backend="qq" %}">
                   <i class="fa fa-qq"></i>
-                  QQ
               </a>
               <a class="col-md-2 btn btn-default" name="douban oauth2" href="{% url "social:begin" backend="douban-oauth2" %}">
                   <i class="fa fa-douban"></i>
-                  豆瓣
+                  豆
               </a>
               <a class="col-md-2 btn btn-default" name="google oauth2" href="{% url "social:begin" backend="google-oauth2" %}">
                   <i class="fa fa-google"></i>
-                  Google
               </a>
               <a class="col-md-2 btn btn-default" name="weibo" href="{% url "social:begin" backend="weibo" %}">
                   <i class="fa fa-weibo"></i>
-                  微博
               </a>
-              <br /><br />
               <a class="btn btn-default" name="username" href="{% url "social:begin" backend="username" %}">
                   <i class="fa fa-user"></i>
                   用户名
-                </a>
+               </a>
       </div>
 
     <div id="username-modal" class="modal fade">
@@ -40,92 +36,28 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Email Authentication</h4>
+              <h4 class="modal-title">用户登录</h4>
             </div>
 
             <div class="modal-body">
               <div class="form-group">
-                <label class="control-label" for="username">Username:</label>
+                <label class="control-label" for="username">用户名:</label>
                 <input class="form-control" id="username" type="text" name="username" value="" />
               </div>
 
               <div class="form-group">
-                <label class="control-label" for="password">Password:</label>
+                <label class="control-label" for="password">密码:</label>
                 <input class="form-control" id="password" type="password" name="password" value="" />
               </div>
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Login</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-primary">登录</button>
             </div>
           </div>
         </div>
       </form>
     </div>
-
-    <script type="text/javascript">
-      var signInCallback = function (result) {
-          if (result['error']) {
-            alert('An error happened:', result['error']);
-          } else {
-            $('#code').attr('value', result['code']);
-            $('#at').attr('value', result['access_token']);
-          }
-      };
-
-      var modalDialog = function (modalId, modalLinkName, submitHandler) {
-        var $modal;
-
-        $modal = $(modalId).modal({show: false});
-
-        $modal.on('click', '.btn-primary', submitHandler || function (event) {
-          event.preventDefault();
-          $modal.find('form').submit();
-        });
-
-        if (modalLinkName) {
-          $('a[name="' + modalLinkName + '"]').on('click', function (event) {
-            event.preventDefault();
-            $modal.modal('toggle');
-          });
-        }
-
-        return $modal;
-      };
-
-      $(function () {
-        var $validationModal;
-
-        modalDialog('#username-modal', 'username');
-
-        modalDialog('#ajax-login-modal', 'ajax-login', function (event) {
-          var $backend, $accessToken, $accessTokenSecret, $fields, $result;
-          event.preventDefault();
-
-          $modal = $(this).closest('.modal');
-          $form = $modal.find('form');
-          $backend = $modal.find('[name="backend"]');
-          $accessToken = $modal.find('[name="access_token"]');
-          $accessTokenSecret = $modal.find('[name="access_token_secret"]');
-          $result = $modal.find('.login-result');
-
-          $.get('/ajax-auth/' + $backend.val() + '/', {
-            access_token: $accessToken.val(),
-            access_token_secret: $accessTokenSecret.val(),
-          }, function (data, xhr, response) {
-            $result.find('.user-id').html(data.id);
-            $result.find('.user-username').html(data.username);
-            $form.hide();
-            $result.show();
-            setTimeout(function () { window.location = '/'; }, 10000);
-          }, 'json')
-        });
-
-        $('.disconnect-form').on('click', 'a.btn', function (event) {
-          event.preventDefault();
-          $(event.target).closest('form').submit();
-        });
-      });
-    </script>
+</div>
 {% endblock %}

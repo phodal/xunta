@@ -90,12 +90,6 @@
                 <input class="form-control" id="password" type="password" name="password" value="" />
               </div>
 
-              <div class="form-group">
-                <label class="control-label" for="fullname">Full name:</label>
-                <input class="form-control" id="fullname" type="text" name="fullname" value="" />
-              </div>
-            </div>
-
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Login</button>
@@ -104,128 +98,6 @@
         </div>
       </form>
     </div>
-
-    <div id="openid-modal" class="modal fade">
-      <form action="{% url "social:begin" backend="openid" %}" method="post" role="form">{% csrf_token %}
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Generic OpenId Authentication</h4>
-            </div>
-
-            <div class="modal-body">
-              <div class="form-group">
-                <label class="control-label" for="openid_identifier">OpenId Provider:</label>
-                <input class="form-control" id="openid_identifier" type="text" value="" name="openid_identifier" />
-              </div>
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Login</button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <div id="ajax-login-modal" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Ajax Authentication by AccessToken</h4>
-          </div>
-
-          <div class="modal-body">
-            <form action="#" method="post" class="form-horizontal" role="form">{% csrf_token %}
-              <div class="form-group">
-                <label class="control-label" for="backend">Backend:</label>
-                <select class="form-control" name="backend">
-                  <option value=""></option>
-                  {% for name, backend in available_backends|oauth_backends %}
-                    <option value="{{ name }}">{{ backend|backend_name }}</option>
-                  {% endfor %}
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label class="control-label" for="access_token">Access token:</label>
-                <input class="form-control" id="access_token" name="access_token" type="text" value="" placeholder="OAuth1 or OAuth2 access token">
-              </div>
-
-              <div class="form-group">
-                <label class="control-label" for="access_token_secret">Access token secret:</label>
-                <input class="form-control" id="access_token_secret" name="access_token_secret" type="text" value="" placeholder="OAuth1 access token secret">
-              </div>
-            </form>
-
-            <div class="login-result" style="display: none;">
-              <p><strong>User Id:</strong><span class="user-id"></span></p>
-              <p><strong>Username:</strong><span class="user-username"></span></p>
-              <p>This page will be reloaded in 10s and the user should be logged in.</p>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Login</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="persona-modal" class="modal fade">
-      <form action="{% url "social:complete" backend="persona" %}" method="post">{% csrf_token %}
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Mozilla Persona Authentication</h4>
-            </div>
-
-            <div class="modal-body">
-              <p>Login with Mozilla Persona by clicking the <code>Login</code> button below.</p>
-              <input type="hidden" name="assertion" value="" />
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Login</button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    {% if backend %}
-      <div id="email-required-modal" class="modal fade">
-        <form action="{% url "social:complete" backend=backend %}" method="post" role="form">{% csrf_token %}
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Email required</h4>
-              </div>
-
-              <div class="modal-body">
-                <p>An email address is required.</p>
-                <div class="form-group">
-                  <label class="control-label" for="email">Email address:</label>
-                  <input class="form-control" id="email" type="email" name="email" value="" />
-                </div>
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Continue</button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    {% endif %}
 
     <div id="validation-sent-modal" class="modal fade">
       <div class="modal-dialog">
@@ -281,8 +153,6 @@
       $(function () {
         var $validationModal, $emailRequired;
 
-        modalDialog('#livejournal-modal', 'livejournal');
-        modalDialog('#openid-modal', 'openid');
         modalDialog('#email-modal', 'email');
         modalDialog('#username-modal', 'username');
         $validationModal = modalDialog('#validation-sent-modal');
@@ -330,10 +200,6 @@
           event.preventDefault();
           $(event.target).closest('form').submit();
         });
-
-        {% if validation_sent %}
-          $validationModal.modal('show');
-        {% endif %}
 
         {% if email_required %}
           $emailRequired.modal('show');

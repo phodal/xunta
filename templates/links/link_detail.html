@@ -16,7 +16,11 @@
         <a rel="nofollow" href="{{ link.url }}">{{ link.title }}</a>
         <span class="domain">({{ link.domain }})</span>
     </h2>
-    <p class="description">{{ object.description }}</p>
+    <p class="description">
+        {% editable object.description %}
+        {{ object.description|richtext_filters|safe }}
+        {% endeditable %}
+    </p>
     <div class="link-meta">
         {% rating_for object %}
         by <a href="{% url "profile" object.user.username %}">{{ object.user.get_full_name }}</a>

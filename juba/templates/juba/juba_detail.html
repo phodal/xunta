@@ -12,7 +12,7 @@
 {% block main %}
 <div class="span12">
 <div class="link-view">
-    <p class="description">{{ object.description }}</p>
+    <p class="description">{{ object.content }}</p>
     <div class="link-meta">
         {% rating_for object %}
         by <a href="{% url "profile" object.user.username %}">{{ object.user.get_full_name }}</a>

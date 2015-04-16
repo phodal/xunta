@@ -14,8 +14,8 @@
 {% endif %}
 <div class="clearfix">
 
-    <a href="{% url 'avatar_change' %}">修改头像</a>
     {% avatar user %}
+    <a href="{% url 'avatar_change' %}">修改头像</a>
     {% with profile_user.profile as profile %}
     {% if profile.bio %}
     <p class="bio">{{ profile.bio|urlize|linebreaks }}</p>

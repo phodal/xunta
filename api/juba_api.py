@@ -1,0 +1,27 @@
+from rest_framework import serializers, viewsets
+from rest_framework import filters
+from juba.models import Juba
+
+
+class JubaListSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Juba
+        fields = ('title', 'slug')
+
+
+class JubaListSet(viewsets.ModelViewSet):
+    queryset = Juba.objects.all()
+    serializer_class = JubaListSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('title', 'slug')
+
+
+class JubaDetailSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Juba
+        fields = ('title', 'slug', 'description', 'content')
+
+
+class JubaDetailSet(viewsets.ModelViewSet):
+    queryset = Juba.objects.all()
+    serializer_class = JubaDetailSerializer

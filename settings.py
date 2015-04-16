@@ -252,6 +252,7 @@ INSTALLED_APPS = (
     "rest_framework",
     "social.apps.django_app.default",
     "mezzanine_pagedown",
+    "duoshuo",
     "homepage",
 )
 

@@ -253,6 +253,7 @@ INSTALLED_APPS = (
     "social.apps.django_app.default",
     "mezzanine_pagedown",
     "django_markdown",
+    "duoshuo",
     "homepage",
 )
 

@@ -9,6 +9,10 @@ urlpatterns = patterns("homepage.views",
     url("^$", "homepage", name="home"),
 )
 
+urlpatterns += patterns("comment.views",
+    url("^comment/$", "comment", name="comment"),
+)
+
 urlpatterns += patterns("",
     ("^admin/", include(admin.site.urls)),
     ("^", include("links.urls")),

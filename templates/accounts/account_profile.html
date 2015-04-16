@@ -6,6 +6,7 @@
 {% block body_id %}account{% endblock %}
 
 {% block main %}
+<div class="span12">
 {% if profile_user == request.user %}
 <div class="pull-right">
     <a class="btn btn-large btn-primary btn-profile" href="{% url "profile_update" %}">Update profile</a>
@@ -36,5 +37,5 @@
         {% endif %}
     {% endfor %}
 </div>
-
+</div>
 {% endblock %}

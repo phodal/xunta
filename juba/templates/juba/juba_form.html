@@ -6,6 +6,7 @@
 {% load mezzanine_tags %}
 
 {% block main %}
+<div class="span12">
 {% errors_for form %}
 <form method="post">
 <fieldset>{% fields_for form %}</fieldset>
@@ -13,4 +14,5 @@
     <input class="btn btn-warning btn-large" type="submit" value="Submit New Link">
 </div>
 </form>
+</div>
 {% endblock %}

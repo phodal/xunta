@@ -336,6 +336,9 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/done/'
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/new-users-redirect-url/'
+SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/new-association-redirect-url/'
+
 URL_PATH = ''
 SOCIAL_AUTH_USER_MODEL = 'auth.User'
 SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'

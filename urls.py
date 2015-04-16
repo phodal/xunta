@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+import mezzanine_pagedown.urls
 
 admin.autodiscover()
 
@@ -18,6 +19,7 @@ urlpatterns += patterns("",
     url(r'^login/$', 'auth.views.login'),
     url(r'^logout/$', 'auth.views.logout'),
     url(r'^done/$', 'auth.views.done', name='done'),
+    url("^pagedown/", include(mezzanine_pagedown.urls)),
     url(r'', include('social.apps.django_app.urls', namespace='social')),
     ("^", include("mezzanine.urls")),
 )

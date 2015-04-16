@@ -251,6 +251,7 @@ INSTALLED_APPS = (
     "avatar",
     "rest_framework",
     "social.apps.django_app.default",
+    "mezzanine_pagedown",
     "homepage",
 )
 
@@ -362,6 +363,18 @@ OPTIONAL_APPS = (
     PACKAGE_NAME_FILEBROWSER,
     PACKAGE_NAME_GRAPPELLI,
 )
+
+
+RICHTEXT_WIDGET_CLASS = 'mezzanine_pagedown.widgets.PageDownWidget'
+# RICHTEXT_FILTER = 'mezzanine_pagedown.filters.custom'
+PAGEDOWN_MARKDOWN_EXTENSIONS = ('extra','toc')
+RICHTEXT_FILTER_LEVEL = 3
+PAGEDOWN_SERVER_SIDE_PREVIEW = True
+RICHTEXT_FILTERS = (
+    "mezzanine.utils.html.thumbnails",
+    "mezzanine_pagedown.filters.extra",
+    "mezzanine_pagedown.filters.plain")
+
 
 DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 

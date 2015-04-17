@@ -19,7 +19,13 @@
         <p>
             {{ link.description }}
         </p>
-        by <a class="profile" href="{% url "profile" link.user.username %}">{{ link.user.get_full_name }}</a>
+        by <a class="profile" href="{% url "profile" link.user.username %}">
+        {% if link.user.get_full_name %}
+            {{ link.user.get_full_name }}
+        {% else %}
+            {{ link.user.username }}
+        {% endif %}
+        </a>
         {{ link.publish_date|short_timesince }} 以前
         {% keywords_for link as tags %}
         {% for tag in tags %}

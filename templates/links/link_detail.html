@@ -23,7 +23,13 @@
     </p>
     <div class="link-meta">
         {% rating_for object %}
-        by <a href="{% url "profile" object.user.username %}">{{ object.user.get_full_name }}</a>
+        by <a href="{% url "profile" object.user.username %}">
+            {% if link.user.get_full_name %}
+                {{ link.user.get_full_name }}
+            {% else %}
+                {{ link.user.username }}
+            {% endif %}
+        </a>
         {{ object.publish_date|short_timesince }} 以前
         {% keywords_for link as tags %}
         {% for tag in tags %}

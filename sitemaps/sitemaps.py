@@ -8,7 +8,8 @@ from mezzanine.pages.models import Page
 from mezzanine.utils.sites import current_site_id
 
 from mezzanine.blog.models import BlogPost, BlogCategory
-
+from juba.models import Juba
+from links.models import Link
 
 class DisplayableSitemap(Sitemap):
     """
@@ -27,12 +28,12 @@ class DisplayableSitemap(Sitemap):
 
     @staticmethod
     def lastmod(obj):
-        if isinstance(obj, BlogPost):
+        if isinstance(obj, BlogPost) or isinstance(obj, Juba) or isinstance(obj, Link):
             return obj.updated or obj.publish_date
 
     @staticmethod
     def changefreq(obj):
-        if isinstance(obj, BlogPost):
+        if isinstance(obj, BlogPost) or isinstance(obj, Juba) or isinstance(obj, Link):
             return "Monthly"
         if isinstance(obj, BlogCategory):
             return "Weekly"
@@ -42,7 +43,7 @@ class DisplayableSitemap(Sitemap):
 
     @staticmethod
     def priority(obj):
-        if isinstance(obj, BlogPost):
+        if isinstance(obj, BlogPost) or isinstance(obj, Juba) or isinstance(obj, Link):
             return "0.2"
         if isinstance(obj, BlogCategory):
             return "0.3"

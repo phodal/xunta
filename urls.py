@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 import mezzanine_pagedown.urls
+from sitemaps.sitemaps import DisplayableSitemap
 
 admin.autodiscover()
 
@@ -11,6 +12,12 @@ urlpatterns = patterns("homepage.views",
 
 urlpatterns += patterns("comment.views",
     url("^comment/$", "comment", name="comment"),
+)
+
+
+sitemaps = {"sitemaps": {"all": DisplayableSitemap}}
+urlpatterns += patterns("django.contrib.sitemaps.views",
+    ("^sitemap\.xml$", "sitemap", sitemaps)
 )
 
 urlpatterns += patterns("",

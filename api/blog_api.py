@@ -2,6 +2,7 @@ from mezzanine.blog.models import BlogPost
 from rest_framework import serializers, viewsets
 from rest_framework import filters
 
+
 class BlogpostListSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BlogPost

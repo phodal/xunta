@@ -1,5 +1,6 @@
 from rest_framework import serializers, viewsets
 from rest_framework import filters
+from rest_framework.permissions import IsAuthenticated
 from links.models import Link
 
 class LinkListSerializer(serializers.HyperlinkedModelSerializer):
@@ -24,3 +25,4 @@ class LinkDetailSerializer(serializers.HyperlinkedModelSerializer):
 class LinkDetailSet(viewsets.ModelViewSet):
     queryset = Link.objects.all()
     serializer_class = LinkDetailSerializer
+    permission_classes = (IsAuthenticated,)

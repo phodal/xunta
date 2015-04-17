@@ -28,6 +28,12 @@ class AllListView(viewsets.ModelViewSet):
 
     def list(self, request):
         queryset = list(itertools.chain(Link.objects.all(), Juba.objects.all(), BlogPost.objects.all()))
-        search_param = self.request.QUERY_PARAMS.get('search', None)
+        search_param = self.request.query_params.get('search', None)
+        if search_param is not None:
+            link_queryset = Link.objects.filter(title__contains=search_param)
+            juba_queryset = Juba.objects.filter(title__contains=search_param)
+            blog_queryset = BlogPost.objects.filter(title__contains=search_param)
+            queryset = list(itertools.chain(link_queryset, juba_queryset, blog_queryset))
+
         serializer = TimelineSerializer(queryset, many=True)
         return Response(serializer.data)

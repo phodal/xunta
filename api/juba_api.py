@@ -10,7 +10,7 @@ class JubaListSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('title', 'slug')
 
 
-class JubaListSet(viewsets.ReadOnlyModelViewSet):
+class JubaListSet(viewsets.ModelViewSet):
     queryset = Juba.objects.all()
     serializer_class = JubaListSerializer
     filter_backends = (filters.SearchFilter,)

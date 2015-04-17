@@ -260,9 +260,8 @@ INSTALLED_APPS = (
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-    ],
     'PAGINATE_BY': 10,
+    'PAGE_SIZE': 10,
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGINATE_BY_PARAM': 'page_size',
     'MAX_PAGINATE_BY': 10

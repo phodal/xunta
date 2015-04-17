@@ -8,11 +8,13 @@ from api.views import AllListView
 
 router = routers.DefaultRouter()
 router.register(r'blog_list', BlogPostListSet)
-router.register(r'blog_detail', BlogPostDetailSet)
 router.register(r'juba_list', JubaListSet)
-router.register(r'juba_detail', JubaDetailSet)
 router.register(r'link_list', LinkListSet)
+
+router.register(r'blog_detail', BlogPostDetailSet)
+router.register(r'juba_detail', JubaDetailSet)
 router.register(r'link_detail', LinkDetailSet)
+
 router.register(r'all', AllListView, 'all')
 
 

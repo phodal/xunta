@@ -9,19 +9,18 @@
 $('#autocomplete').autocomplete({
     minChars: 2,
     width: 350,
-    serviceUrl: '/api/blog_list/?format=json',
+    serviceUrl: '/api/all/?format=json',
     paramName: 'search',
     transformResult: function(response) {
         var result = [];
         $.each(JSON.parse(response), function(index, dataItem) {
-            result.push({value: dataItem.title, data: dataItem.slug});
+            result.push({value: dataItem.title, data: dataItem.slug, model: dataItem.model});
         });
 
         return { suggestions: result }
     },
     onSelect: function (suggestion) {
-        console.log(suggestion)
-        window.location.href = "{% url "blog_post_list" %}" + suggestion.data;
+        window.location.href = "/" + suggestion.model + "/" + suggestion.data;
     }
 });
 </script>

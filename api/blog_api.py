@@ -10,7 +10,7 @@ class BlogpostListSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('title', 'slug')
 
 
-class BlogPostListSet(viewsets.ModelViewSet):
+class BlogPostListSet(viewsets.ReadOnlyModelViewSet):
     queryset = BlogPost.objects.all()
     serializer_class = BlogpostListSerializer
     filter_backends = (filters.SearchFilter,)

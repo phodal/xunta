@@ -9,7 +9,7 @@ class LinkListSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('title', 'slug')
 
 
-class LinkListSet(viewsets.ModelViewSet):
+class LinkListSet(viewsets.ReadOnlyModelViewSet):
     queryset = Link.objects.all()
     serializer_class = LinkListSerializer
     filter_backends = (filters.SearchFilter,)

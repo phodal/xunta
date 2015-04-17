@@ -21,7 +21,7 @@ class TimelineSerializer(serializers.Serializer):
         return model
 
 
-class AllListView(viewsets.ModelViewSet):
+class AllListView(viewsets.ReadOnlyModelViewSet):
     serializer_class = TimelineSerializer
 
     def list(self, request):

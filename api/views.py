@@ -2,7 +2,7 @@ import itertools
 from mezzanine.blog.models import BlogPost
 
 from rest_framework import serializers, viewsets
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import filters
 from rest_framework.response import Response
 
 from juba.models import Juba
@@ -11,13 +11,16 @@ from links.models import Link
 
 
 class TimelineSerializer(serializers.Serializer):
-    model = serializers.SerializerMethodField('is_named_bar')
+    model = serializers.SerializerMethodField('get_model_name')
     title = serializers.CharField()
     slug = serializers.CharField()
 
     @staticmethod
-    def is_named_bar(model):
-        return str(model.__class__.__name__ )
+    def get_model_name(model):
+        model = str(model.__class__.__name__).lower()
+        if model is 'blogpost':
+            model = 'blog'
+        return model
 
 
 class AllListView(viewsets.ModelViewSet):
@@ -25,5 +28,6 @@ class AllListView(viewsets.ModelViewSet):
 
     def list(self, request):
         queryset = list(itertools.chain(Link.objects.all(), Juba.objects.all(), BlogPost.objects.all()))
+        search_param = self.request.QUERY_PARAMS.get('search', None)
         serializer = TimelineSerializer(queryset, many=True)
         return Response(serializer.data)

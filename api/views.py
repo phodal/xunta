@@ -24,6 +24,11 @@ class TimelineSerializer(serializers.Serializer):
 class AllListView(viewsets.ReadOnlyModelViewSet):
     serializer_class = TimelineSerializer
 
+    def get_paginate_by(self):
+        if self.request.accepted_renderer.format == 'html':
+            return 20
+        return 10
+
     def list(self, request):
         queryset = list(itertools.chain(Link.objects.all(), Juba.objects.all(), BlogPost.objects.all()))
         search_param = self.request.query_params.get('search', None)
@@ -34,4 +39,4 @@ class AllListView(viewsets.ReadOnlyModelViewSet):
             queryset = list(itertools.chain(link_queryset, juba_queryset, blog_queryset))
 
         serializer = TimelineSerializer(queryset, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data[:10])

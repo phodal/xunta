@@ -263,7 +263,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
     ],
     'PAGINATE_BY': 10,
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination'
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGINATE_BY_PARAM': 'page_size',
+    'MAX_PAGINATE_BY': 10
 }
 
 SOCIAL_AUTH_STORAGE = 'social.apps.django_app.me.models.DjangoStorage'

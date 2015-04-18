@@ -35,7 +35,7 @@
 <div id="sidr" class="pure-menu pure-menu-open pure-menu-horizontal">
     <ul class="nav">
         <li><a href="#" class="header-link">首页</a></li>
-        <li><a href="#userProfile" class="header-link">读吧</a></li>
+        <li><a href="#blog" class="header-link">读吧</a></li>
         <li><a href="#account/create" class="header-link">聚吧</a></li>
         <li><a href="#account/logout" class="header-link">荐吧</a></li>
     </ul>
@@ -49,7 +49,7 @@
 
 <div class="footer l-box">
     {% include "mobile/includes/search.html" %}
-    <p><a href="{% url "set_device" "default" %}?next={{ request.path }}" rel="external">查看桌面版</a></p>
+    <p><a class="pure-button pure-button-primary" href="{% url "set_device" "default" %}?next={{ request.path }}" rel="external">查看桌面版</a></p>
 </div>
 
 {% compress js %}

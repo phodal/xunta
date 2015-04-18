@@ -24,199 +24,26 @@ h2, h3 {
     padding: 0.5em 2em;
 }
 
-/*
- * -- MENU STYLES --
- * Make the menu have a very faint box-shadow.
- */
 .pure-menu {
     box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
 }
 
 
-/*
- * -- BANNER --
- * The top banner with the headings. By using a combination
- * of `display: table;` and `display: table-cell;`, we can
- * vertically center the text.
- */
-
-.banner {
-    text-align: center;
-
-    height: 200px;
-    width: 100%;
-    margin-bottom: 3em;
-    display: table;
-}
-
-.banner-head {
-    display: table-cell;
-    vertical-align: middle;
-    margin-bottom: 0;
-    font-size: 2em;
-    color: white;
-    font-weight: 500;
-    text-shadow: 0 1px 1px black;
-}
-
-
-
-/*
- * -- PRICING TABLE WRAPPER --
- * This element wraps up all the pricing table elements
- */
-.pricing-tables,
-.information {
-    max-width: 980px;
-    margin: 0 auto;
-}
-.pricing-tables {
-    margin-bottom: 3.125em;
-    text-align: center;
-}
-
-/*
- * -- PRICING TABLE  --
- * Every pricing table has the .pricing-table class
- */
-.pricing-table {
-    border: 1px solid #ddd;
-    margin: 0 0.5em 2em;
-    padding: 0 0 3em;
-}
-
-/*
- * -- PRICING TABLE HEADER COLORS --
- * Choose a different color based on the type of pricing table.
- */
-.pricing-table-free .pricing-table-header {
-    background: #519251;
-}
-
-.pricing-table-biz .pricing-table-header {
-    background: #2c4985;
-}
-
-/*
- * -- PRICING TABLE HEADER --
- * By default, a header is black/white, and has some styles for its <h2> name.
- */
-.pricing-table-header {
-    background: #111;
-    color: #fff;
-}
-.pricing-table-header h2 {
-    margin: 0;
-    padding-top: 2em;
-    font-size: 1em;
-    font-weight: normal;
-
-}
-
-
-/*
- * -- PRICING TABLE PRICE --
- * Styles for the price and the corresponding <span>per month</span>
- */
-.pricing-table-price {
-    font-size: 6em;
-    margin: 0.2em 0 0;
-    font-weight: 100;
-}
-.pricing-table-price span {
-    display: block;
-    text-transform: uppercase;
-    font-size: 0.2em;
-    padding-bottom: 2em;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.5);
-    *color: #fff;
-}
-
-
-
-/*
- * -- PRICING TABLE LIST --
- * Each pricing table has a <ul> which is denoted by the .pricing-table-list class
- */
-.pricing-table-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
-
-/*
- * -- PRICING TABLE LIST ELEMENTS --
- * Styles for the individual list elements within each pricing table
- */
-.pricing-table-list li {
-    padding: 0.8em 0;
-    background: #f7f7f7;
-    border-bottom: 1px solid #e7e7e7;
-}
-
-
-/*
- * -- PRICING TABLE BUTTON --
- * Styles for the "Choose" button at the bottom of a pricing table.
- * This inherits from Pure Button.
- */
-.button-choose {
-    border: 1px solid #ccc;
-    background: #fff;
-    color: #333;
-    border-radius: 2em;
-    font-weight: bold;
-    position: relative;
-    bottom: -1.5em;
-}
-
-.information-head {
-    color: black;
-    font-weight: 500;
+.monav{
+    position: fixed;
+    background-color: #fffef5;
+    width:100%;
+    box-shadow: 0 2px 1px rgba(0,0,0, 0.10);
 }
 
 .footer {
-    background: #111;
+    background: #fffef5;
     color: #888;
     text-align: center;
 }
 .footer a {
     color: #ddd;
     text-decoration: none;
-}
-
-
-
-/*
- * -- TABLET MEDIA QUERIES --
- * On tablets, we want to slightly adjust the size of the banner
- * text and add some vertical space between the various pricing tables
- */
-@media(min-width: 767px) {
-
-    .banner-head {
-        font-size: 4em;
-    }
-    .pricing-table {
-        margin-bottom: 0;
-    }
-
-}
-
-/*
- * -- PHONE MEDIA QUERIES --
- * On phones, we want to reduce the height and font-size of the banner further
- */
-@media (min-width: 480px) {
-    .banner {
-        height: 200px;
-    }
-    .banner-head {
-        font-size: 3em;
-    }
 }
 
 .sidr {
@@ -451,14 +278,6 @@ h2, h3 {
     border: 0;
 }
 
-.monav{
-    position: fixed;
-    background-color: #fff;
-    width:100%;
-    box-shadow: 0 2px 1px rgba(0,0,0, 0.10);
-}
-
-
 .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
 .autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
 .autocomplete-selected { background: #F0F0F0; }
@@ -486,4 +305,73 @@ h2, h3 {
 
 #content {
     margin-top: 60px;
+}
+
+
+.content-subhead {
+    text-transform: uppercase;
+    color: #aaa;
+    border-bottom: 1px solid #eee;
+    padding: 0.4em 0;
+    font-size: 80%;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+.content {
+    padding: 2em 1em 0;
+}
+
+.post {
+    padding-bottom: 2em;
+}
+.post-title {
+    font-size: 2em;
+    color: #222;
+    margin-bottom: 0.2em;
+}
+.post-avatar {
+    border-radius: 50px;
+    float: right;
+    margin-left: 1em;
+}
+.post-description {
+    font-family: Georgia, "Cambria", serif;
+    color: #444;
+    line-height: 1.8em;
+}
+.post-meta {
+    color: #999;
+    font-size: 90%;
+    margin: 0;
+}
+
+.post-category {
+    margin: 0 0.1em;
+    padding: 0.3em 1em;
+    color: #fff;
+    background: #999;
+    font-size: 80%;
+}
+.post-category-design {
+    background: #5aba59;
+}
+.post-category-pure {
+    background: #4d85d1;
+}
+.post-category-yui {
+    background: #8156a7;
+}
+.post-category-js {
+    background: #df2d4f;
+}
+
+.post-images {
+    margin: 1em 0;
+}
+.post-image-meta {
+    margin-top: -3.5em;
+    margin-left: 1em;
+    color: #fff;
+    text-shadow: 0 1px 1px #333;
 }

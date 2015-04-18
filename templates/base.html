@@ -106,7 +106,7 @@
 </div>
 
 <footer>
-
+<a href="{% url "set_device" "mobile" %}?next={{ request.path }}">{% trans "移动设备" %}</a>
 </footer>
 
 {% include "includes/footer_scripts.html" %}

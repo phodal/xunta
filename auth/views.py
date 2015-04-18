@@ -3,22 +3,20 @@ import json
 from django.conf import settings
 from django.core.urlresolvers import NoReverseMatch
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.shortcuts import redirect, render
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 from django.contrib.auth import login
-from django.contrib.auth import (logout as auth_logout)
 from mezzanine.accounts import get_profile_form
 from mezzanine.accounts.forms import LoginForm
-from mezzanine.utils.email import send_approve_mail, send_verification_mail
-from mezzanine.utils.urls import login_redirect, next_url
+from mezzanine.utils.urls import login_redirect
 from social.backends.oauth import BaseOAuth1, BaseOAuth2
 from social.backends.utils import load_backends
 from social.apps.django_app.utils import psa
 from django.contrib.messages import info
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth import (authenticate, login as auth_login,
+from django.contrib.auth import (login as auth_login,
                                  logout as auth_logout)
 from django.contrib.auth.decorators import login_required
+from mezzanine.utils.views import render
 
 from auth.decorators import render_to
 

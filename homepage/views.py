@@ -1,14 +1,13 @@
 from __future__ import unicode_literals
 
-from django.shortcuts import render
 from mezzanine.blog.models import BlogPost
 from mezzanine.conf import settings
 from mezzanine.utils.models import get_user_model
 from mezzanine.utils.views import paginate
+from mezzanine.utils.views import render
 
 from links.models import Link
 from juba.models import Juba
-from links.utils import order_by_score
 
 
 User = get_user_model()

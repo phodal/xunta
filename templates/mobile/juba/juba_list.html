@@ -33,15 +33,4 @@
 
 {% pagination_for object_list "page" "pjax" %}
 </div>
- <script>
-  $(function(){
-  var $masonry = $('#masonry');
-    // initialize
-    $masonry.masonry({
-      columnWidth: 20,
-      gutter: 10,
-      itemSelector: '.link-item'
-    });
-  });
-  </script>
 {% endblock %}

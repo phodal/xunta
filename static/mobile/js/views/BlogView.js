@@ -7,7 +7,7 @@ define([
 	'js/model/BlogModel'
 ],function($, Backbone, _, Mustache, blogDetailTemplate, BlogCollection){
 	'use strict';
-	var HomeView = Backbone.View.extend ({
+	var BlogView = Backbone.View.extend ({
 		el: $("#content"),
 
 		initialize: function(blogSlug){
@@ -31,5 +31,5 @@ define([
 		}
 	});
 
-	return HomeView;
+	return BlogView;
 });

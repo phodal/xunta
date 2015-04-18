@@ -27,4 +27,5 @@ class JubaDetailSet(viewsets.ModelViewSet):
     queryset = Juba.objects.all()
     serializer_class = JubaDetailSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (filters.SearchFilter,)
     search_fields = ('title', 'slug')

@@ -7,7 +7,9 @@ define([
     'static/mobile/js/views/HomeView.js',
     'static/mobile/js/views/BlogView.js',
     'static/mobile/js/views/BlogListView.js',
-],function($, _, Backbone, HomeView, BlogView, BlogListView){
+    'static/mobile/js/views/JubaView.js',
+    'static/mobile/js/views/JubaListView.js',
+],function($, _, Backbone, HomeView, BlogView, BlogListView, JubaView, JubaListView){
     var AppRouter = Backbone.Router.extend({
         index: function(){
             var homeView = new HomeView();
@@ -17,8 +19,24 @@ define([
             var loginView = new BlogView(blogSlug);
             loginView.render();
         },
-        blogList: function(blogSlug){
+        blogList: function(){
             var loginView = new BlogListView();
+            loginView.render();
+        },
+        link: function(linkSlug){
+            var loginView = new BlogView(linkSlug);
+            loginView.render();
+        },
+        linkList: function(){
+            var loginView = new BlogListView();
+            loginView.render();
+        },
+        juba: function(jubaSlug){
+            var loginView = new JubaView(jubaSlug);
+            loginView.render();
+        },
+        jubaList: function(){
+            var loginView = new JubaListView();
             loginView.render();
         },
         initialize: function() {
@@ -26,7 +44,11 @@ define([
                 routes = [
                     [ /^.*$/, "index" ],
                     [ 'blog', "blogList" ],
-                    [ 'blog/*slug', "blog" ]
+                    [ 'blog/*slug', "blog" ],
+                    [ 'juba', "jubaList" ],
+                    [ 'juba/*slug', "juba" ],
+                    [ 'link', "linkList" ],
+                    [ 'link/*slug', "link" ]
                 ];
 
             _.each(routes, function(route) {

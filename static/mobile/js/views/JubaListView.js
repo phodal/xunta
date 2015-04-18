@@ -3,7 +3,7 @@ define([
 	'backbone',
 	'underscore',
 	'mustache',
-	'text!/static/mobile/templates/juba_list.html',
+	'text!/static/mobile/templates/juba_list.mustache',
 	'js/model/JubaModel'
 ],function($, Backbone, _, Mustache, jubaListTemplate, JubaCollection){
 	'use strict';

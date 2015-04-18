@@ -3,7 +3,7 @@ define([
 	'backbone',
 	'underscore',
 	'mustache',
-	'text!/static/mobile/templates/link_list.html',
+	'text!/static/mobile/templates/link_list.mustache',
 	'js/model/LinkModel'
 ],function($, Backbone, _, Mustache, linkListTemplate, LinkCollection){
 	'use strict';

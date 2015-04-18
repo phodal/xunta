@@ -3,7 +3,7 @@ define([
 	'backbone',
 	'underscore',
 	'mustache',
-	'text!/static/mobile/templates/homepage_detail.html',
+	'text!/static/mobile/templates/homepage_detail.mustache',
 	'js/model/ReadableModel'
 ],function($, Backbone, _, Mustache, homepageTemplate, ReadableModel){
 	'use strict';

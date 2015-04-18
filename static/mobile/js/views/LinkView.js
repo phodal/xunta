@@ -3,7 +3,7 @@ define([
 	'backbone',
 	'underscore',
 	'mustache',
-	'text!/static/mobile/templates/link_detail.html',
+	'text!/static/mobile/templates/link_detail.mustache',
 	'js/model/JubaModel'
 ],function($, Backbone, _, Mustache, linkDetailTemplate, LinkCollection){
 	'use strict';

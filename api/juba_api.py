@@ -1,6 +1,6 @@
 from rest_framework import serializers, viewsets
 from rest_framework import filters
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from juba.models import Juba
 
 
@@ -26,4 +26,5 @@ class JubaDetailSerializer(serializers.HyperlinkedModelSerializer):
 class JubaDetailSet(viewsets.ModelViewSet):
     queryset = Juba.objects.all()
     serializer_class = JubaDetailSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    search_fields = ('title', 'slug')

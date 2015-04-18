@@ -1,6 +1,6 @@
 from rest_framework import serializers, viewsets
 from rest_framework import filters
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from links.models import Link
 
 class LinkListSerializer(serializers.HyperlinkedModelSerializer):
@@ -25,4 +25,6 @@ class LinkDetailSerializer(serializers.HyperlinkedModelSerializer):
 class LinkDetailSet(viewsets.ModelViewSet):
     queryset = Link.objects.all()
     serializer_class = LinkDetailSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('title', 'slug')

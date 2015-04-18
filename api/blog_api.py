@@ -17,19 +17,24 @@ class BlogPostListSet(viewsets.ReadOnlyModelViewSet):
     queryset = BlogPost.objects.all()
     serializer_class = BlogpostListSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('title', 'slug')
 
     @detail_route(renderer_classes=(renderers.StaticHTMLRenderer,))
     def highlight(self, request, *args, **kwargs):
         snippet = self.get_object()
         return Response(snippet.highlighted)
 
+
 class BlogpostDetailSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BlogPost
-        fields = ('title', 'slug', 'description', 'content')
+        fields = ('title', 'slug', 'description', 'content', 'id')
 
 
 class BlogPostDetailSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all()
     serializer_class = BlogpostDetailSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('title', 'slug')

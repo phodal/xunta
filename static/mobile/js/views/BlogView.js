@@ -17,12 +17,17 @@ define([
 				data: {search: blogSlug},
 				success: function(){
 					that.render();
+					that.afterRender();
 				}
 			});
 		},
+
 		render: function(){
 			var items= this.collection.toJSON()[0];
 			this.$el.html(Mustache.to_html(blogDetailTemplate, { blog: items.results }));
+		},
+		afterRender: function() {
+			$("img").addClass("pure-img");
 		}
 	});
 

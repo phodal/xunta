@@ -4,7 +4,7 @@ require.config({
 		'text': 'js/lib/text',
 		jquery: 'js/lib/jquery.min',
 		json: 'js/lib/json',
-		router: 'js/router',
+		appRouter: 'js/router',
 		templates: 'js/templates',
 		jquerySidr: 'js/lib/jquery.sidr.min',
 		touchwipe: 'js/lib/jquery.touchwipe.min',

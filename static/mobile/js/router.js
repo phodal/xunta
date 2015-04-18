@@ -6,7 +6,6 @@ define([
     'backbone',
     'static/mobile/js/views/HomeView.js'
 ],function($, _, Backbone, HomeView){
-
     var AppRouter = Backbone.Router.extend({
         index: function(){
             var homeView = new HomeView();
@@ -21,6 +20,7 @@ define([
             _.each(routes, function(route) {
                 router.route.apply(router,route);
             });
+
             Backbone.history.start();
         }
     });

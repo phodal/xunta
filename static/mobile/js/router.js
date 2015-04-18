@@ -6,7 +6,8 @@ define([
     'backbone',
     'static/mobile/js/views/HomeView.js',
     'static/mobile/js/views/BlogView.js',
-],function($, _, Backbone, HomeView, BlogView){
+    'static/mobile/js/views/BlogListView.js',
+],function($, _, Backbone, HomeView, BlogView, BlogListView){
     var AppRouter = Backbone.Router.extend({
         index: function(){
             var homeView = new HomeView();
@@ -16,10 +17,15 @@ define([
             var loginView = new BlogView(blogSlug);
             loginView.render();
         },
+        blogList: function(blogSlug){
+            var loginView = new BlogListView();
+            loginView.render();
+        },
         initialize: function() {
             var router = this,
                 routes = [
                     [ /^.*$/, "index" ],
+                    [ 'blog', "blogList" ],
                     [ 'blog/*slug', "blog" ]
                 ];
 

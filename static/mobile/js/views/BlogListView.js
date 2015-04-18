@@ -4,7 +4,7 @@ define([
 	'underscore',
 	'mustache',
 	'text!/static/mobile/templates/blog_list.mustache',
-	'js/model/BlogModel'
+	'js/model/BlogListModel'
 ],function($, Backbone, _, Mustache, blogListTemplate, BlogCollection){
 	'use strict';
 	var BlogListView = Backbone.View.extend ({

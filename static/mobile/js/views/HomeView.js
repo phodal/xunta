@@ -21,7 +21,6 @@ define([
 		},
 		render: function(){
 			var items= this.collection.toJSON();
-			console.log(items);
 			var blog = _.where(items, { 'model': 'blog' });
 			var juba = _.where(items, { 'model': 'juba' });
 			var link = _.where(items, { 'model': 'link' });

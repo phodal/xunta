@@ -11,6 +11,7 @@ from links.models import Link
 class TimelineSerializer(serializers.Serializer):
     model = serializers.SerializerMethodField('get_model_name')
     title = serializers.CharField()
+    pk = serializers.CharField()
     slug = serializers.CharField()
 
     @staticmethod

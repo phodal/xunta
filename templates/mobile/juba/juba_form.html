@@ -1,0 +1,18 @@
+{% extends "mobile/base.html" %}
+
+{% block meta_title %}新建聚{% endblock %}
+{% block title %}新建聚{% endblock %}
+
+{% load mezzanine_tags %}
+
+{% block main %}
+<div class="span12">
+{% errors_for form %}
+<form method="post">
+<fieldset>{% fields_for form %}</fieldset>
+<div class="actions">
+    <input class="btn btn-warning btn-large" type="submit" value="创建">
+</div>
+</form>
+</div>
+{% endblock %}

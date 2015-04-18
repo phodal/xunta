@@ -1,0 +1,42 @@
+{% extends "mobile/base.html" %}
+
+{% load mezzanine_tags rating_tags keyword_tags drum_tags future %}
+
+{% block meta_title %}{{ title|default:"Home" }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block main %}
+
+<div class="span12">
+{% for link in object_list %}
+<div class="link-item clearfix">
+    <div class="link-detail{% if link.rating_sum < 0 %} link-negative{% endif %}">
+        <h2>
+            <a rel="nofollow" href="{{ link.url }}">{{ link.title }}</a>
+            <span class="domain">({{ link.domain }})</span>
+        </h2>
+        <p>
+            {{ link.description }}
+        </p>
+        by <a class="profile" href="{% url "profile" link.user.username %}">
+        {% if link.user.get_full_name %}
+            {{ link.user.get_full_name }}
+        {% else %}
+            {{ link.user.username }}
+        {% endif %}
+        </a>
+        {{ link.publish_date|short_timesince }} 以前
+        {% keywords_for link as tags %}
+        {% for tag in tags %}
+        <a href="{% url "link_list_tag" tag.slug %}">{{ tag }}</a> |
+        {% endfor %}
+        <a class="comments" href="{{ link.get_absolute_url }}">{{ link.comments_count }} 回复 </a>
+    </div>
+</div>
+{% empty %}
+<p>{{ no_data }}</p>
+{% endfor %}
+
+{% pagination_for object_list "page" "pjax" %}
+</div>
+{% endblock %}

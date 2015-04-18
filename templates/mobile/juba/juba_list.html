@@ -1,0 +1,47 @@
+{% extends "mobile/base.html" %}
+
+{% load mezzanine_tags rating_tags keyword_tags drum_tags future %}
+
+{% block meta_title %}{{ title|default:"Home" }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block main %}
+<div class="span12" id="masonry">
+{% for juba in object_list %}
+<div class="link-item panel panel-default">
+    <div class="link-detail{% if link.rating_sum < 0 %} link-negative{% endif %}">
+        <h2>
+            <a href="{{ juba.slug }}">{{ juba.title }}</a>
+        </h2>
+        <p>
+            {% editable juba.content %}
+            {{ juba.content|richtext_filters|safe }}
+            {% endeditable %}
+        </p>
+        by <a class="profile" href="{% url "profile" juba.user.username %}">{{ juba.user.get_full_name }}</a>
+        {{ juba.publish_date|short_timesince }} 以前 |
+        {% keywords_for link as tags %}
+        {% for tag in tags %}
+        <a href="{% url "juba_list_tag" tag.slug %}">{{ tag }}</a> |
+        {% endfor %}
+        <a class="comments" href="{{ juba.get_absolute_url }}">{{ juba.comments_count }} 回复 </a>
+    </div>
+</div>
+{% empty %}
+<p>{{ no_data }}</p>
+{% endfor %}
+
+{% pagination_for object_list "page" "pjax" %}
+</div>
+ <script>
+  $(function(){
+  var $masonry = $('#masonry');
+    // initialize
+    $masonry.masonry({
+      columnWidth: 20,
+      gutter: 10,
+      itemSelector: '.link-item'
+    });
+  });
+  </script>
+{% endblock %}

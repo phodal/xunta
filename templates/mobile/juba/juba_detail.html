@@ -1,0 +1,29 @@
+{% extends "mobile/base.html" %}
+
+{% load mezzanine_tags rating_tags keyword_tags comment_tags drum_tags future %}
+
+{% block meta_description %}{% metablock %}{{ object.description }}{% endmetablock %}{% endblock %}
+{% block meta_title %}{{ object.title }}{% endblock %}
+{% block title %}
+<a href="{{ object.url }}">{{ object.title }}</a>
+<span class="domain">({{ object.domain }})</span>
+{% endblock %}
+
+{% block main %}
+<div class="span12">
+<div class="link-view">
+    <p class="description">{{ object.content }}</p>
+    <div class="link-meta">
+        {% rating_for object %}
+        by <a href="{% url "profile" object.user.username %}">{{ object.user.get_full_name }}</a>
+        {{ object.publish_date|short_timesince }} 以前
+        {% keywords_for juba as tags %}
+        {% for tag in tags %}
+        | <a href="{% url "link_list_tag" tag.slug %}">{{ tag }}</a>
+        {% endfor %}
+    </div>
+    {% order_comments_by_score_for object %}
+    {% comments_for object %}
+</div>
+</div>
+{% endblock %}

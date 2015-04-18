@@ -375,3 +375,10 @@ h2, h3 {
     color: #fff;
     text-shadow: 0 1px 1px #333;
 }
+
+.loading {
+    text-align: center;
+    padding: 15px 5px 15px 5px;
+    background: url(../images/loading.gif) center center no-repeat;
+    height: 50px;
+}

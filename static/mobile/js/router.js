@@ -9,7 +9,9 @@ define([
     'static/mobile/js/views/BlogListView.js',
     'static/mobile/js/views/JubaView.js',
     'static/mobile/js/views/JubaListView.js',
-],function($, _, Backbone, HomeView, BlogView, BlogListView, JubaView, JubaListView){
+    'static/mobile/js/views/LinkView.js',
+    'static/mobile/js/views/LinkListView.js',
+],function($, _, Backbone, HomeView, BlogView, BlogListView, JubaView, JubaListView, LinkView, LinkListView){
     var AppRouter = Backbone.Router.extend({
         index: function(){
             var homeView = new HomeView();
@@ -24,11 +26,11 @@ define([
             loginView.render();
         },
         link: function(linkSlug){
-            var loginView = new BlogView(linkSlug);
+            var loginView = new LinkView(linkSlug);
             loginView.render();
         },
         linkList: function(){
-            var loginView = new BlogListView();
+            var loginView = new LinkListView();
             loginView.render();
         },
         juba: function(jubaSlug){

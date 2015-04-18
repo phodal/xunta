@@ -3,16 +3,16 @@ define([
 	'backbone',
 	'underscore',
 	'mustache',
-	'text!/static/mobile/templates/juba_detail.html',
+	'text!/static/mobile/templates/link_detail.html',
 	'js/model/JubaModel'
-],function($, Backbone, _, Mustache, jubaDetailTemplate, JubaCollection){
+],function($, Backbone, _, Mustache, linkDetailTemplate, LinkCollection){
 	'use strict';
-	var JubaView = Backbone.View.extend ({
+	var LinkView = Backbone.View.extend ({
 		el: $("#content"),
 
 		initialize: function(jubaSlug){
 			var that = this;
-			this.collection = new JubaCollection();
+			this.collection = new LinkCollection();
 			this.collection.fetch({
 				data: {search: jubaSlug},
 				success: function(){
@@ -24,12 +24,12 @@ define([
 
 		render: function(){
 			var items= this.collection.toJSON()[0];
-			this.$el.html(Mustache.to_html(jubaDetailTemplate, { juba: items.results }));
+			this.$el.html(Mustache.to_html(linkDetailTemplate, { link: items.results }));
 		},
 		afterRender: function() {
 			$("img").addClass("pure-img");
 		}
 	});
 
-	return JubaView;
+	return LinkView;
 });

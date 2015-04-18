@@ -483,3 +483,7 @@ h2, h3 {
     box-shadow:0 1px 3px rgba(0,0,0,0.15) inset;
     -webkit-transition: all 0.7s ease 0s;
 }
+
+#content {
+    margin-top: 60px;
+}

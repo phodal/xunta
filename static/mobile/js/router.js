@@ -9,7 +9,7 @@ define([
     var AppRouter = Backbone.Router.extend({
         index: function(){
             var homeView = new HomeView();
-            homeView.initialize();
+            homeView.render();
         },
         initialize: function() {
             var router = this,

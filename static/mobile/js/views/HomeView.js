@@ -10,10 +10,10 @@ define([
 		el: $("#content"),
 
 		initialize: function(){
-
 		},
 		render: function(){
-			this.$el.html(Mustache.to_html(homepageTemplate, {data: "hello"}));
+			var html = Mustache.to_html(homepageTemplate, {hello: "hello"});
+			this.$el.html(html);
 		}
 	});
 

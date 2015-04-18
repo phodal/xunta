@@ -1,25 +1,26 @@
 <div class="pure-menu">
     <span class="pure-menu-heading"><h3>读吧</h3></span>
     <ul class="pure-menu-list">
-        {{ #items }}
+        {{ #blog }}
         <li class="pure-menu-item"><a href="#"><a href="{{slug}}" class="pure-menu-link">{{title}}</a></li>
-        {{ /items }}
+        {{ /blog }}
     </ul>
 </div>
 <div class="pure-menu">
-    <span class="pure-menu-heading">聚吧</span>
+    <span class="pure-menu-heading"><h3>聚吧</h3></span>
     <ul class="pure-menu-list">
-        {{ #items }}
+        {{ #juba }}
         <li class="pure-menu-item"><a href="#"><a href="{{slug}}" class="pure-menu-link">{{title}}</a></li>
-        {{ /items }}
+        {{ /juba }}
     </ul>
 </div>
+
 <div class="pure-menu">
-    <span class="pure-menu-heading">荐吧</span>
+    <span class="pure-menu-heading"><h3>荐吧</h3></span>
     <ul class="pure-menu-list">
-        {{ #items }}
+        {{ #link }}
         <li class="pure-menu-item"><a href="#"><a href="{{slug}}" class="pure-menu-link">{{title}}</a></li>
-        {{ /items }}
+        {{ /link }}
     </ul>
 </div>
 

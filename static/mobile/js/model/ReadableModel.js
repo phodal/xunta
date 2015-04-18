@@ -5,7 +5,7 @@ define(['backbone'], function(Backbone) {
 
     var Readable = Backbone.Collection.extend({
         model: ReadableModel,
-        url: '/api/all',
+        url: '/api/all/?homepage=true',
         parse: function (data) {
             return data;
         }

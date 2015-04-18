@@ -21,7 +21,12 @@ define([
 		},
 		render: function(){
 			var items= this.collection.toJSON();
-			this.$el.html(Mustache.to_html(homepageTemplate, { items: items}));
+			console.log(items);
+			var blog = _.where(items, { 'model': 'blog' });
+			var juba = _.where(items, { 'model': 'juba' });
+			var link = _.where(items, { 'model': 'link' });
+
+			this.$el.html(Mustache.to_html(homepageTemplate, { blog: blog, juba:juba, link:link}));
 		}
 	});
 

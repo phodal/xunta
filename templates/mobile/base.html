@@ -19,6 +19,7 @@
 {% compress css %}
 <link rel="stylesheet" href="{% static "mobile/css/pure-min.css" %}">
 <link rel="stylesheet" href="{% static "mobile/css/pricing.css" %}">
+<link rel="stylesheet" href="{% static "mobile/css/grids-responsive-min.css" %}">
 {% endcompress %}
 
 {% block extra_head %}{% endblock %}
@@ -27,8 +28,8 @@
 <body>
 <div class="monav">
     <button id="menu" type="button" class="btn navbar-toggle" >
-        <a class="menu" href="#sidr"> ☰ Menu</a>
-        <span class="header">Backbone React in Practice</span>
+        <a id="menu" href="#sidr"> ☰ 菜单</a>
+        <span class="header">墨颀CMS</span>
     </button>
 </div>
 <div id="sidr" class="pure-menu pure-menu-open pure-menu-horizontal">

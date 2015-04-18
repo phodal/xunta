@@ -41,10 +41,7 @@ h2, h3 {
  */
 
 .banner {
-    background: transparent url('../images/banner.jpg') 0 0 no-repeat fixed;
     text-align: center;
-    background-size: cover;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/banner.jpg', sizingMethod='scale');
 
     height: 200px;
     width: 100%;
@@ -52,15 +49,15 @@ h2, h3 {
     display: table;
 }
 
-    .banner-head {
-        display: table-cell;
-        vertical-align: middle;
-        margin-bottom: 0;
-        font-size: 2em;
-        color: white;
-        font-weight: 500;
-        text-shadow: 0 1px 1px black;
-    }
+.banner-head {
+    display: table-cell;
+    vertical-align: middle;
+    margin-bottom: 0;
+    font-size: 2em;
+    color: white;
+    font-weight: 500;
+    text-shadow: 0 1px 1px black;
+}
 
 
 
@@ -68,11 +65,11 @@ h2, h3 {
  * -- PRICING TABLE WRAPPER --
  * This element wraps up all the pricing table elements
  */
- .pricing-tables,
- .information {
+.pricing-tables,
+.information {
     max-width: 980px;
     margin: 0 auto;
- }
+}
 .pricing-tables {
     margin-bottom: 3.125em;
     text-align: center;
@@ -108,13 +105,13 @@ h2, h3 {
     background: #111;
     color: #fff;
 }
-    .pricing-table-header h2 {
-        margin: 0;
-        padding-top: 2em;
-        font-size: 1em;
-        font-weight: normal;
+.pricing-table-header h2 {
+    margin: 0;
+    padding-top: 2em;
+    font-size: 1em;
+    font-weight: normal;
 
-    }
+}
 
 
 /*
@@ -126,15 +123,15 @@ h2, h3 {
     margin: 0.2em 0 0;
     font-weight: 100;
 }
-    .pricing-table-price span {
-        display: block;
-        text-transform: uppercase;
-        font-size: 0.2em;
-        padding-bottom: 2em;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.5);
-        *color: #fff;
-    }
+.pricing-table-price span {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.2em;
+    padding-bottom: 2em;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    *color: #fff;
+}
 
 
 
@@ -182,17 +179,14 @@ h2, h3 {
 }
 
 .footer {
-    position:absolute; /* your requirement, you can also use fixed though */
-    bottom:0;
-    width:100%;
     background: #111;
     color: #888;
     text-align: center;
 }
-    .footer a {
-        color: #ddd;
-        text-decoration: none;
-    }
+.footer a {
+    color: #ddd;
+    text-decoration: none;
+}
 
 
 
@@ -218,7 +212,7 @@ h2, h3 {
  */
 @media (min-width: 480px) {
     .banner {
-        height: 400px;
+        height: 200px;
     }
     .banner-head {
         font-size: 3em;
@@ -434,7 +428,7 @@ h2, h3 {
     border-radius: 4px;
     width:100%;
 }
-a#menu {
+.monav #menu {
     text-decoration: none;
     color: #333;
     float:left;
@@ -456,6 +450,7 @@ a#menu {
     clip: rect(0,0,0,0);
     border: 0;
 }
+
 .monav{
     position: fixed;
     background-color: #fff;

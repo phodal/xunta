@@ -13,8 +13,7 @@ define([
 
 		},
 		render: function(){
-			this.$el.find("#content").remove();
-			this.$el.html(Mustache.to_html(homepageTemplate));
+			this.$el.html(Mustache.to_html(homepageTemplate, {data: "hello"}));
 		}
 	});
 

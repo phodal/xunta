@@ -52,9 +52,7 @@
 </div>
 
 {% compress js %}
-<script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
-<script src="{% static "js/jquery.autocomplete.min.js" %}"></script>
-<script src="{% static "js/jquery.mobile-1.0a2.js" %}"></script>
+<script data-main="{% static "mobile/js/main" %}" src="{% static "mobile/js/lib/require.js" %}"></script>
 
 {% include "mobile/includes/footer_scripts.html" %}
 {% endcompress %}

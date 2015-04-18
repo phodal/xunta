@@ -17,43 +17,35 @@
 {% endifinstalled %}
 
 {% compress css %}
-<link rel="stylesheet" href="{% static "css/global-mobile.css" %}">
-<link rel="stylesheet" href="{% static "css/jquery.mobile-1.0a2.css" %}" />
-{% if LANGUAGE_BIDI %}
-<link rel="stylesheet" href="{% static "css/mobile.rtl.css" %}">
-{% endif %}
-{% block extra_css %}{% endblock %}
+<link rel="stylesheet" href="{% static "mobile/css/pure-min.css" %}">
+<link rel="stylesheet" href="{% static "mobile/css/pricing.css" %}">
 {% endcompress %}
 
 {% block extra_head %}{% endblock %}
 
 </head>
-<body id="{% block body_id %}{% endblock %}">
-<div data-role="page" data-theme="d">
-
-    <div data-role="header">
-        <h1>{% block title %}{% endblock %}</h1>
-        <a class="home" data-role="button" data-icon="star" href="{% url "home" %}">{% trans "Home" %}</a>
-    </div>
-
-    {% page_menu "pages/menus/mobile.html" %}
-
-    <div data-role="content">
-        {% block main %}{% endblock %}
-    </div>
-
-    <div data-role="footer">
-        <div data-role="content" align="center">
-        	{% include "mobile/includes/search.html" %}
-            <p><a href="{% url "set_device" "default" %}?next={{ request.path }}" rel="external">查看桌面版</a></p>
-        </div>
-    </div>
+<body>
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <a href="#" class="pure-menu-heading"></a>
+    <ul class="nav">
+        <li><a href="#" class="header-link">首页</a></li>
+        <li><a href="#userProfile" class="header-link">读吧</a></li>
+        <li><a href="#account/create" class="header-link">聚吧</a></li>
+        <li><a href="#account/logout" class="header-link">荐吧</a></li>
+    </ul>
 
 </div>
 
-{% compress js %}
-<script data-main="{% static "mobile/js/main" %}" src="{% static "mobile/js/lib/require.js" %}"></script>
+<div id="content" class="pure-u pure-u-5-5">
+</div>
 
+<div id="footer">
+    {% include "mobile/includes/search.html" %}
+    <p><a href="{% url "set_device" "default" %}?next={{ request.path }}" rel="external">查看桌面版</a></p>
+</div>
+
+{% compress js %}
+<script data-main="static/mobile/js/main" src="{% static "mobile/js/lib/require.js" %}"></script>
 {% include "mobile/includes/footer_scripts.html" %}
 {% endcompress %}
 

@@ -10,36 +10,29 @@ define([
     'static/mobile/js/views/JubaView.js',
     'static/mobile/js/views/JubaListView.js',
     'static/mobile/js/views/LinkView.js',
-    'static/mobile/js/views/LinkListView.js',
+    'static/mobile/js/views/LinkListView.js'
 ],function($, _, Backbone, HomeView, BlogView, BlogListView, JubaView, JubaListView, LinkView, LinkListView){
     var AppRouter = Backbone.Router.extend({
         index: function(){
-            var homeView = new HomeView();
-            homeView.render();
+            new HomeView();
         },
         blog: function(blogSlug){
-            var loginView = new BlogView(blogSlug);
-            loginView.render();
+            new BlogView(blogSlug);
         },
         blogList: function(){
-            var loginView = new BlogListView();
-            loginView.render();
+            new BlogListView();
         },
         link: function(linkSlug){
-            var loginView = new LinkView(linkSlug);
-            loginView.render();
+            new LinkView(linkSlug);
         },
         linkList: function(){
-            var loginView = new LinkListView();
-            loginView.render();
+            new LinkListView();
         },
         juba: function(jubaSlug){
-            var loginView = new JubaView(jubaSlug);
-            loginView.render();
+            new JubaView(jubaSlug);
         },
         jubaList: function(){
-            var loginView = new JubaListView();
-            loginView.render();
+            new JubaListView();
         },
         initialize: function() {
             var router = this,

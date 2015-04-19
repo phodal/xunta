@@ -13,6 +13,7 @@ define([
 
 		initialize: function(){
 			var that = this;
+			this.beforeRender();
 			this.collection = new BlogCollection();
 			this.collection.fetch({
 				data: { limit: 30 },
@@ -27,9 +28,12 @@ define([
 				}
 			});
 		},
+		beforeRender: function () {
+			$.sidr('close');
+		},
 		render: function(){
 			var items= this.collection.toJSON()[0];
-			this.$el.html(Mustache.to_html(blogListTemplate, { blog: items.results }));
+			this.$el.html(Mustache.to_html(blogListTemplate, {blog: items.results}));
 		}
 	});
 

@@ -12,12 +12,16 @@ define([
 
 		initialize: function(){
 			var that = this;
+			this.beforeRender();
 			this.collection = new ReadableModel();
 			this.collection.fetch({
 				success: function(){
 					that.render();
 				}
 			});
+		},
+		beforeRender: function () {
+			$.sidr('close');
 		},
 		render: function(){
 			var items= this.collection.toJSON();

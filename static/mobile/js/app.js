@@ -19,10 +19,6 @@ define([
 		$(document).ready(function() {
 			$('#sidr').show();
 			$('#menu').sidr();
-			$("#sidr li a" ).bind('touchstart click', function() {
-				$.sidr('close');
-				window.scrollTo(0,0);
-			});
 		});
 		new AppRouter();
 	};

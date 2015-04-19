@@ -12,6 +12,7 @@ define([
 
 		initialize: function(){
 			var that = this;
+			this.beforeRender();
 			this.collection = new JubaCollection();
 			this.collection.fetch({
 				data: { limit: 30 },
@@ -25,6 +26,9 @@ define([
 
 				}
 			});
+		},
+		beforeRender: function () {
+			$.sidr('close');
 		},
 		render: function(){
 			var items= this.collection.toJSON()[0];

@@ -28,7 +28,8 @@ define([
             new LinkView(linkSlug);
         },
         linkList: function(){
-            new ListView(LinkCollection, linkDetailTemplate);
+
+            new ListView(new LinkCollection('/api/link_detail/'), linkDetailTemplate);
         },
         juba: function(jubaSlug){
             new JubaView(jubaSlug);

@@ -8,12 +8,12 @@ define([
 	var ListView = Backbone.View.extend ({
 		el: $("#content"),
 
-		initialize: function(Collection, template){
+		initialize: function(collection, template){
 			var that = this;
 			this.beforeRender();
 			this.template = template;
+			this.collection = collection;
 
-			this.collection = new Collection();
 			this.collection.fetch({
 				data: { limit: 30 },
 				success: function(){

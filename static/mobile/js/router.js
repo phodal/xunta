@@ -4,35 +4,33 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'static/mobile/js/views/HomeView.js',
-    'static/mobile/js/views/BlogView.js',
-    'static/mobile/js/views/JubaView.js',
-    'static/mobile/js/views/LinkView.js',
+    'js/views/HomeView',
     'js/views/ListView',
     'text!/static/mobile/templates/list.mustache',
+    'text!/static/mobile/templates/detail.mustache',
     'js/model/ListModel'
-],function($, _, Backbone, HomeView, BlogView, JubaView, LinkView, ListView, linkDetailTemplate, LinkCollection){
+],function($, _, Backbone, HomeView, ListView, listTemplate, detailTemplate, ListCollection){
     var AppRouter = Backbone.Router.extend({
         index: function(){
             new HomeView();
         },
         blog: function(blogSlug){
-            new BlogView(blogSlug);
+            new ListView(new ListCollection('/api/blog_detail/'), detailTemplate, 'blog', {slug: blogSlug});
         },
         blogList: function(){
-            new ListView(new LinkCollection('/api/blog_list/'), linkDetailTemplate, 'blog');
+            new ListView(new ListCollection('/api/blog_list/'), listTemplate, 'blog');
         },
         link: function(linkSlug){
-            new LinkView(linkSlug);
+            new ListView(new ListCollection('/api/link_detail/'), detailTemplate, 'link', {slug: linkSlug});
         },
         linkList: function(){
-            new ListView(new LinkCollection('/api/link_list/'), linkDetailTemplate, 'link');
+            new ListView(new ListCollection('/api/link_list/'), listTemplate, 'link');
         },
         juba: function(jubaSlug){
-            new JubaView(jubaSlug);
+            new ListView(new ListCollection('/api/juba_detail/'), detailTemplate, 'juba', {slug: jubaSlug});
         },
         jubaList: function(){
-            new ListView(new LinkCollection('/api/juba_list/'), linkDetailTemplate, 'juba');
+            new ListView(new ListCollection('/api/juba_list/'), listTemplate, 'juba');
         },
         initialize: function() {
             var router = this,

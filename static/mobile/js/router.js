@@ -6,8 +6,8 @@ define([
     'backbone',
     'js/views/HomeView',
     'js/views/ListView',
-    'text!/static/mobile/templates/list.mustache',
-    'text!/static/mobile/templates/detail.mustache',
+    'text!templates/list.mustache',
+    'text!templates/detail.mustache',
     'js/model/ListModel'
 ],function($, _, Backbone, HomeView, ListView, listTemplate, detailTemplate, ListCollection){
     var AppRouter = Backbone.Router.extend({

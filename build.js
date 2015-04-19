@@ -20,6 +20,6 @@
 		}
 	},
     name: "js/main",
-    out: "dist/build.js",
+    out: "static/mobile/build/build.js",
     removeCombined: true
 });

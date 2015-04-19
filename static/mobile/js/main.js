@@ -1,16 +1,18 @@
 require.config({
+	//baseUrl: '/static/mobile/', //build
 	baseUrl: '/static/mobile/',
 	paths: {
 		'text': 'js/lib/text',
 		jquery: 'js/lib/jquery.min',
 		json: 'js/lib/json',
 		appRouter: 'js/router',
-		templates: 'js/templates',
+		templates: 'templates',
 		jquerySidr: 'js/lib/jquery.sidr.min',
 		touchwipe: 'js/lib/jquery.touchwipe.min',
 		underscore: 'js/lib/lodash.min',
 		mustache: 'js/lib/mustache',
-		backbone: 'js/lib/backbone'
+		backbone: 'js/lib/backbone',
+		app: 'js/app'
 	},
 	shim: {
 		jquerySidr:["jquery"],
@@ -21,6 +23,6 @@ require.config({
 	}
 });
 
-require(['static/mobile/js/app.js'], function(App){
+require(['app'], function(App){
 	App.initialize();
 });

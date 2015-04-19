@@ -6,14 +6,12 @@ define([
     'backbone',
     'static/mobile/js/views/HomeView.js',
     'static/mobile/js/views/BlogView.js',
-    'static/mobile/js/views/BlogListView.js',
     'static/mobile/js/views/JubaView.js',
-    'static/mobile/js/views/JubaListView.js',
     'static/mobile/js/views/LinkView.js',
     'js/views/ListView',
     'text!/static/mobile/templates/list.mustache',
-    'js/model/JubaModel'
-],function($, _, Backbone, HomeView, BlogView, BlogListView, JubaView, JubaListView, LinkView, ListView, linkDetailTemplate, LinkCollection){
+    'js/model/ListModel'
+],function($, _, Backbone, HomeView, BlogView, JubaView, LinkView, ListView, linkDetailTemplate, LinkCollection){
     var AppRouter = Backbone.Router.extend({
         index: function(){
             new HomeView();
@@ -22,20 +20,19 @@ define([
             new BlogView(blogSlug);
         },
         blogList: function(){
-            new BlogListView();
+            new ListView(new LinkCollection('/api/blog_list/'), linkDetailTemplate, 'blog');
         },
         link: function(linkSlug){
             new LinkView(linkSlug);
         },
         linkList: function(){
-
-            new ListView(new LinkCollection('/api/link_detail/'), linkDetailTemplate);
+            new ListView(new LinkCollection('/api/link_list/'), linkDetailTemplate, 'link');
         },
         juba: function(jubaSlug){
             new JubaView(jubaSlug);
         },
         jubaList: function(){
-            new JubaListView();
+            new ListView(new LinkCollection('/api/juba_list/'), linkDetailTemplate, 'juba');
         },
         initialize: function() {
             var router = this,

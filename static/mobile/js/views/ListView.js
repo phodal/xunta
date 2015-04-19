@@ -8,16 +8,17 @@ define([
 	var ListView = Backbone.View.extend ({
 		el: $("#content"),
 
-		initialize: function(collection, template){
+		initialize: function(collection, template, model){
 			var that = this;
 			this.beforeRender();
 			this.template = template;
+			this.model = model;
 			this.collection = collection;
 
 			this.collection.fetch({
 				data: { limit: 30 },
 				success: function(){
-					that.render(that.template);
+					that.render(that.template, that.model);
 					that.afterRender();
 				}
 			});
@@ -25,9 +26,14 @@ define([
 		beforeRender: function () {
 			$.sidr('close');
 		},
-		render: function(template){
+		render: function(template, model){
+			var obj = "objname";
 			var items= this.collection.toJSON()[0];
-			this.$el.html(Mustache.to_html(template, { link: items.results }));
+
+			this.objname = {};
+			this[obj][model] = items.results;
+
+			this.$el.html(Mustache.to_html(template, this.objname ));
 		},
 		afterRender: function() {
 			$("img").addClass("pure-img");

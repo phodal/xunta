@@ -1,19 +1,14 @@
 "use strict";
 
 define(['backbone'], function(Backbone) {
-    var LinkModel = Backbone.Model.extend({});
+	var LinkModel = Backbone.Model.extend({});
 
-    var Link = Backbone.Collection.extend({
-        initialize: function(url) {
-            this.url = options.url;
-        },
-        model: LinkModel,
-        url: function () {
-            return this.url;
-        },
-        parse: function (data) {
-            return data;
-        }
-    });
-    return Link;
+	var Link = Backbone.Collection.extend({
+		model: LinkModel,
+		url: '/api/link_detail/',
+		parse: function (data) {
+			return data;
+		}
+	});
+	return Link;
 });

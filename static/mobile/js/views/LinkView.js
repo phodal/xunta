@@ -4,7 +4,7 @@ define([
 	'underscore',
 	'mustache',
 	'text!/static/mobile/templates/detail.mustache',
-	'js/model/JubaModel'
+	'js/model/LinkModel'
 ],function($, Backbone, _, Mustache, linkDetailTemplate, LinkCollection){
 	'use strict';
 	var LinkView = Backbone.View.extend ({

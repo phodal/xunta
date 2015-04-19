@@ -10,8 +10,10 @@ define([
     'static/mobile/js/views/JubaView.js',
     'static/mobile/js/views/JubaListView.js',
     'static/mobile/js/views/LinkView.js',
-    'static/mobile/js/views/LinkListView.js'
-],function($, _, Backbone, HomeView, BlogView, BlogListView, JubaView, JubaListView, LinkView, LinkListView){
+    'js/views/ListView',
+    'text!/static/mobile/templates/list.mustache',
+    'js/model/JubaModel'
+],function($, _, Backbone, HomeView, BlogView, BlogListView, JubaView, JubaListView, LinkView, ListView, linkDetailTemplate, LinkCollection){
     var AppRouter = Backbone.Router.extend({
         index: function(){
             new HomeView();
@@ -26,7 +28,7 @@ define([
             new LinkView(linkSlug);
         },
         linkList: function(){
-            new LinkListView();
+            new ListView(LinkCollection, linkDetailTemplate);
         },
         juba: function(jubaSlug){
             new JubaView(jubaSlug);

@@ -4,8 +4,8 @@ define([
 	'underscore',
 	'mustache',
 	'text!/static/mobile/templates/homepage_detail.mustache',
-	'js/model/ReadableModel'
-],function($, Backbone, _, Mustache, homepageTemplate, ReadableModel){
+	'js/model/ListModel'
+],function($, Backbone, _, Mustache, homepageTemplate, ListModel){
 	'use strict';
 	var HomeView = Backbone.View.extend ({
 		el: $("#content"),
@@ -13,7 +13,7 @@ define([
 		initialize: function(){
 			var that = this;
 			this.beforeRender();
-			this.collection = new ReadableModel();
+			this.collection = new ListModel('/api/all/?homepage=true');
 			this.collection.fetch({
 				success: function(){
 					that.render();

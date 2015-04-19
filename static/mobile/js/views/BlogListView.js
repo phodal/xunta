@@ -3,7 +3,7 @@ define([
 	'backbone',
 	'underscore',
 	'mustache',
-	'text!/static/mobile/templates/blog_list.mustache',
+	'text!/static/mobile/templates/list.mustache',
 	'js/model/BlogListModel'
 ],function($, Backbone, _, Mustache, blogListTemplate, BlogCollection){
 	'use strict';

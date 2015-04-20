@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from mezzanine.blog.models import BlogPost
 from rest_framework import serializers, viewsets
 from rest_framework import filters
@@ -27,9 +28,17 @@ class BlogPostListSet(viewsets.ReadOnlyModelViewSet):
 
 
 class BlogpostDetailSerializer(serializers.HyperlinkedModelSerializer):
+    user = serializers.SerializerMethodField('get_username_by_id')
+
+    @staticmethod
+    def get_username_by_id(model):
+        user = User.objects.get(id=model.user_id)
+        return user.username
+
+
     class Meta:
         model = BlogPost
-        fields = ('title', 'slug', 'description', 'content', 'id', 'publish_date')
+        fields = ('title', 'slug', 'description', 'content', 'id', 'publish_date', 'user')
 
 
 class BlogPostDetailSet(viewsets.ModelViewSet):

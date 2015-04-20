@@ -14,7 +14,7 @@ class BlogpostListSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class BlogPostListSet(viewsets.ReadOnlyModelViewSet):
-    queryset = BlogPost.objects.all()
+    queryset = BlogPost.objects.filter(status=2)
     serializer_class = BlogpostListSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_backends = (filters.SearchFilter,)
@@ -33,7 +33,7 @@ class BlogpostDetailSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class BlogPostDetailSet(viewsets.ModelViewSet):
-    queryset = BlogPost.objects.all()
+    queryset = BlogPost.objects.filter(status=2)
     serializer_class = BlogpostDetailSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_backends = (filters.SearchFilter,)

@@ -11,7 +11,7 @@ class JubaListSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class JubaListSet(viewsets.ModelViewSet):
-    queryset = Juba.objects.all()
+    queryset = Juba.objects.filter(status=2)
     serializer_class = JubaListSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('title', 'slug')
@@ -20,11 +20,11 @@ class JubaListSet(viewsets.ModelViewSet):
 class JubaDetailSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Juba
-        fields = ('title', 'slug', 'description', 'content')
+        fields = ('title', 'slug', 'description', 'content', 'id', 'publish_date')
 
 
 class JubaDetailSet(viewsets.ModelViewSet):
-    queryset = Juba.objects.all()
+    queryset = Juba.objects.filter(status=2)
     serializer_class = JubaDetailSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_backends = (filters.SearchFilter,)

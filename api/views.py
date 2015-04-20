@@ -31,7 +31,10 @@ class AllListView(viewsets.ReadOnlyModelViewSet):
         return 10
 
     def list(self, request):
-        queryset = list(itertools.chain(Link.objects.all(), Juba.objects.all(), BlogPost.objects.all()))[:10]
+        queryset = list(itertools.chain(Link.objects.filter(status=2),
+                                        Juba.objects.filter(status=2),
+                                        BlogPost.objects.filter(status=2)))[:10]
+
         search_param = self.request.query_params.get('search', None)
         if search_param is not None:
             link_queryset = Link.objects.filter(title__contains=search_param)

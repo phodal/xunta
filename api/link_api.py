@@ -19,15 +19,20 @@ class LinkListSet(viewsets.ReadOnlyModelViewSet):
 
 class LinkDetailSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.SerializerMethodField('get_username_by_id')
+    date = serializers.SerializerMethodField('get_special_date')
 
     @staticmethod
     def get_username_by_id(model):
         user = User.objects.get(id=model.user_id)
         return user.username
 
+    @staticmethod
+    def get_special_date(model):
+        return model.publish_date.strftime('%Y-%m-%d')
+
     class Meta:
         model = Link
-        fields = ('title', 'slug', 'url', 'description', 'id', 'publish_date', 'user')
+        fields = ('title', 'slug', 'url', 'description', 'id', 'date', 'user')
 
 
 class LinkDetailSet(viewsets.ModelViewSet):

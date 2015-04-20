@@ -16,6 +16,7 @@ class AllSerializer(serializers.Serializer):
     pk = serializers.CharField()
     slug = serializers.CharField()
     publish_date = serializers.CharField()
+    date = serializers.SerializerMethodField('get_special_date')
 
     @staticmethod
     def get_model_name(model):
@@ -29,6 +30,10 @@ class AllSerializer(serializers.Serializer):
         user = User.objects.get(id=model.user_id)
         return user.username
 
+
+    @staticmethod
+    def get_special_date(model):
+        return model.publish_date.strftime('%Y-%m-%d')
 
 class AllListView(viewsets.ReadOnlyModelViewSet):
     serializer_class = AllSerializer

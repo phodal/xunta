@@ -20,15 +20,21 @@ class JubaListSet(viewsets.ModelViewSet):
 
 class JubaDetailSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.SerializerMethodField('get_username_by_id')
+    date = serializers.SerializerMethodField('get_special_date')
 
     @staticmethod
     def get_username_by_id(model):
         user = User.objects.get(id=model.user_id)
         return user.username
 
+
+    @staticmethod
+    def get_special_date(model):
+        return model.publish_date.strftime('%Y-%m-%d')
+
     class Meta:
         model = Juba
-        fields = ('title', 'slug', 'description', 'content', 'id', 'publish_date', 'user')
+        fields = ('title', 'slug', 'description', 'content', 'id', 'date', 'user')
 
 
 class JubaDetailSet(viewsets.ModelViewSet):

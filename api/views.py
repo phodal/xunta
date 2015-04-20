@@ -13,6 +13,7 @@ class TimelineSerializer(serializers.Serializer):
     title = serializers.CharField()
     pk = serializers.CharField()
     slug = serializers.CharField()
+    publish_date = serializers.CharField()
 
     @staticmethod
     def get_model_name(model):

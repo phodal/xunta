@@ -29,7 +29,7 @@ class BlogPostListSet(viewsets.ReadOnlyModelViewSet):
 class BlogpostDetailSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BlogPost
-        fields = ('title', 'slug', 'description', 'content', 'id')
+        fields = ('title', 'slug', 'description', 'content', 'id', 'publish_date')
 
 
 class BlogPostDetailSet(viewsets.ModelViewSet):

@@ -19,7 +19,7 @@ class LinkListSet(viewsets.ReadOnlyModelViewSet):
 class LinkDetailSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Link
-        fields = ('title', 'slug', 'url', 'description')
+        fields = ('title', 'slug', 'url', 'description', 'id', 'publish_date')
 
 
 class LinkDetailSet(viewsets.ModelViewSet):

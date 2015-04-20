@@ -8,7 +8,6 @@ require.config({
 		appRouter: 'js/router',
 		templates: 'templates',
 		jquerySidr: 'js/lib/jquery.sidr.min',
-		touchwipe: 'js/lib/jquery.touchwipe.min',
 		underscore: 'js/lib/lodash.min',
 		mustache: 'js/lib/mustache',
 		backbone: 'js/lib/backbone',
@@ -16,7 +15,6 @@ require.config({
 	},
 	shim: {
 		jquerySidr:["jquery"],
-		touchwipe: ["jquery"],
 		underscore: {
 			exports: '_'
 		}

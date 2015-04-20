@@ -19,7 +19,6 @@
 
 {% compress css %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap2.css">
-<link rel="stylesheet" href="{{ STATIC_URL }}css/mezzanine1.css">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/flat-ui.css">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap2-responsive.css">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
@@ -105,8 +104,10 @@
 </div>
 </div>
 
-<footer>
-<a href="{% url "set_device" "mobile" %}?next={{ request.path }}">{% trans "移动设备" %}</a>
+<footer class="footer">
+  <div class="container">
+    <a href="{% url "set_device" "mobile" %}?next={{ request.path }}">{% trans "移动设备浏览" %}</a>
+  </div>
 </footer>
 
 {% include "includes/footer_scripts.html" %}

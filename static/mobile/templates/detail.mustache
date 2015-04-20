@@ -1,24 +1,24 @@
 {{ #blog }}
-<div class="pure-menu">
-    <span class="pure-menu-heading">{{title}}</span>
-    <ul class="pure-menu-list">
-        {{{content}}}
-    </ul>
+<div class="pure-g">
+    <span class="pure-u-1-1 pure-menu-heading"><h1>《{{title}}》</h1></span>
+    <div class="pure-u-24-24">
+        正文: {{{content}}}
+    </div>
 </div>
 {{ /blog }}
 {{ #juba }}
-<div class="pure-menu">
-    <span class="pure-menu-heading">{{title}}</span>
+<div class="pure-g">
+    <span class="pure-u-1-1 pure-menu-heading"><h1>《{{title}}》</h1></span>
+    <div class="pure-u-24-24">
+        正文: {{{content}}}
+    </div>
 </div>
-<p>
-    {{{content}}}
-</p>
 {{ /juba }}
 {{ #link }}
-<div class="pure-menu">
-    <span class="pure-menu-heading">{{title}}</span>
-    <ul class="pure-menu-list">
-        {{{description}}}
-    </ul>
+<div class="pure-g">
+    <span class="pure-u-1-1 pure-menu-heading"><h1>《{{title}}》</h1></span>
+    <div class="pure-u-24-24">
+        正文: {{{description}}}
+    </div>
 </div>
 {{ /link }}

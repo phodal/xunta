@@ -1,5 +1,6 @@
 import itertools
 
+from django.contrib.auth.models import User
 from mezzanine.blog.models import BlogPost
 from rest_framework import serializers, viewsets
 from rest_framework.response import Response
@@ -8,8 +9,9 @@ from juba.models import Juba
 from links.models import Link
 
 
-class TimelineSerializer(serializers.Serializer):
+class AllSerializer(serializers.Serializer):
     model = serializers.SerializerMethodField('get_model_name')
+    user = serializers.SerializerMethodField('get_username_by_id')
     title = serializers.CharField()
     pk = serializers.CharField()
     slug = serializers.CharField()
@@ -22,9 +24,14 @@ class TimelineSerializer(serializers.Serializer):
             model = 'blog'
         return model
 
+    @staticmethod
+    def get_username_by_id(model):
+        user = User.objects.get(id=model.user_id)
+        return user.username
+
 
 class AllListView(viewsets.ReadOnlyModelViewSet):
-    serializer_class = TimelineSerializer
+    serializer_class = AllSerializer
 
     def get_paginate_by(self):
         if self.request.accepted_renderer.format == 'html':
@@ -50,5 +57,5 @@ class AllListView(viewsets.ReadOnlyModelViewSet):
             blog_queryset = BlogPost.objects.all()[:5]
             queryset = list(itertools.chain(link_queryset, juba_queryset, blog_queryset))
 
-        serializer = TimelineSerializer(queryset, many=True)
+        serializer = AllSerializer(queryset, many=True)
         return Response(serializer.data)

@@ -27,13 +27,14 @@ var setRatingClick = function() {
             if (data.location) {
                 location = data.location;
             } else {
-                //container.find('.score').text(data.rating_sum);
+                container.find('.score').text(data.rating_sum);
                 $('.main').fadeTo(0, .5);
                 $.get(location.href, {pjax: 1}, function(html) {
                     $('.main').fadeTo(0, 1);
                     var body = contents(html, 'body');
+                    console.log(body);
                     document.getElementsByTagName('body')[0].innerHTML = body;
-                    setRatingClick();
+                    //setRatingClick();
                 });
             }
         }, 'json');

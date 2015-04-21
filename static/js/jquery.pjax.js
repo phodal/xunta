@@ -22,9 +22,10 @@ if (window.history && window.history.pushState && !navigator.userAgent.match(/(i
 					}
 					window.history.pushState({url: url}, document.title, url);
 				}
+				console.log(body);
 				document.title = title;
 				document.getElementsByTagName('body')[0].innerHTML = body;
-				setRatingClick();
+				//setRatingClick();
 
 				$(function () {
 					$('.reply').click(function () {
@@ -43,7 +44,7 @@ if (window.history && window.history.pushState && !navigator.userAgent.match(/(i
 		};
 
 		$('a').live('click', function (event) {
-			var host = location.protocol + '//' + location.hostname
+			var host = location.protocol + '//' + location.hostname;
 			if (this.href.substr('#') >= 0) {
 				return false;
 			} else if (this.href.indexOf(host) != 0 || event.which > 1 || event.metaKey || $(this).hasClass('no-pjax')) {

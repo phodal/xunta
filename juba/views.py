@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from future.builtins import super
 
@@ -105,9 +106,9 @@ class JubaList(JubaView, ScoreOrderingView):
         if context["by_score"]:
             return ""  # Homepage
         if context["profile_user"]:
-            return "Jubas by %s" % context["profile_user"].profile
+            return "聚吧 by" % context["profile_user"].profile
         else:
-            return "Newest"
+            return "聚吧"
 
 
 class JubaCreate(CreateView):

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from future.builtins import super
 
@@ -105,9 +106,9 @@ class LinkList(LinkView, ScoreOrderingView):
         if context["by_score"]:
             return ""  # Homepage
         if context["profile_user"]:
-            return "Links by %s" % context["profile_user"].profile
+            return "推荐 by " % context["profile_user"].profile
         else:
-            return "Newest"
+            return "荐吧"
 
 
 class LinkCreate(CreateView):

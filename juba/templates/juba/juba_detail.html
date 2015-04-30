@@ -14,7 +14,7 @@
 <div class="link-view">
     <p class="description">
         {% editable object.content %}
-        {{ object.description|richtext_filters|safe }}
+        {{ object.content|richtext_filters|safe }}
         {% endeditable %}
     </p>
     <div class="link-meta">

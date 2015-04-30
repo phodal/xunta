@@ -14,9 +14,7 @@
             <a href="{{ juba.slug }}">{{ juba.title }}</a>
         </h2>
         <p>
-            {% editable juba.content %}
             {{ juba.content|richtext_filters|safe }}
-            {% endeditable %}
         </p>
         by <a class="profile" href="{% url "profile" juba.user.username %}">{{ juba.user.get_full_name }}</a>
         {{ juba.publish_date|short_timesince }} 以前 |

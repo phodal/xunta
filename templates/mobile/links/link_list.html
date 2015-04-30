@@ -16,7 +16,7 @@
             <span class="domain">({{ link.domain }})</span>
         </h2>
         <p>
-            {{ link.description }}
+            {{ link.description|richtext_filters|safe }}
         </p>
         by <a class="profile" href="{% url "profile" link.user.username %}">
         {% if link.user.get_full_name %}

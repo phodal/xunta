@@ -17,9 +17,7 @@
         <span class="domain">({{ link.domain }})</span>
     </h2>
     <p class="description">
-        {% editable object.description %}
         {{ object.description|richtext_filters|safe }}
-        {% endeditable %}
     </p>
     <div class="link-meta">
         {% rating_for object %}

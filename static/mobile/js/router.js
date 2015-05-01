@@ -5,32 +5,32 @@ define([
     'underscore',
     'backbone',
     'js/views/HomeView',
-    'js/views/ListView',
+    'js/views/BasicPageView',
     'text!templates/list.mustache',
     'text!templates/detail.mustache',
     'js/model/ListModel'
-],function($, _, Backbone, HomeView, ListView, listTemplate, detailTemplate, ListCollection){
+],function($, _, Backbone, HomeView, BasicPageView, listTemplate, detailTemplate, ListCollection){
     var AppRouter = Backbone.Router.extend({
         index: function(){
             new HomeView();
         },
         blog: function(blogSlug){
-            new ListView(new ListCollection('/api/blog_detail/'), detailTemplate, 'blog', {slug: blogSlug});
+            new BasicPageView(new ListCollection('/api/blog_detail/'), detailTemplate, 'blog', {slug: blogSlug});
         },
         blogList: function(){
-            new ListView(new ListCollection('/api/blog_list/'), listTemplate, 'blog');
+            new BasicPageView(new ListCollection('/api/blog_list/'), listTemplate, 'blog');
         },
         link: function(linkSlug){
-            new ListView(new ListCollection('/api/link_detail/'), detailTemplate, 'link', {slug: linkSlug});
+            new BasicPageView(new ListCollection('/api/link_detail/'), detailTemplate, 'link', {slug: linkSlug});
         },
         linkList: function(){
-            new ListView(new ListCollection('/api/link_list/'), listTemplate, 'link');
+            new BasicPageView(new ListCollection('/api/link_list/'), listTemplate, 'link');
         },
         juba: function(jubaSlug){
-            new ListView(new ListCollection('/api/juba_detail/'), detailTemplate, 'juba', {slug: jubaSlug});
+            new BasicPageView(new ListCollection('/api/juba_detail/'), detailTemplate, 'juba', {slug: jubaSlug});
         },
         jubaList: function(){
-            new ListView(new ListCollection('/api/juba_list/'), listTemplate, 'juba');
+            new BasicPageView(new ListCollection('/api/juba_list/'), listTemplate, 'juba');
         },
         initialize: function() {
             var router = this,

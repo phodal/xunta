@@ -5,7 +5,7 @@ define([
 	'mustache'
 ], function ($, Backbone, _, Mustache) {
 	'use strict';
-	var ListView = Backbone.View.extend ({
+	var BasicPageView = Backbone.View.extend ({
 		el: $("#content"),
 
 		initialize: function(collection, template, model, options){
@@ -47,5 +47,5 @@ define([
 		}
 	});
 
-	return ListView;
+	return BasicPageView;
 });

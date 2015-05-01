@@ -3,7 +3,7 @@ define([
 	'underscore',
 	'backbone',
 	'js/router',
-	'jquerySidr',
+	'jquerySidr'
 ], function($, _, Backbone, AppRouter){
 	var initialize = function(){
 		$(document).ready(function() {

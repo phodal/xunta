@@ -1,5 +1,4 @@
 require.config({
-	//baseUrl: '/static/mobile/', //build
 	baseUrl: '/static/mobile/',
 	paths: {
 		'text': 'js/lib/text',

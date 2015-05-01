@@ -21,6 +21,6 @@ require.config({
 	}
 });
 
-require(['app'], function(App){
+require(['js/app'], function(App){
 	App.initialize();
 });

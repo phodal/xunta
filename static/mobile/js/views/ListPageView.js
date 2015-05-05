@@ -35,7 +35,7 @@ define([
 
 			this.objname = {};
 			this[obj][model] = items.results;
-			if(that.page === 0) {
+			if(that.page === 1) {
 				this.$el.html(Mustache.to_html(template, this.objname ));
 			} else {
 				if(items.next !== null) {

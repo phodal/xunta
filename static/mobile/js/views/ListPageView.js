@@ -8,7 +8,7 @@ define([
 	var ListPageView = Backbone.View.extend ({
 		el: "#content",
 
-		initialize: function(collection, template, model, options){
+		initialize: function (collection, template, model) {
 			var that = this;
 			this.beforeRender();
 			this.template = template;

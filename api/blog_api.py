@@ -34,7 +34,7 @@ class BlogpostDetailSerializer(serializers.HyperlinkedModelSerializer):
     @staticmethod
     def get_username_by_id(model):
         user = User.objects.get(id=model.user_id)
-        return user.username
+        return user.get_full_name()
 
 
     @staticmethod

@@ -1,10 +1,11 @@
 from __future__ import unicode_literals
-from string import punctuation
-from operator import ior
 
-from django.contrib.auth import get_user_model
 from functools import reduce
+from operator import ior
+from string import punctuation
+
 from future.builtins import int
+from mezzanine.accounts import get_profile_model
 from mezzanine.core.fields import RichTextField
 
 try:
@@ -25,7 +26,7 @@ from mezzanine.generic.models import Rating, Keyword, AssignedKeyword
 from mezzanine.generic.fields import RatingField, CommentsField
 from uuslug import uuslug
 
-User = get_user_model()
+USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
 class Juba(Displayable, Ownable):
@@ -74,5 +75,5 @@ def karma(sender, **kwargs):
         value *= 2
     content_object = rating.content_object
     if rating.user != content_object.user:
-        queryset = User.objects.filter(user=content_object.user)
+        queryset = get_profile_model().objects.filter(user=content_object.user)
         queryset.update(karma=models.F("karma") + value)

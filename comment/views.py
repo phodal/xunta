@@ -4,10 +4,11 @@ from json import dumps
 
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from forms import ThreadedCommentForm
 from mezzanine.generic.views import initial_validation
 from mezzanine.utils.cache import add_cache_bypass
 from mezzanine.utils.views import render, set_cookie, is_spam
+
+from comment.forms import ThreadedCommentForm
 
 
 def comment(request, template="generic/comments.html"):

@@ -1,12 +1,12 @@
 from __future__ import unicode_literals
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 
 from .views import JubaList, JubaCreate, JubaDetail, CommentList, TagList
 
 
-urlpatterns = patterns("",
+urlpatterns = [
     url("^juba/$",
         JubaList.as_view(), {"by_score": False},
         name="juba_list_latest"),
@@ -37,4 +37,4 @@ urlpatterns = patterns("",
     url("^tags/(?P<tag>.*)/$",
         JubaList.as_view(),
         name="juba_list_tag"),
-)
+]

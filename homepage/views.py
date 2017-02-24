@@ -1,19 +1,15 @@
 from __future__ import unicode_literals
 
+from django.template.response import TemplateResponse
 from mezzanine.blog.models import BlogPost
 from mezzanine.conf import settings
-from mezzanine.utils.models import get_user_model
 from mezzanine.utils.views import paginate
-from mezzanine.utils.views import render
 
-from links.models import Link
 from juba.models import Juba
+from links.models import Link
 
 
-User = get_user_model()
-
-def homepage(request, tag=None, year=None, month=None, username=None,
-             category=None, template="index.html"):
+def homepage(request, tag=None, year=None, month=None, category=None, template="index.html"):
     settings.use_editable()
     templates = []
     blog_posts = BlogPost.objects.published(for_user=request.user)
@@ -30,4 +26,4 @@ def homepage(request, tag=None, year=None, month=None, username=None,
     context = {"blog_posts": blog_posts, "year": year, "month": month,
                "tag": tag, "category": category, "author": author, "links": links, "jubas": jubas}
     templates.append(template)
-    return render(request, templates, context)
+    return TemplateResponse(request, templates, context)

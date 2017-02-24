@@ -74,10 +74,6 @@ ADMIN_MENU_ORDER = (
 #
 # BLOG_USE_FEATURED_IMAGE = True
 
-# If True, the south application will be automatically added to the
-# INSTALLED_APPS setting.
-USE_SOUTH = True
-
 
 ########################
 # MAIN DJANGO SETTINGS #
@@ -95,8 +91,8 @@ MANAGERS = ADMINS
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = {
     '*.wanwo.xin',
-    'http://127.0.0.1',
-    'http://localhost',
+    '127.0.0.1',
+    'localhost',
 }
 
 # Local time zone for this installation. Choices can be found here:
@@ -139,12 +135,6 @@ USE_I18N = False
 #   * See debug comments, when DEBUG is true
 #   * Receive x-headers
 INTERNAL_IPS = ("127.0.0.1",)
-
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    "django.template.loaders.filesystem.Loader",
-    "django.template.loaders.app_directories.Loader",
-)
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -220,13 +210,6 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, *MEDIA_URL.strip("/").split("/"))
 # Package/module name to import the root urlpatterns from for the project.
 ROOT_URLCONF = "%s.urls" % PROJECT_DIRNAME
 
-# Put strings here, like "/home/html/django_templates"
-# or "C:/www/django/templates".
-# Always use forward slashes, even on Windows.
-# Don't forget to use absolute paths, not relative paths.
-TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
-
-
 ################
 # APPLICATIONS #
 ################
@@ -255,7 +238,6 @@ INSTALLED_APPS = (
     "avatar",
     "rest_framework",
     "social.apps.django_app.default",
-    "mezzanine_pagedown",
     "django_markdown",
     "homepage",
 )
@@ -275,20 +257,30 @@ SOCIAL_AUTH_STORAGE = 'social.apps.django_app.me.models.DjangoStorage'
 # List of processors used by RequestContext to populate the context.
 # Each one should be a callable that takes the request object as its
 # only parameter and returns a dictionary to add to the context.
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.contrib.auth.context_processors.auth",
-    "django.contrib.messages.context_processors.messages",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.static",
-    "django.core.context_processors.media",
-    "django.core.context_processors.request",
-    "django.core.context_processors.tz",
-    "mezzanine.conf.context_processors.settings",
-    "mezzanine.pages.context_processors.page",
-    'social.apps.django_app.context_processors.backends',
-    'social.apps.django_app.context_processors.login_redirect',
-)
+
+TEMPLATES = [
+  {
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': (os.path.join(PROJECT_ROOT, 'templates'),),
+    'APP_DIRS': True,
+    'OPTIONS': {
+      'context_processors': (
+        'django.contrib.auth.context_processors.auth',
+        'django.contrib.messages.context_processors.messages',
+        'django.core.context_processors.debug',
+        'django.core.context_processors.i18n',
+        'django.core.context_processors.static',
+        'django.core.context_processors.media',
+        'django.core.context_processors.request',
+        'django.core.context_processors.tz',
+        'mezzanine.conf.context_processors.settings',
+        'mezzanine.pages.context_processors.page',
+        'social.apps.django_app.context_processors.backends',
+        'social.apps.django_app.context_processors.login_redirect',
+      ),
+    },
+  },
+]
 
 # List of middleware classes to use. Order is important; in the request phase,
 # these middleware classes will be applied in the order given, and in the
@@ -387,12 +379,19 @@ RICHTEXT_FILTERS = (
 
 
 DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
+########
+# DRUM #
+########
 
 # Drum-specific Mezzanine settings
+ACCOUNTS_PROFILE_MODEL = "links.Profile"
+AUTH_PROFILE_MODULE = "links.Profile"
+SITE_TITLE = "Drum"
 RATINGS_RANGE = (-1, 1)
 RATINGS_ACCOUNT_REQUIRED = True
 COMMENTS_ACCOUNT_REQUIRED = True
 ACCOUNTS_PROFILE_VIEWS_ENABLED = True
+SEARCH_MODEL_CHOICES = ("links.Link",)
 
 # Drum settings
 ALLOWED_DUPLICATE_LINK_HOURS = 24 * 7 * 3
@@ -455,3 +454,7 @@ except ImportError:
     pass
 else:
     set_dynamic_settings(globals())
+
+LOGOUT_URL = '/logout'
+ALLOWED_INCLUDE_ROOTS = ('')
+# TEMPLATE_STRING_IF_INVALID = 'INVALID <%s> ERROR'

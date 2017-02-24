@@ -1,9 +1,10 @@
 from __future__ import unicode_literals
+
+from django_comments.forms import CommentForm
+from django_comments.signals import comment_was_posted
 from future.builtins import str
 
 from django import forms
-from django.contrib.comments.forms import CommentForm
-from django.contrib.comments.signals import comment_was_posted
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 from mezzanine.conf import settings

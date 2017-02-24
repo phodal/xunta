@@ -6,9 +6,8 @@ django-uuslug
 gunicorn
 django-markdown
 python-social-auth
-mezzanine-pagedown
 Mezzanine==4.1.0
 djangorestframework==3.5.4
 django-cors-headers=2.0.2
 djangorestframework-jwt
-
+social-auth-app-django

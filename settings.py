@@ -267,12 +267,6 @@ TEMPLATES = [
       'context_processors': (
         'django.contrib.auth.context_processors.auth',
         'django.contrib.messages.context_processors.messages',
-        'django.core.context_processors.debug',
-        'django.core.context_processors.i18n',
-        'django.core.context_processors.static',
-        'django.core.context_processors.media',
-        'django.core.context_processors.request',
-        'django.core.context_processors.tz',
         'mezzanine.conf.context_processors.settings',
         'mezzanine.pages.context_processors.page',
         'social.apps.django_app.context_processors.backends',

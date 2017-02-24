@@ -18,12 +18,13 @@ function FileSubmit(FilePath, FileURL, ThumbURL, FileType) {
     // enable the clear "button"
     jQuery(clear).css("display", "inline");
 
-    if (ThumbURL && FileType != "") {
+    if (ThumbURL && FileType !== "") {
         // selected file is an image and thumbnail is available:
         // display the preview-image (thumbnail)
         // link the preview-image to the original image
         link.setAttribute("href", FileURL);
         link.setAttribute("target", "_blank");
+        link.setAttribute("style", "display:inline");
         preview.setAttribute("src", ThumbURL);
         help.setAttribute("style", "display:inline");
         jQuery(help).addClass("mezz-fb-thumbnail");

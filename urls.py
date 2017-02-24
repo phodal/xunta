@@ -16,7 +16,7 @@ admin.autodiscover()
 sitemaps = {"sitemaps": {"all": DisplayableSitemap}}
 
 urlpatterns = [
-    url(r'^$', home_view.homepage),
+    url(r'^$', cache_page(60 * 60 * 6)(home_view.homepage)),
     url(r'^comment/$', comment_views.comment),
     url(r"^sitemap\.xml$", cache_page(60 * 60 * 6)(sitemap_views.sitemap), sitemaps),
     url(r"^admin/", include(admin.site.urls)),

@@ -1,0 +1,127 @@
+
+/* Navbar fixes */
+.navbar-inner {border-radius:0 !important;}
+.navbar a {padding:10px 15px 0 15px !important;}
+.navbar a.btn {padding:3px 10px !important; margin:7px 3px;}
+.navbar-search .btn {display:none;}
+a.brand {
+    background:url('../img/drum-logo.png') no-repeat; background-position:5px 6px;
+    text-indent:13px; margin-left:-3px !important;
+    font-family: 'Risque', cursive;
+    font-size:28px !important;
+    padding:3px 20px !important;
+    text-decoration:none;
+    color:#fff !important;
+}
+@media (max-width: 600px) {
+    a.brand {text-indent:40px; padding:0 !important; width:30px; overflow:hidden;
+}}
+
+/* Misc */
+.btn-profile {margin-top:20px;}
+.bio {margin:20px 0;}
+.page-info {text-indent:10px;}
+.page-info a:hover {border-color:#d7dce0 !important;}
+.alert {margin-top:0;}
+.alert a {text-decoration:none;}
+body {color:#666;}
+
+/* Headings */
+h1 {margin:0;}
+h1, h2 {font-size:24px;}
+h2 a:visited {color:rgb(156,188,156);}
+.domain {font-weight:normal; font-size:14px; color:#999;}
+
+/* Redundant Mezzanine bits */
+legend {display:none;}
+fieldset {margin-top:20px;}
+footer {background: none;}
+
+/* Big horizontal grey line everywhere */
+h1, .link-item, .comment-item, .comment-links, #comments h3 {
+    border:0 solid rgba(0,0,0,.02);
+}
+h1, .link-item, .comment-item, .comment-links {border-bottom-width:5px;}
+#comments h3 {border-top-width:5px;}
+
+/* Rating widget with up/down arrows */
+.rating {float:left; margin-top:-15px;}
+.rating form {display:none !important;}
+.rating i {
+    display:block !important;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.arrows {float:left; margin-top:-5px;}
+.score, .arrows {opacity:.6;}
+.arrows a:hover i {background-color:#1abc9c; background-image:url("../img/glyphicons-halflings-white.png");}
+
+/* Link items in a list */
+.link-item h2 {line-height:30px; margin:0;}
+.link-item .rating, .link-detail {float:left;}
+.link-item .rating {
+    background-color: #efefef;
+    padding: 10px;
+    margin: 0 20px 0 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width:75px;
+    text-align:center;
+}
+.link-item .arrows {
+    margin: 0 10px 0 0;
+    background-color: #fff;
+    padding: 7px;
+    display: block;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.link-item .score {
+  font-size: 30px;
+  line-height: 40px
+}
+
+.link-detail {width:80%;}
+@media (max-width: 600px) {.link-detail {width:60%;}}
+.link-detail a.profile, .link-detail a.comments {color:#999;}
+.link-detail a.profile:visited, .link-detail a.comments:visited {color:#bbb;}
+
+/* Link listing, details */
+.link-item, .comment-item {margin: 0; padding: 15px 0;}
+.link-view .rating i {float:left; margin:8px 0 0 -4px;}
+.link-view .description {margin:20px 0;}
+.link-meta .rating {margin:0 5px 0 0 !important;}
+
+/* Comments */
+#comments h3 {font-size:20px; padding-top:5px; margin:20px 0 -5px 0;}
+#comment .control-group, .reply-form .control-group {display:none;}
+#comment .input_id_comment, .reply-form .input_id_comment {display:block;}
+#comment label {margin-top:20px;}
+#comments li {padding:10px 0; border:0; background:none; margin:0;}
+.comment-thread ul {margin:0; padding:0 0 0 40px !important;}
+.comment-meta, .comment-links {color:#999; margin:0; font-size:12px;}
+.comment-links {padding-bottom:5px;}
+#comments .rating {margin:1px 5px 0 3px !important;}
+#comments .rating i {opacity:0.7;}
+
+.comment-item {color:#aaa;}
+.comment-item .comment {color:#666;}
+
+.has-error .help-block {color: #b94a48;}
+.form-errors {margin-top:20px;}
+
+.tag-cloud {margin:10px 0; text-align:justify;}
+.tag-cloud li {
+    list-style-type: none;
+    display:inline;
+    line-height:300%;
+    white-space:nowrap;
+    margin-right:10px;
+}
+.tag-weight-4 {font-size:400%;}
+.tag-weight-3 {font-size:300%;}
+.tag-weight-2 {font-size:200%;}
+.tag-weight-1 {font-size:100%;}

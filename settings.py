@@ -237,6 +237,7 @@ INSTALLED_APPS = (
     "mezzanine.mobile",
     "avatar",
     "rest_framework",
+    "api",
     "social_django",
     "django_markdown",
     "homepage",

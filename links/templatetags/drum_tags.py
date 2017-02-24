@@ -5,10 +5,18 @@ from django import template
 from django.template.defaultfilters import timesince
 
 from links.utils import order_by_score
-from links.views import CommentList
+from links.views import CommentList, USER_PROFILE_RELATED_NAME
 
 
 register = template.Library()
+
+
+@register.filter
+def get_profile(user):
+    """
+    Returns the profile object associated with the given user.
+    """
+    return getattr(user, USER_PROFILE_RELATED_NAME)
 
 
 @register.simple_tag(takes_context=True)
@@ -18,7 +26,10 @@ def order_comments_by_score_for(context, link):
     but here we order them by score.
     """
     comments = defaultdict(list)
-    qs = link.comments.visible().select_related("user", "user__profile")
+    qs = link.comments.visible().select_related(
+        "user",
+        "user__%s" % (USER_PROFILE_RELATED_NAME)
+    )
     for comment in order_by_score(qs, CommentList.score_fields, "submit_date"):
         comments[comment.replied_to_id].append(comment)
     context["all_comments"] = comments

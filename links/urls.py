@@ -1,12 +1,15 @@
 from __future__ import unicode_literals
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 
 from links.views import LinkList, LinkCreate, LinkDetail, CommentList, TagList
 
 
-urlpatterns = patterns("",
+urlpatterns = [
+    url("^$",
+        LinkList.as_view(),
+        name="home"),
     url("^newest/$",
         LinkList.as_view(), {"by_score": False},
         name="link_list_latest"),
@@ -25,9 +28,6 @@ urlpatterns = patterns("",
     url("^users/(?P<username>.*)/links/$",
         LinkList.as_view(), {"by_score": False},
         name="link_list_user"),
-    url("^users/(?P<username>.*)/links/$",
-        LinkList.as_view(), {"by_score": False},
-        name="link_list_user"),
     url("^users/(?P<username>.*)/comments/$",
         CommentList.as_view(), {"by_score": False},
         name="comment_list_user"),
@@ -37,4 +37,4 @@ urlpatterns = patterns("",
     url("^tags/(?P<tag>.*)/$",
         LinkList.as_view(),
         name="link_list_tag"),
-)
+]

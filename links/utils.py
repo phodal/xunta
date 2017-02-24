@@ -1,5 +1,6 @@
-from __future__ import division
-from __future__ import unicode_literals
+from __future__ import division, unicode_literals
+
+from re import sub, split
 
 from django.conf import settings
 from django.utils.timezone import now
@@ -25,13 +26,18 @@ def order_by_score(queryset, score_fields, date_field, reverse=True):
         "mysql": "UNIX_TIMESTAMP(%s)",
         "postgresql_psycopg2": "EXTRACT(EPOCH FROM %s)" ,
     }
+    now_tz_sqls = {
+        "mysql": "UTC_TIMESTAMP()",
+        "postgresql_psycopg2": "NOW() AT TIME ZONE 'utc'",
+    }
     db_engine = settings.DATABASES[queryset.db]["ENGINE"].rsplit(".", 1)[1]
     timestamp_sql = timestamp_sqls.get(db_engine)
+    now_sql = now_tz_sqls.get(db_engine) if settings.USE_TZ else "NOW()",
 
-    if timestamp_sql:
+    if timestamp_sql and now_sql:
         score_sql = "(%s) / POW(%s - %s, %s)" % (
             " + ".join(score_fields),
-            timestamp_sql % "NOW()",
+            timestamp_sql % now_sql,
             timestamp_sql % date_field,
             scale,
         )
@@ -44,3 +50,14 @@ def order_by_score(queryset, score_fields, date_field, reverse=True):
             score = score_fields_sum / pow(age, scale)
             setattr(obj, "score", score)
         return sorted(queryset, key=lambda obj: obj.score, reverse=reverse)
+
+
+def auto_tag(link_obj):
+    """
+    Split's the link object's title into words. Default function for the
+    ``AUTO_TAG_FUNCTION`` setting.
+    """
+    variations = lambda word: [word,
+        sub("^([^A-Za-z0-9])*|([^A-Za-z0-9]|s)*$", "", word),
+        sub("^([^A-Za-z0-9])*|([^A-Za-z0-9])*$", "", word)]
+    return sum(map(variations, split("\s|/", link_obj.title)), [])

@@ -237,7 +237,7 @@ INSTALLED_APPS = (
     "mezzanine.mobile",
     "avatar",
     "rest_framework",
-    "social.apps.django_app.default",
+    "social_django",
     "django_markdown",
     "homepage",
 )
@@ -267,6 +267,12 @@ TEMPLATES = [
       'context_processors': (
         'django.contrib.auth.context_processors.auth',
         'django.contrib.messages.context_processors.messages',
+        'django.template.context_processors.debug',
+        'django.template.context_processors.i18n',
+        'django.template.context_processors.static',
+        'django.template.context_processors.media',
+        'django.template.context_processors.request',
+        'django.template.context_processors.tz',
         'mezzanine.conf.context_processors.settings',
         'mezzanine.pages.context_processors.page',
         'social.apps.django_app.context_processors.backends',
@@ -297,6 +303,7 @@ MIDDLEWARE_CLASSES = (
     # "mezzanine.core.middleware.SSLRedirectMiddleware",
     "mezzanine.pages.middleware.PageMiddleware",
     "mezzanine.core.middleware.FetchFromCacheMiddleware",
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 )
 
 SOCIAL_AUTH_PIPELINE = (
@@ -316,13 +323,13 @@ SOCIAL_AUTH_PIPELINE = (
 
 
 AUTHENTICATION_BACKENDS = (
-    'social.backends.douban.DoubanOAuth2',
-    'social.backends.google.GoogleOAuth2',
-    'social.backends.github.GithubOAuth2',
-    'social.backends.weibo.WeiboOAuth2',
-    'social.backends.qq.QQOAuth2',
-    'social.backends.email.EmailAuth',
-    'social.backends.username.UsernameAuth',
+    'social_core.backends.douban.DoubanOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.weibo.WeiboOAuth2',
+    'social_core.backends.qq.QQOAuth2',
+    'social_core.backends.email.EmailAuth',
+    'social_core.backends.username.UsernameAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
 

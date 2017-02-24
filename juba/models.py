@@ -2,10 +2,10 @@ from __future__ import unicode_literals
 from string import punctuation
 from operator import ior
 
+from django.contrib.auth import get_user_model
+from functools import reduce
 from future.builtins import int
-from mezzanine.core.fields import HtmlField
-from mezzanine.utils.models import get_user_model
-
+from mezzanine.core.fields import RichTextField
 
 try:
     from urllib.parse import urlparse
@@ -29,7 +29,7 @@ User = get_user_model()
 
 
 class Juba(Displayable, Ownable):
-    content = HtmlField(null=True,
+    content = RichTextField(null=True,
                         blank=(not getattr(settings, "JUBA_REQUIRED", False)))
     rating = RatingField()
     comments = CommentsField()

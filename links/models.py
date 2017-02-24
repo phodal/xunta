@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from string import punctuation
 from operator import ior
 
+from functools import reduce
 from future.builtins import int
 
 try:

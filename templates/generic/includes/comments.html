@@ -1,13 +1,5 @@
-{% load i18n mezzanine_tags comment_tags keyword_tags duoshuo_tags %}
+{% load i18n mezzanine_tags comment_tags keyword_tags %}
 <div id="comments">
 <h3>{% trans "评论" %}</h3>
-{% if link %}
-{% my_sso_duoshuo_comments 'link-'|addstr:link.id ''|addstr:link.title request.build_absolute_uri request.path|escape %}
-{% elif blog_post %}
-{% my_sso_duoshuo_comments 'blogpost-'|addstr:blog_post.id ''|addstr:blog_post.title request.build_absolute_uri request.path|escape %}
-{% elif juba %}
-{% my_sso_duoshuo_comments 'juba-'|addstr:juba.id ''|addstr:juba.title request.build_absolute_uri request.path|escape %}
-{% elif juba %}
-{% duoshuo_comments %}
-{% endif %}
+
 </div>

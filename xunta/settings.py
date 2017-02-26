@@ -267,7 +267,7 @@ TEMPLATES = [
     'DIRS': (os.path.join(PROJECT_ROOT, 'templates'),),
     'APP_DIRS': True,
     'OPTIONS': {
-      'context_processors': (
+      'context_processors': [
         'django.contrib.auth.context_processors.auth',
         'django.contrib.messages.context_processors.messages',
         'django.template.context_processors.debug',
@@ -280,11 +280,11 @@ TEMPLATES = [
         'mezzanine.pages.context_processors.page',
         'social.apps.django_app.context_processors.backends',
         'social.apps.django_app.context_processors.login_redirect',
-      ),
-    },
-    "builtins": [
-      "mezzanine.template.loader_tags",
-    ],
+      ],
+      "builtins": [
+        "mezzanine.template.loader_tags",
+      ],
+    }
   },
 ]
 

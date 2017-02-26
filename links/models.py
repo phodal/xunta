@@ -68,10 +68,33 @@ class Link(Displayable, Ownable):
 
 @python_2_unicode_compatible
 class Profile(models.Model):
+    YEAR_IN_SCHOOL_CHOICES = (
+        ('1', '白羊座'),
+        ('2', '金牛座'),
+        ('3', '双子座'),
+        ('4', '巨蟹座'),
+        ('5', '狮子座'),
+        ('6', '处女座'),
+        ('7', '天秤座'),
+        ('8', '天蝎座'),
+        ('9', '射手座'),
+        ('10', '摩羯座'),
+        ('11', '双鱼座'),
+        ('12', '双鱼座'),
+    )
 
     user = models.OneToOneField(USER_MODEL)
-    website = models.URLField(blank=True)
-    bio = models.TextField(blank=True)
+    bio = models.TextField(blank=True, verbose_name=_('简介'))
+    address = models.TextField(blank=True, verbose_name=_('地址'))
+    birthday = models.DateField(blank=True, verbose_name=_('生日'))
+    interest = models.CharField(blank=True,  max_length=20, verbose_name=_('爱好'))
+    weight = models.IntegerField(default=150, blank=True, verbose_name=_('体重'))
+    height = models.IntegerField(default=150, blank=True, verbose_name=_('身高'))
+    constellate = models.CharField(blank=True, max_length=10, choices=YEAR_IN_SCHOOL_CHOICES, verbose_name=_('星座'))
+    job = models.CharField(blank=True, max_length=10, verbose_name=_('职业'))
+    movie_type = models.CharField(blank=True, max_length=10, verbose_name=_('电影类型'))
+    sport_type = models.CharField(blank=True, max_length=10, verbose_name=_('运动爱好'))
+    book_type = models.CharField(blank=True, max_length=10, verbose_name=_('书籍类型'))
     karma = models.IntegerField(default=0, editable=False)
 
     def __str__(self):

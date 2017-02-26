@@ -7,9 +7,9 @@ from .views import JubaList, JubaCreate, JubaDetail, CommentList, TagList
 
 
 urlpatterns = [
-    url("^juba/$",
+    url("^$",
         JubaList.as_view(), {"by_score": False},
-        name="juba_list_latest"),
+        name="juba_home"),
     url("^comments/$",
         CommentList.as_view(), {"by_score": False},
         name="comment_list_latest"),

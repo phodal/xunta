@@ -278,8 +278,8 @@ TEMPLATES = [
         'django.template.context_processors.tz',
         'mezzanine.conf.context_processors.settings',
         'mezzanine.pages.context_processors.page',
-        'social.apps.django_app.context_processors.backends',
-        'social.apps.django_app.context_processors.login_redirect',
+        'social_django.context_processors.backends',
+        'social_django.context_processors.login_redirect',
       ],
       "builtins": [
         "mezzanine.template.loader_tags",
@@ -345,7 +345,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/done/'
+LOGIN_REDIRECT_URL = '/'
 SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/new-users-redirect-url/'
 SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/new-association-redirect-url/'
 

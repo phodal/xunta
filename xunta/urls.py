@@ -43,6 +43,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', auth_views.login),
     url(r'^logout/$', auth_views.logout),
+    url('', include('social_django.urls', namespace='social')),
     url(r'', include('social_django.urls', namespace='social')),
     url(r"^", include("mezzanine.urls")),
 ]

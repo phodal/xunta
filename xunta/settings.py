@@ -14,7 +14,7 @@ from __future__ import absolute_import, unicode_literals
 # Controls the ordering and grouping of the admin menu.
 #
 ADMIN_MENU_ORDER = (
-    ("Content", ("blog.BlogPost", "juba.Juba", "links.Link", "generic.Keyword")),
+    ("Content", ("blog.BlogPost", "juba.Juba", "links.Link", "user_profile.Profile", "generic.Keyword")),
     ("Users", ("auth.User", "auth.Group", "generic.ThreadedComment", "avatar.Avatar")),
     ("Site", ("pages.Page", "sites.Site", "redirects.Redirect", "conf.Setting")),
 )
@@ -226,6 +226,7 @@ INSTALLED_APPS = (
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
     "links",
+    "user_profile",
     "juba",
     "mezzanine.boot",
     "mezzanine.conf",
@@ -392,8 +393,8 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 ########
 
 # Drum-specific Mezzanine settings
-ACCOUNTS_PROFILE_MODEL = "links.Profile"
-AUTH_PROFILE_MODULE = "links.Profile"
+ACCOUNTS_PROFILE_MODEL = "user_profile.Profile"
+AUTH_PROFILE_MODULE = "user_profile.Profile"
 SITE_TITLE = "Drum"
 RATINGS_RANGE = (-1, 1)
 RATINGS_ACCOUNT_REQUIRED = True

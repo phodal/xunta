@@ -84,9 +84,8 @@ class Profile(models.Model):
     )
 
     user = models.OneToOneField(USER_MODEL)
-    bio = models.TextField(blank=True, verbose_name=_('简介'))
-    address = models.TextField(blank=True, verbose_name=_('地址'))
-    birthday = models.DateField(blank=True, verbose_name=_('生日'))
+    address = models.CharField(blank=True, max_length=20, verbose_name=_('地址'))
+    birthday = models.DateTimeField(_("生日"), help_text=_(""), blank=True, null=True, db_index=True)
     interest = models.CharField(blank=True,  max_length=20, verbose_name=_('爱好'))
     weight = models.IntegerField(default=150, blank=True, verbose_name=_('体重'))
     height = models.IntegerField(default=150, blank=True, verbose_name=_('身高'))
@@ -96,6 +95,7 @@ class Profile(models.Model):
     sport_type = models.CharField(blank=True, max_length=10, verbose_name=_('运动爱好'))
     book_type = models.CharField(blank=True, max_length=10, verbose_name=_('书籍类型'))
     karma = models.IntegerField(default=0, editable=False)
+    bio = models.TextField(blank=True, verbose_name=_('简介'))
 
     def __str__(self):
         return "%s (%s)" % (self.user, self.karma)

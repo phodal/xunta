@@ -24,12 +24,17 @@ from mezzanine.core.models import Displayable, Ownable
 from mezzanine.core.request import current_request
 from mezzanine.generic.models import Rating, Keyword, AssignedKeyword
 from mezzanine.generic.fields import RatingField, CommentsField
+from django.utils.translation import ugettext_lazy as _
 from uuslug import uuslug
 
 USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
 class Juba(Displayable, Ownable):
+    class Meta:
+        verbose_name = _('聚吧')
+        verbose_name_plural = _('聚吧')
+
     content = RichTextField(null=True,
                         blank=(not getattr(settings, "JUBA_REQUIRED", False)))
     rating = RatingField()

@@ -25,11 +25,15 @@ from mezzanine.core.request import current_request
 from mezzanine.generic.models import Rating, Keyword, AssignedKeyword
 from mezzanine.generic.fields import RatingField, CommentsField
 from mezzanine.utils.importing import import_dotted_path
+from django.utils.translation import ugettext_lazy as _
 
 USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
 class Link(Displayable, Ownable):
+    class Meta:
+        verbose_name = _('推荐')
+        verbose_name_plural = _('推荐')
 
     link = models.URLField(null=True,
         blank=(not getattr(settings, "LINK_REQUIRED", False)))

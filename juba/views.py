@@ -18,7 +18,9 @@ from mezzanine.utils.views import paginate
 from .forms import JubaForm
 from .models import Juba
 from .utils import order_by_score
+from mezzanine.accounts import get_profile_model
 
+USER_PROFILE_RELATED_NAME = get_profile_model().user.field.related_query_name()
 
 class UserFilterView(ListView):
     """
@@ -106,7 +108,10 @@ class JubaList(JubaView, ScoreOrderingView):
         if context["by_score"]:
             return ""  # Homepage
         if context["profile_user"]:
-            return "聚吧 by" % context["profile_user"].profile
+            return "由 %s 发布的" % getattr(
+                context["profile_user"],
+                USER_PROFILE_RELATED_NAME
+            )
         else:
             return "聚吧"
 

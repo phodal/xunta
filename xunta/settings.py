@@ -476,3 +476,4 @@ else:
 LOGOUT_URL = '/logout'
 ALLOWED_INCLUDE_ROOTS = ('')
 # TEMPLATE_STRING_IF_INVALID = 'INVALID <%s> ERROR'
+ACCOUNTS_PROFILE_FORM_CLASS = 'user_profile.forms.ProfileForm'

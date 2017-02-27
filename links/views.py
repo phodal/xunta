@@ -51,8 +51,7 @@ class UserFilterView(ListView):
             context[context_object_name] = context["object_list"]
 
         context["profile_user"] = profile_user
-        context["no_data"] = ("Whoa, there's like, literally no data here, "
-                              "like seriously, I totally got nothin.")
+        context["no_data"] = ("终于等到你了")
         return context
 
 

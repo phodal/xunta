@@ -7,35 +7,38 @@
 
 {% block main %}
 <div class="span12">
-{% if profile_user == request.user %}
-<div class="pull-right">
-    <a class="btn btn-large btn-primary btn-profile" href="{% url "profile_update" %}">更新信息</a>
-</div>
-{% endif %}
-<div class="clearfix">
-
-    {% avatar user %}
-    <a href="{% url 'avatar_change' %}">修改头像</a>
-    {% with profile_user.profile as profile %}
-    {% if profile.bio %}
-    <p class="bio">{{ profile.bio|urlize|linebreaks }}</p>
+    {% if profile_user == request.user %}
+    <div class="pull-right">
+        <a class="btn btn-large btn-primary btn-profile" href="{% url " profile_update" %}">更新信息</a>
+    </div>
     {% endif %}
-    {% if profile.website %}
-    <p class="bio">Website: {{ profile.website|urlize }}</p>
-    {% endif %}
-    {% endwith %}
+    <div class="clearfix">
 
-    <h1>{{ profile_user }}</h1>
-
-    <a href="{% url "comment_list_user" profile_user.username %}">评论 ({{ profile_user.comment_comments.count }})</a> |
-    <a href="{% url "link_list_user" profile_user.username %}">推啦 ({{ profile_user.links.published.count }})</a> |
-    <a href="{% url "juba_list_user" profile_user.username %}">聚啊 ({{ profile_user.jubas.published.count }})</a> |
-    {% blog_authors as authors %}
-    {% for author in authors %}
-        {% if author.username == profile_user.username %}
-        <a href="{% url "blog_post_list_author" profile_user.username %}">博客({{ author.post_count }})</a>
+        {% avatar user %}
+        <a href="{% url 'avatar_change' %}">修改头像</a>
+        {% with profile_user.profile as profile %}
+        {% if profile.bio %}
+        <p class="bio">{{ profile.bio|urlize|linebreaks }}</p>
         {% endif %}
-    {% endfor %}
-</div>
+        {% if profile.website %}
+        <p class="bio">Website: {{ profile.website|urlize }}</p>
+        {% endif %}
+        <h1>{{ profile_user.last_name }} {{ profile_user.first_name }} - {{ profile.job }}</h1>
+        <h1>{{ profile.address}}</h1>
+        <h1>{{ profile.interest}}</h1>
+        <h1>{{ profile.constellate}}</h1>
+        {% endwith %}
+
+        <a href="{% url " comment_list_user" profile_user.username %}">评论 ({{ profile_user.comment_comments.count
+        }})</a> |
+        <a href="{% url " link_list_user" profile_user.username %}">推啦 ({{ profile_user.links.published.count }})</a> |
+        <a href="{% url " juba_list_user" profile_user.username %}">聚啊 ({{ profile_user.jubas.published.count }})</a>
+        {% blog_authors as authors %}
+        {% for author in authors %}
+        {% if author.username == profile_user.username %}
+        | <a href="{% url " blog_post_list_author" profile_user.username %}">博客({{ author.post_count }})</a>
+        {% endif %}
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

@@ -490,10 +490,7 @@ a.btn-large, input.btn-large {
 }
 
 a.brand {
-    background: url('../img/logo.png') no-repeat;
-    background-position: 5px 6px;
     text-indent: 13px;
-    margin-left: -3px !important;
     font-family: 'Risque', cursive;
     font-size: 28px !important;
     padding: 3px 20px !important;

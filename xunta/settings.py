@@ -395,7 +395,7 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 # Drum-specific Mezzanine settings
 ACCOUNTS_PROFILE_MODEL = "user_profile.Profile"
 AUTH_PROFILE_MODULE = "user_profile.Profile"
-SITE_TITLE = "Drum"
+SITE_TITLE = "玩我"
 RATINGS_RANGE = (-1, 1)
 RATINGS_ACCOUNT_REQUIRED = True
 COMMENTS_ACCOUNT_REQUIRED = True

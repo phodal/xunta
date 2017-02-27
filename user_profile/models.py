@@ -10,6 +10,10 @@ USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 @python_2_unicode_compatible
 class Profile(models.Model):
+    class Meta:
+        verbose_name = _('个人信息')
+        verbose_name_plural = _('个人信息')
+
     YEAR_IN_SCHOOL_CHOICES = (
         ('1', '白羊座'),
         ('2', '金牛座'),

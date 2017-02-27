@@ -101,7 +101,7 @@ body {
 }
 
 .breadcrumb {
-    margin: 20px 0 25px 0;
+    margin: 10px 0 25px 0;
 }
 
 .breadcrumb .divider {
@@ -991,6 +991,7 @@ a {
 /* '' */
 
 .navbar {
+    margin-bottom: 0;
     font-size: 18px;
 }
 

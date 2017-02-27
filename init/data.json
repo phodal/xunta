@@ -1,0 +1,64 @@
+[
+  {
+    "pk": 1,
+    "model": "pages.page",
+    "fields": {
+      "status": 2,
+      "_order": 1,
+      "parent": null,
+      "description": "攻略",
+      "title": "攻略",
+      "titles": "攻略",
+      "content_model": "richtextpage",
+      "in_menus": [
+        1
+      ],
+      "slug": "blog",
+      "site": 1
+    }
+  },
+  {
+    "pk": 1,
+    "model": "pages.richtextpage",
+    "fields": {
+      "content": ""
+    }
+  },
+  {
+    "pk": 2,
+    "model": "pages.link",
+    "fields": {
+      "status": 2,
+      "_order": 2,
+      "parent": null,
+      "description": "Juba",
+      "title": "聚吧",
+      "titles": "聚吧",
+      "content_model": "link",
+      "in_menus": [
+        1
+      ],
+      "slug": "juba",
+      "site": 1
+    }
+  },
+  {
+    "pk": 3,
+    "model": "pages.link",
+    "fields": {
+      "status": 2,
+      "_order": 3,
+      "parent": null,
+      "description": "Link",
+      "title": "荐吧",
+      "titles": "荐吧",
+      "content_model": "link",
+      "in_menus": [
+        1
+      ],
+      "slug": "link",
+      "site": 1
+    }
+  }
+]
+

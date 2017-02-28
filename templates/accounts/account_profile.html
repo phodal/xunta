@@ -39,6 +39,8 @@
         <a href="{% url "comment_list_user" profile_user.username %}">评论 ({{ profile_user.comment_comments.count }})</a> |
         <a href="{% url "link_list_user" profile_user.username %}">推啦 ({{ profile_user.links.published.count }})</a> |
         <a href="{% url "juba_list_user" profile_user.username %}">聚啊 ({{ profile_user.jubas.published.count }})</a>
+        <a href="{% url "show_list_user" profile_user.username %}">秀吧 ({{ profile_user.show.published.count }})</a>
+
         {% blog_authors as authors %}
         {% for author in authors %}
             {% if author.username == profile_user.username %}

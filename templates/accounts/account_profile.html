@@ -17,16 +17,22 @@
     {% avatar user %}
     <a href="{% url 'avatar_change' %}">修改头像</a>
     {% with profile_user.profile as profile %}
-    {% if profile.bio %}
-    <p class="bio">{{ profile.bio|urlize|linebreaks }}</p>
-    {% endif %}
-    {% if profile.website %}
-    <p class="bio">Website: {{ profile.website|urlize }}</p>
-    {% endif %}
-    <h1>{{ profile_user.last_name }} {{ profile_user.first_name }} - {{ profile.job }}</h1>
-    <h1>{{ profile.address}}</h1>
-    <h1>{{ profile.interest}}</h1>
-    <h1>{{ profile.constellate}}</h1>
+        {% if profile.bio %}
+        <p class="bio">{{ profile.bio|urlize|linebreaks }}</p>
+        {% endif %}
+        {% if profile.website %}
+        <p class="bio">Website: {{ profile.website|urlize }}</p>
+        {% endif %}
+        <p>{{ profile_user.last_name }} {{ profile_user.first_name }} {% if profile.job %} -  职业：{{ profile.job }} {% endif %}</p>
+        {% if profile.address %}
+        <p>城市：{{ profile.address}}</p>
+        {% endif %}
+        {% if profile.interest %}
+        <p>爱好：{{ profile.interest}}</p>
+        {% endif %}
+        {% if profile.constellate %}
+        <p>星座：{{ profile.constellate}}</p>
+        {% endif %}
     {% endwith %}
 
     <a href="{% url "comment_list_user" profile_user.username %}">评论 ({{ profile_user.comment_comments.count }})</a> |

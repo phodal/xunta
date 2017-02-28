@@ -59,6 +59,24 @@
       "slug": "link",
       "site": 1
     }
+  },
+  {
+    "pk": 4,
+    "model": "pages.link",
+    "fields": {
+      "status": 2,
+      "_order": 3,
+      "parent": null,
+      "description": "Show",
+      "title": "秀吧",
+      "titles": "秀吧",
+      "content_model": "link",
+      "in_menus": [
+        1
+      ],
+      "slug": "show",
+      "site": 1
+    }
   }
 ]
 

@@ -42,6 +42,7 @@ class Profile(models.Model):
     book_type = models.CharField(blank=True, max_length=10, verbose_name=_('书籍类型'))
     karma = models.IntegerField(default=0, editable=False)
     bio = models.TextField(blank=True, verbose_name=_('简介'))
+    follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False)
 
     def __str__(self):
         return "%s (%s)" % (self.user, self.karma)

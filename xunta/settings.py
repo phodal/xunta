@@ -15,9 +15,9 @@ from __future__ import absolute_import, unicode_literals
 #
 ADMIN_MENU_ORDER = (
     ("Content", ("blog.BlogPost", "juba.Juba", "links.Link", "show.Show")),
-    ("Users", ("auth.User", "auth.Group", "user_profile.Profile", "avatar.Avatar")),
-    ("Site", ("pages.Page", "sites.Site", "redirects.Redirect", "conf.Setting")),
-    ("Others", ("generic.Keyword", "generic.ThreadedComment", "show.Like", "show.Comment")),
+    ("Users", ("user_profile.Profile", ("用户管理", "auth.User"))),
+    ("Site", ("pages.Page", "auth.Group", "sites.Site", "redirects.Redirect", "conf.Setting")),
+    ("其他", ("generic.Keyword", "generic.ThreadedComment", ("头像", "avatar.Avatar"), ("秀吧-赞", "show.Like"), ("秀吧-评论", "show.Comment"))),
 )
 
 # A three item sequence, each containing a sequence of template tags

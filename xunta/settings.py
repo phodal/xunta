@@ -14,9 +14,10 @@ from __future__ import absolute_import, unicode_literals
 # Controls the ordering and grouping of the admin menu.
 #
 ADMIN_MENU_ORDER = (
-    ("Content", ("blog.BlogPost", "juba.Juba", "links.Link", "user_profile.Profile", "generic.Keyword")),
-    ("Users", ("auth.User", "auth.Group", "generic.ThreadedComment", "avatar.Avatar")),
+    ("Content", ("blog.BlogPost", "juba.Juba", "links.Link", "show.Show")),
+    ("Users", ("auth.User", "auth.Group", "user_profile.Profile", "avatar.Avatar")),
     ("Site", ("pages.Page", "sites.Site", "redirects.Redirect", "conf.Setting")),
+    ("Others", ("generic.Keyword", "generic.ThreadedComment", "show.Like", "show.Comment")),
 )
 
 # A three item sequence, each containing a sequence of template tags
@@ -246,6 +247,7 @@ INSTALLED_APPS = (
     "django_markdown",
     "homepage",
     "imagekit",
+    "show",
 )
 
 REST_FRAMEWORK = {

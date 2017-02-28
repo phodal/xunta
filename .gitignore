@@ -7,5 +7,6 @@ local_settings.py
 .idea
 data
 static/media/avatars
+static/media/show
 static/mobile/.idea
 node_modules/

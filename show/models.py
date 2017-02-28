@@ -5,9 +5,14 @@ from django.db import models
 from imagekit.models import ProcessedImageField
 
 from user_profile.models import Profile
+from django.utils.translation import ugettext_lazy as _
 
 
 class Show(models.Model):
+    class Meta:
+        verbose_name = _('秀吧')
+        verbose_name_plural = _('秀吧')
+
     user_profile = models.ForeignKey(Profile, null=True, blank=True)
     title = models.CharField(max_length=100)
     image = ProcessedImageField(upload_to='show',
@@ -40,6 +45,8 @@ class Like(models.Model):
     user = models.ForeignKey(User)
 
     class Meta:
+        verbose_name = _('赞')
+        verbose_name_plural = _("赞")
         unique_together = ("post", "user")
 
     def __str__(self):

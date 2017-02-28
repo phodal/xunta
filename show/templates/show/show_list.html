@@ -7,14 +7,19 @@
 
 {% block main %}
 
+
+<div class="show">
 {% for show in shows %}
 
-{{show.title}}
-{{show.posted_on}}
-<img src="{{ STATIC_URL}}/media/{{show.image}} " alt="">
-
+    <div class="card">
+        <div class="card__panel-head">{{show.title}} {{show.posted_on | timesince}} </div>
+        <div class="card__panel-body">
+            <img class="card__main-image" src="{{ STATIC_URL}}/media/{{show.image}} " alt="">
+        </div>
+    </div>
 {% empty %}
 <p>{{ no_data }}</p>
 {% endfor %}
+</div>
 
 {% endblock %}

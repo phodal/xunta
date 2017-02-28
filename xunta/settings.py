@@ -245,6 +245,7 @@ INSTALLED_APPS = (
     "social_django",
     "django_markdown",
     "homepage",
+    "imagekit",
 )
 
 REST_FRAMEWORK = {

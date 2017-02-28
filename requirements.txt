@@ -12,3 +12,4 @@ django-cors-headers==2.0.2
 djangorestframework-jwt
 social-auth-app-django
 django-meta==1.3.2
+django-imagekit==4.0.0

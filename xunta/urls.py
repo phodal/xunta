@@ -5,6 +5,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.views.decorators.cache import cache_page
 from django.views.i18n import set_language
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 from homepage import views as home_view
 from comment import views as comment_views
@@ -44,6 +45,10 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', auth_views.login),
     url(r'^logout/$', auth_views.logout),
+
+    url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^api-token-refresh/', refresh_jwt_token),
+
     url('', include('social_django.urls', namespace='social')),
     url(r'', include('social_django.urls', namespace='social')),
     url(r"^", include("mezzanine.urls")),

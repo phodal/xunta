@@ -26,7 +26,7 @@
   },
   {
     "pk": 2,
-    "model": "pages.link",
+    "model": "pages.page",
     "fields": {
       "status": 2,
       "_order": 2,
@@ -44,7 +44,7 @@
   },
   {
     "pk": 3,
-    "model": "pages.link",
+    "model": "pages.page",
     "fields": {
       "status": 2,
       "_order": 3,
@@ -62,7 +62,7 @@
   },
   {
     "pk": 4,
-    "model": "pages.link",
+    "model": "pages.page",
     "fields": {
       "status": 2,
       "_order": 3,

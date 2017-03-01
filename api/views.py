@@ -30,10 +30,10 @@ class AllSerializer(serializers.Serializer):
         user = User.objects.get(id=model.user_id)
         return user.get_full_name()
 
-
     @staticmethod
     def get_special_date(model):
         return model.publish_date.strftime('%Y-%m-%d')
+
 
 class AllListView(viewsets.ReadOnlyModelViewSet):
     serializer_class = AllSerializer
@@ -64,3 +64,8 @@ class AllListView(viewsets.ReadOnlyModelViewSet):
 
         serializer = AllSerializer(queryset, many=True)
         return Response(serializer.data)
+
+    def get_queryset(self):
+        return list(itertools.chain(Link.objects.filter(status=2)[:5],
+                                    Juba.objects.filter(status=2)[:5],
+                                    BlogPost.objects.filter(status=2)[:5]))

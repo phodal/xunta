@@ -14,7 +14,7 @@ router.register(r'juba', JubaDetailSet)
 router.register(r'link', LinkDetailSet)
 router.register(r'profile', ProfileSet)
 
-router.register(r'all', AllListView, 'all')
+router.register(r'home', AllListView, 'home')
 
 
 urlpatterns = [

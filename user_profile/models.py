@@ -47,3 +47,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return "%s (%s)" % (self.user, self.karma)
+
+
+class ProfileImage(models.Model):
+    property = models.ForeignKey(Profile, related_name='images')
+    image = models.ImageField()
+    comments = models.CharField(blank=True, max_length=10, verbose_name=_('说明'))

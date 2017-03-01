@@ -69,18 +69,6 @@
 
 <div class="container">
 
-{% if request.user.is_authenticated %}
-<div class="container">
-    <div class="create-new-thing">
-        <ul>
-            <li><a class="btn btn-small no-pjax" href='{% url "link_create" %}'>推荐一个</a></li>
-            <li><a class="btn btn-small no-pjax" href='{% url "juba_create" %}'>发个聚会</a></li>
-            <li><a class="btn btn-small no-pjax" >秀下恩爱</a></li>
-        </ul>
-    </div>
-</div>
-{% endif %}
-
 {% nevercache %}
 {% if messages %}
 <div class="messages">
@@ -94,12 +82,22 @@
 {% endif %}
 {% endnevercache %}
 
-<ul class="breadcrumb" itemscope="itemscope" itemtype="http://schema.org/Breadcrumb">
-{% spaceless %}
-{% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
-{% endspaceless %}
-</ul>
+<div class="container breadcrumb-create-thing">
+    <ul class="breadcrumb" itemscope="itemscope" itemtype="http://schema.org/Breadcrumb">
+    {% spaceless %}
+    {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
+    {% endspaceless %}
+    </ul>
 
+    {% if request.user.is_authenticated %}
+    <div class="create-new-thing">
+        <ul>
+            <li><a class="btn btn-small no-pjax" href='{% url "link_create" %}'>推荐一个</a></li>
+            <li><a class="btn btn-small no-pjax" href='{% url "juba_create" %}'>发个聚会</a></li>
+            <li><a class="btn btn-small no-pjax" >秀下恩爱</a></li>
+        </ul>
+    </div>
+    {% endif %}
 </div>
 
 <div class="container main">

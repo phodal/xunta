@@ -2,18 +2,18 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from imagekit.models import ProcessedImageField
-from mezzanine.core.models import Ownable, Displayable
 
 from user_profile.models import Profile
-from django.utils.translation import ugettext_lazy as _
 
 
-class Show(Ownable):
+class Show(models.Model):
     class Meta:
         verbose_name = _('秀吧')
         verbose_name_plural = _('秀吧')
 
+    user_profile = models.ForeignKey(Profile, null=True, blank=True)
     title = models.CharField(max_length=100)
     image = ProcessedImageField(upload_to='show',
                                 format='JPEG',

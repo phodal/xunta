@@ -31,9 +31,9 @@ if settings.USE_MODELTRANSLATION:
     ]
 
 urlpatterns = [
-    url(r'^$', cache_page(60 * 6)(home_view.homepage), name='home'),
+    url(r'^$', home_view.homepage, name='home'),
     url(r'^comment/$', comment_views.comment),
-    url(r"^sitemap\.xml$", cache_page(60 * 60 * 6)(sitemap_views.sitemap), sitemaps),
+    url(r"^sitemap\.xml$", sitemap_views.sitemap, sitemaps),
 
     url("^link/", include("links.urls")),
     url("^juba/", include("juba.urls")),

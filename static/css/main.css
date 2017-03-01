@@ -1399,3 +1399,27 @@ a {
         border-left: none;
     }
 }
+
+.user-in-create-thing {
+    display: inline-block;
+}
+
+.create-new-thing {
+    display: inline-block;
+    padding: 10px 0px;
+}
+
+.create-new-thing ul {
+    list-style: none;
+    height: 40px;
+    margin: 0;
+}
+
+.create-new-thing ul li {
+    float: left;
+    padding: 0 20px;
+}
+
+.create-new-thing ul li a.btn {
+    padding: 10px;
+}

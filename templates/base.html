@@ -56,12 +56,6 @@
 
     {% if settings.SITE_TITLE %}<a class="brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
     <div class="nav-collapse">
-        {% if request.user.is_authenticated %}
-        <div class="pull-right">
-            <a class="btn btn-small btn-warning no-pjax" href="{% url "link_create" %}">新荐</a>
-            <a class="btn btn-small btn-warning no-pjax" href="{% url "juba_create" %}">新聚</a>
-        </div>
-        {% endif %}
         <ul class="nav pull-right"><li class="divider-vertical"></li></ul>
         {% search_form %}
         {% page_menu "pages/menus/dropdown.html" %}
@@ -74,6 +68,18 @@
 </div>
 
 <div class="container">
+
+{% if request.user.is_authenticated %}
+<div class="container">
+    <div class="create-new-thing">
+        <ul>
+            <li><a class="btn btn-small no-pjax" href='{% url "link_create" %}'>推荐一个</a></li>
+            <li><a class="btn btn-small no-pjax" href='{% url "juba_create" %}'>发个聚会</a></li>
+            <li><a class="btn btn-small no-pjax" >秀下恩爱</a></li>
+        </ul>
+    </div>
+</div>
+{% endif %}
 
 {% nevercache %}
 {% if messages %}

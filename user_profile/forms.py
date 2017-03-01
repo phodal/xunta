@@ -25,7 +25,7 @@ _exclude_fields = tuple(getattr(settings,
 class ProfileFieldsForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = (get_profile_user_fieldname(), "following",) + _exclude_fields
+        exclude = (get_profile_user_fieldname(), "following", "follows") + _exclude_fields
 
 
 if settings.ACCOUNTS_NO_USERNAME:

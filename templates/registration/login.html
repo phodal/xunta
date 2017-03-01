@@ -1,8 +1,13 @@
 {% extends "accounts/account_form.html" %}
-{% load i18n backend_utils staticfiles %}
+{% load i18n backend_utils staticfiles keyword_tags mezzanine_tags %}
+
+{% block meta_description %}{% metablock %} 玩我——就等你来 {% endmetablock %}{% endblock %}
+{% block meta_title %} 登录 {% endblock %}
+{% block title %}
+登录
+{% endblock %}
 
 {% block main  %}
-
 
 <div id="username-modal">
     <form action="{% url "social:complete" "username" %}" method="post" role="form">{% csrf_token %}

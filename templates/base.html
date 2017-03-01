@@ -25,19 +25,19 @@
 {% endcompress %}
 
 {% compress js %}
-<script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
-<script src="{% static "js/bootstrap.js" %}"></script>
-<script src="{% static "js/bootstrap-extras.js" %}"></script>
-<script src="{% static "js/jquery.autocomplete.min.js" %}"></script>
-<script src="{% static "js/drum.js" %}"></script>
-<script src="{% static "js/masonry.pkgd.min.js" %}"></script>
-<script src="{% static "js/main.js" %}"></script>
+<script src="{% static 'mezzanine/js/'|add:settings.JQUERY_FILENAME %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/bootstrap-extras.js' %}"></script>
+<script src="{% static 'js/jquery.autocomplete.min.js' %}"></script>
+<script src="{% static 'js/drum.js' %}"></script>
+<script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 {% block extra_js %}{% endblock %}
 {% endcompress %}
 
 <!--[if lt IE 9]>
-<script src="{% static "js/html5shiv.js" %}"></script>
-<script src="{% static "js/respond.min.js" %}"></script>
+<script src="{% static 'js/html5shiv.js' %}"></script>
+<script src="{% static 'js/respond.min.js' %}"></script>
 <![endif]-->
 
 {% block extra_head %}{% endblock %}

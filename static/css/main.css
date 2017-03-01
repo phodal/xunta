@@ -1425,3 +1425,7 @@ a {
 .create-new-thing ul li a.btn {
     padding: 10px;
 }
+
+#username-modal .modal-footer{
+    background-color: inherit;
+}

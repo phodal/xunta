@@ -129,13 +129,13 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 }
 
 footer {
-    background: rgba(220, 220, 220, 0.1);
+    background: none;
     padding: 20px 0;
     text-align: center;
     margin-top: 30px;
     position: fixed;
-    left: 0px;
-    bottom: 0px;
+    left: 0;
+    bottom: 0;
     height: 20px;
     width: 100%;
 }
@@ -481,7 +481,7 @@ a.btn-large, input.btn-large {
 }
 
 .navbar a.btn {
-    padding: 3px 10px !important;
+    padding: 7px 10px !important;
     margin: 7px 3px;
 }
 

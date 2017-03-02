@@ -111,7 +111,7 @@
         {% page_menu "pages/menus/footer.html" %}
     </div>
   <div class="container">
-    <a href="{% url "set_device" "mobile" %}?next=#{{ request.path }}">{% trans "移动设备浏览" %}</a>
+    <a href='{% url "set_device" "mobile" %}?next=#{{ request.path }}'>移动设备浏览</a>
   </div>
 </footer>
 

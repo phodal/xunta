@@ -29,8 +29,8 @@ def logout(request):
 
 def context(**extra):
     return dict({
-                    'available_backends': load_backends(settings.AUTHENTICATION_BACKENDS)
-                }, **extra)
+        'available_backends': load_backends(settings.AUTHENTICATION_BACKENDS)
+    }, **extra)
 
 
 def login(request, template="accounts/account_login.html"):
@@ -71,6 +71,7 @@ def newuser(request, template="accounts/account_profile_update.html"):
             return redirect("profile_update")
     context = {"form": form, "title": _("Update Profile")}
     return render(request, template, context)
+
 
 @psa('social:complete')
 def ajax_auth(request, backend):

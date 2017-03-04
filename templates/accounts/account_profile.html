@@ -34,6 +34,12 @@
             {% if profile.constellate %}
             <p>星座：{{ profile.constellate}}</p>
             {% endif %}
+            <div>
+                {%  for image in profile.images.all %}
+                    <img src="/static/media/{{ image.image }}" />
+                    {{ image.comments }}
+                {% endfor %}
+            </div>
         {% endwith %}
 
         <a href="{% url "comment_list_user" profile_user.username %}">评论 ({{ profile_user.comment_comments.count }})</a> |

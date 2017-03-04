@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+from imagekit.models import ProcessedImageField
 
 USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
@@ -51,5 +52,5 @@ class Profile(models.Model):
 
 class ProfileImage(models.Model):
     property = models.ForeignKey(Profile, related_name='images')
-    image = models.ImageField()
+    image = ProcessedImageField(upload_to='show', format='JPEG', options={'quality': 100})
     comments = models.CharField(blank=True, max_length=10, verbose_name=_('说明'))

@@ -7,6 +7,9 @@ def index(request):
     if not request.user.is_authenticated():
         return redirect('login')
 
+    if not hasattr(request.user, 'profile'):
+        return redirect('/')
+
     # Only return posts from users that are being followed, test this later
     # for performance / improvement
     users_followed = request.user.profile.follows.all()

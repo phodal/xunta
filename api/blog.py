@@ -14,11 +14,9 @@ class BlogpostDetailSerializer(serializers.HyperlinkedModelSerializer):
         user = User.objects.get(id=model.user_id)
         return user.get_full_name()
 
-
     @staticmethod
     def get_special_date(model):
         return model.publish_date.strftime('%Y-%m-%d')
-
 
     class Meta:
         model = BlogPost

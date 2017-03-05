@@ -1,23 +1,9 @@
-from django.contrib.auth.models import User
 from rest_framework import filters
 from rest_framework import serializers, viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from user_profile.models import Profile, ProfileImage
-
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ("id", "username", "last_name", "first_name")
-
-
-class ProfileImageSerializer(serializers.ModelSerializer):
-    image = serializers.CharField(read_only=True)
-
-    class Meta:
-        model = ProfileImage
-        fields = ('image', 'comments')
+from api.common_serializer import UserSerializer, ProfileImageSerializer
+from user_profile.models import Profile
 
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):

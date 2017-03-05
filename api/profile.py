@@ -6,6 +6,12 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from user_profile.models import Profile, ProfileImage
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("id", "username", "last_name", "first_name")
+
+
 class ProfileImageSerializer(serializers.ModelSerializer):
     image = serializers.CharField(read_only=True)
 
@@ -15,17 +21,12 @@ class ProfileImageSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
-    user = serializers.SerializerMethodField('get_username_by_id')
+    user = UserSerializer(required=True)
     images = ProfileImageSerializer(many=True, required=False, read_only=True)
 
     class Meta:
         model = Profile
         fields = ('user', 'birthday', 'constellate', 'height', 'interest', 'images')
-
-    @staticmethod
-    def get_username_by_id(model):
-        user = User.objects.get(id=model.user_id)
-        return user.get_full_name()
 
 
 class ProfileSet(viewsets.ModelViewSet):

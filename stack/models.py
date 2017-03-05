@@ -12,12 +12,12 @@ USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 class Stack(Displayable):
     class Meta:
-        verbose_name = _('堆栈')
-        verbose_name_plural = _('堆栈')
+        verbose_name = _('技术栈')
+        verbose_name_plural = _('技术栈')
 
     content = RichTextField(null=True, blank=(not getattr(settings, "Stack_REQUIRED", False)))
-    rating = RatingField(blank=True)
-    hot = models.IntegerField(blank=True)
+    rating = RatingField(blank=True, verbose_name='评价')
+    hot = models.IntegerField(blank=True, verbose_name='热度')
 
     def get_absolute_url(self):
         return reverse("stack_detail", kwargs={"slug": self.slug})
@@ -28,8 +28,13 @@ class Job(MetaData, TimeStamped):
         verbose_name = _('工作')
         verbose_name_plural = _('工作')
 
-    name = models.CharField(max_length=50)
-    content = RichTextField(null=True, blank=(not getattr(settings, "JOB_REQUIRED", False)))
+    name = models.CharField(max_length=50, verbose_name="一行介绍")
+    province = models.CharField(blank=True, max_length=10, verbose_name="省")
+    cities = models.CharField(blank=True, max_length=10, verbose_name="市")
+    zone = models.CharField(blank=True, max_length=10, verbose_name="区")
+    address = models.CharField(blank=True, max_length=10, verbose_name="地址")
+    salary_start = models.IntegerField(blank=True, default=0, verbose_name="待遇（始）")
+    salary_end = models.IntegerField(blank=True, default=0, verbose_name="待遇（到）")
 
 
 class GitHubInfo(models.Model):

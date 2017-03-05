@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block meta_title %}秀个恩爱{% endblock %}
+{% block title %}秀个恩爱{% endblock %}
+
+{% load mezzanine_tags %}
+
+{% block main %}
+<div class="span12">
+{% errors_for form %}
+<form method="post">
+<fieldset>{% fields_for form %}</fieldset>
+<div class="actions">
+    <input class="btn btn-warning btn-large" type="submit" value="创建">
+</div>
+</form>
+</div>
+{% endblock %}

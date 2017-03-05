@@ -28,12 +28,12 @@ class Job(MetaData, TimeStamped):
         verbose_name = _('工作')
         verbose_name_plural = _('工作')
 
-    name = models.CharField()
-    content = RichTextField(null=True, blank=(not getattr(settings, "Company_REQUIRED", False)))
+    name = models.CharField(max_length=50)
+    content = RichTextField(null=True, blank=(not getattr(settings, "JOB_REQUIRED", False)))
 
 
 class GitHubInfo(models.Model):
-    name = models.CharField()
+    name = models.CharField(max_length=50)
     slug = models.SlugField()
     content = RichTextField()
 
@@ -57,8 +57,8 @@ class Programmer(models.Model):
         verbose_name_plural = _('程序员')
 
     user = models.OneToOneField(USER_MODEL)
-    current_stack = models.ForeignKey(Stack)
-    future_stack = models.ForeignKey(Stack)
-    contact = models.CharField()
-    company = models.CharField(Company)
+    current_stack = models.ForeignKey(Stack, related_name='current_stack')
+    future_stack = models.ForeignKey(Stack, related_name='future_stack')
+    contact = models.CharField(max_length=50)
+    company = models.ForeignKey(Company, related_name='company')
     blog = models.SlugField()

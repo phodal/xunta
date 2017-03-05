@@ -22,6 +22,7 @@ class ShowForm(BaseShowForm):
     def clean(self):
         title = self.cleaned_data.get("title", None)
         image = self.cleaned_data.get("image", None)
+
         if not title and not image:
             raise ValidationError("Either a link or description is required")
         return self.cleaned_data

@@ -33,6 +33,10 @@ class Job(MetaData, TimeStamped):
 
 
 class GitHubInfo(models.Model):
+    class Meta:
+        verbose_name = _('GitHub项目')
+        verbose_name_plural = _('GitHub项目')
+
     name = models.CharField(max_length=50)
     slug = models.SlugField()
     content = RichTextField()

@@ -16,8 +16,8 @@ class Stack(Slugged, TimeStamped):
         verbose_name_plural = _('技术栈')
 
     content = RichTextField(null=True, blank=(not getattr(settings, "Stack_REQUIRED", False)))
-    rating = RatingField(blank=True, verbose_name='评价')
-    hot = models.IntegerField(blank=True, verbose_name='热度')
+    rating = RatingField(null=True, blank=True, verbose_name='评价')
+    hot = models.IntegerField(null=True, blank=True, verbose_name='热度')
 
     def get_absolute_url(self):
         return reverse("stack_detail", kwargs={"slug": self.slug})
@@ -47,14 +47,14 @@ class GitHubInfo(models.Model):
     content = RichTextField()
 
 
-class Company(Displayable):
+class Company(Slugged, TimeStamped):
     class Meta:
         verbose_name = _('公司')
         verbose_name_plural = _('公司')
 
     content = RichTextField(null=True, blank=(not getattr(settings, "Company_REQUIRED", False)))
-    stacks = models.ForeignKey(Stack)
-    jobs = models.ForeignKey(Job)
+    stacks = models.ForeignKey(Stack, blank=True, null=True)
+    jobs = models.ForeignKey(Job, blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse("company_detail", kwargs={"slug": self.slug})

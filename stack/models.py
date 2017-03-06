@@ -13,6 +13,10 @@ from xunta import settings
 USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
+class Category(Slugged, TimeStamped):
+    pass
+
+
 class Stack(Slugged, TimeStamped):
     class Meta:
         verbose_name = _('技术栈')
@@ -21,6 +25,7 @@ class Stack(Slugged, TimeStamped):
     content = RichTextField(null=True, blank=(not getattr(settings, "Stack_REQUIRED", False)))
     rating = RatingField(null=True, blank=True, verbose_name='评价')
     hot = models.IntegerField(null=True, blank=True, verbose_name='热度')
+    category = models.ForeignKey(Category, null=True, blank=True, verbose_name='类别')
     description = models.TextField(_("Description"), blank=True)
 
     def get_absolute_url(self):

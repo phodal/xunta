@@ -9,6 +9,14 @@ class StackAdmin(ModelAdmin):
     list_display_links = ("id",)
     exclude = ('description',)
     filter_horizontal = ("category",)
+    fieldsets = [
+        (None, {'fields': [('title', "category", 'slug', "content", "hot")]}),
+    ]
+
+    def save_model(self, request, obj, form, change):
+        if getattr(obj, 'user', None) is None:
+            obj.user = request.user
+        obj.save()
 
 
 class CompanyAdmin(ModelAdmin):
@@ -17,6 +25,7 @@ class CompanyAdmin(ModelAdmin):
 
 class ProgrammerAdmin(ModelAdmin):
     filter_horizontal = ("current_stack", "future_stack", "company")
+
 
 admin.site.register(Stack, StackAdmin)
 admin.site.register(Company, CompanyAdmin)

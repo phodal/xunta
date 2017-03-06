@@ -11,7 +11,7 @@ urlpatterns = [
     url("^users/(?P<username>.*)/juba/$",
         show_view.index, {"by_score": False},
         name="show_list_user"),
-    url("^show/create/$",
+    url("^create/$",
         login_required(ShowCreate.as_view()),
         name="show_create"),
 ]

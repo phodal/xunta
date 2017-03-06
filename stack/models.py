@@ -1,7 +1,7 @@
 from django.urls import reverse
 from django.db import models
 from mezzanine.core.fields import RichTextField
-from mezzanine.core.models import Displayable, TimeStamped, MetaData
+from mezzanine.core.models import Displayable, TimeStamped, MetaData, Slugged
 from mezzanine.generic.fields import RatingField
 from django.utils.translation import ugettext_lazy as _
 
@@ -10,7 +10,7 @@ from xunta import settings
 USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
-class Stack(Displayable):
+class Stack(Slugged, TimeStamped):
     class Meta:
         verbose_name = _('技术栈')
         verbose_name_plural = _('技术栈')

@@ -39,6 +39,7 @@ urlpatterns = [
     url("^link/", include("links.urls")),
     url("^juba/", include("juba.urls")),
     url("^show/", include("show.urls")),
+    url("^stack/", include("stack.urls")),
     url("^api/", include("api.urls")),
     url("^avatar/", include("avatar.urls")),
 

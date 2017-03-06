@@ -16,7 +16,7 @@ from __future__ import absolute_import, unicode_literals
 ADMIN_MENU_ORDER = (
     ("Content", ("blog.BlogPost", "juba.Juba", "links.Link", "show.Show")),
     ("Users", ("user_profile.Profile", ("用户管理", "auth.User"))),
-    ("堆栈", ("stack.Stack", "stack.Company", "stack.Programmer", "stack.GitHubInfo", "stack.Job",)),
+    ("堆栈", ("stack.Stack", "stack.Company", "stack.Programmer", "stack.GitHubInfo", "stack.Job", "stack.Category",)),
     ("Site", ("pages.Page", "auth.Group", "sites.Site", "redirects.Redirect", "conf.Setting")),
     ("其他", ("generic.Keyword", "generic.ThreadedComment", ("头像", "avatar.Avatar"), ("秀吧-赞", "show.Like"), ("秀吧-评论", "show.Comment"))),
 )

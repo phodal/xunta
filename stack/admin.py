@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 
-from stack.models import Stack, Company, Programmer, GitHubInfo, Job
+from stack.models import Stack, Company, Programmer, GitHubInfo, Job, Category
 
 
 class StackAdmin(ModelAdmin):
@@ -11,6 +11,7 @@ class StackAdmin(ModelAdmin):
 
 admin.site.register(Stack, StackAdmin)
 admin.site.register(Company)
+admin.site.register(Category)
 admin.site.register(Programmer)
 admin.site.register(GitHubInfo)
 admin.site.register(Job)

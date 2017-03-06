@@ -17,13 +17,13 @@ class Category(Slugged, TimeStamped):
     content = RichTextField(null=True, blank=True)
 
     class Meta:
-        verbose_name = _("Category")
-        verbose_name_plural = _("Categories")
+        verbose_name = _("分类")
+        verbose_name_plural = _("分类")
         ordering = ("title",)
 
     @models.permalink
     def get_absolute_url(self):
-        return "blog_post_list_category", (), {"category": self.slug}
+        return "stack_category", (), {"category": self.slug}
 
 
 class Stack(Slugged, TimeStamped):

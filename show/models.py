@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from imagekit.models import ProcessedImageField
 from mezzanine.core.models import Ownable
@@ -29,6 +30,9 @@ class Show(Ownable):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("show_detail", kwargs={"slug": self.id})
 
 
 class Comment(models.Model):

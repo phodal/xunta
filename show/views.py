@@ -1,11 +1,9 @@
 from __future__ import unicode_literals
 
 from django.contrib.messages import info
-from django.http import HttpResponse
-from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from mezzanine.accounts import get_profile_model
 
 from show.forms import ShowForm
@@ -46,4 +44,13 @@ class ShowCreate(CreateView):
         form.instance.user = self.request.user
         form.instance.gen_description = False
         info(self.request, "Link created")
+        print(self.request)
         return super(ShowCreate, self).form_valid(form)
+
+
+class ShowDetail(DetailView):
+    """
+    Link detail view - threaded comments and rating are implemented
+    in its template.
+    """
+    pass

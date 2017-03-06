@@ -1,9 +1,12 @@
+from django.template.defaultfilters import truncatewords_html
 from django.urls import reverse
 from django.db import models
+from django.utils.html import strip_tags
 from mezzanine.core.fields import RichTextField
 from mezzanine.core.models import Displayable, TimeStamped, MetaData, Slugged
 from mezzanine.generic.fields import RatingField
 from django.utils.translation import ugettext_lazy as _
+from mezzanine.utils.html import TagCloser
 
 from xunta import settings
 
@@ -18,9 +21,55 @@ class Stack(Slugged, TimeStamped):
     content = RichTextField(null=True, blank=(not getattr(settings, "Stack_REQUIRED", False)))
     rating = RatingField(null=True, blank=True, verbose_name='评价')
     hot = models.IntegerField(null=True, blank=True, verbose_name='热度')
+    description = models.TextField(_("Description"), blank=True)
 
     def get_absolute_url(self):
         return reverse("stack_detail", kwargs={"slug": self.slug})
+
+    def description_from_content(self):
+        """
+        Returns the first block or sentence of the first content-like
+        field.
+        """
+        description = ""
+        # Use the first RichTextField, or TextField if none found.
+        for field_type in (RichTextField, models.TextField):
+            if not description:
+                for field in self._meta.fields:
+                    if (isinstance(field, field_type) and
+                                field.name != "description"):
+                        description = getattr(self, field.name)
+                        if description:
+                            from mezzanine.core.templatetags.mezzanine_tags \
+                                import richtext_filters
+                            description = richtext_filters(description)
+                            break
+        # Fall back to the title if description couldn't be determined.
+        if not description:
+            description = str(self)
+        # Strip everything after the first block or sentence.
+        ends = ("</p>", "<br />", "<br/>", "<br>", "</ul>",
+                "\n", ". ", "! ", "? ")
+        for end in ends:
+            pos = description.lower().find(end)
+            if pos > -1:
+                description = TagCloser(description[:pos]).html
+                break
+        else:
+            description = truncatewords_html(description, 100)
+        try:
+            description = unicode(description)
+        except NameError:
+            pass  # Python 3.
+        return description
+
+
+    def save(self, *args, **kwargs):
+        """
+        Set the description field on save.
+        """
+        self.description = strip_tags(self.description_from_content())
+        super(Stack, self).save(*args, **kwargs)
 
 
 class Job(MetaData, TimeStamped):

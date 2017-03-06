@@ -36,7 +36,7 @@ class Stack(Slugged, TimeStamped):
     hot = models.IntegerField(null=True, blank=True, verbose_name='热度')
     category = models.ManyToManyField("Category",
                                       verbose_name=_("分类"),
-                                      blank=True, related_name="stack")
+                                      blank=True, related_name="category")
     description = models.TextField(_("Description"), blank=True)
 
     def get_absolute_url(self):
@@ -119,10 +119,10 @@ class Company(Slugged, TimeStamped):
     content = RichTextField(null=True, blank=(not getattr(settings, "Company_REQUIRED", False)))
     stacks = models.ManyToManyField("Stack",
                                     verbose_name=_("技术栈"),
-                                    blank=True, related_name="company")
+                                    blank=True, related_name="stacks")
     jobs = models.ManyToManyField("Job",
                                   verbose_name=_("相关工作"),
-                                  blank=True, related_name="stack")
+                                  blank=True, related_name="jobs")
 
     def get_absolute_url(self):
         return reverse("company_detail", kwargs={"slug": self.slug})
@@ -134,8 +134,15 @@ class Programmer(models.Model):
         verbose_name_plural = _('程序员')
 
     user = models.OneToOneField(USER_MODEL)
-    current_stack = models.ForeignKey(Stack, related_name='current_stack')
-    future_stack = models.ForeignKey(Stack, related_name='future_stack')
+    current_stack = models.ManyToManyField("Stack",
+                                     verbose_name=_("当前技术栈"),
+                                     blank=True, related_name="current_stack")
+    future_stack = models.ManyToManyField("Stack",
+                                     verbose_name=_("公司"),
+                                     blank=True, related_name="future_stack")
+
     contact = models.CharField(max_length=50)
-    company = models.ForeignKey(Company, related_name='company')
+    company = models.ManyToManyField("Company",
+                                     verbose_name=_("公司"),
+                                     blank=True, related_name="company")
     blog = models.SlugField()

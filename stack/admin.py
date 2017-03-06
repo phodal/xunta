@@ -14,9 +14,13 @@ class StackAdmin(ModelAdmin):
 class CompanyAdmin(ModelAdmin):
     filter_horizontal = ("stacks", "jobs",)
 
+
+class ProgrammerAdmin(ModelAdmin):
+    filter_horizontal = ("current_stack", "future_stack", "company")
+
 admin.site.register(Stack, StackAdmin)
 admin.site.register(Company, CompanyAdmin)
 admin.site.register(Category)
-admin.site.register(Programmer)
+admin.site.register(Programmer, ProgrammerAdmin)
 admin.site.register(GitHubInfo)
 admin.site.register(Job)

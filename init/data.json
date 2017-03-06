@@ -77,6 +77,24 @@
       "slug": "show",
       "site": 1
     }
+  },
+  {
+    "pk": 5,
+    "model": "pages.page",
+    "fields": {
+      "status": 2,
+      "_order": 3,
+      "parent": null,
+      "description": "Stack",
+      "title": "堆栈",
+      "titles": "堆栈",
+      "content_model": "link",
+      "in_menus": [
+        1
+      ],
+      "slug": "stack",
+      "site": 1
+    }
   }
 ]
 

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load static mezzanine_tags rating_tags keyword_tags drum_tags %}
+
+{% block meta_title %} 首页 {% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block main %}
+
+
+<div class="show">
+    {% for stack in stacks %}
+        {{stack.title}}
+    {% empty %}
+    <p>{{ no_data }}</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

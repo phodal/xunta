@@ -138,7 +138,7 @@ class Programmer(models.Model):
                                      verbose_name=_("当前技术栈"),
                                      blank=True, related_name="current_stack")
     future_stack = models.ManyToManyField("Stack",
-                                     verbose_name=_("公司"),
+                                     verbose_name=_("未来技术栈"),
                                      blank=True, related_name="future_stack")
 
     contact = models.CharField(max_length=50)

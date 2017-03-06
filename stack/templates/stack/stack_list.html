@@ -11,7 +11,7 @@
 <div class="stack">
     {% for stack in stacks %}
         <div class="card">
-            <h1>{{stack.title}}</h1>
+            <h1><a href="{% url 'stack_detail' stack.slug %}">{{stack.title}}</a></h1>
             <p>{{stack.description}}</p>
         </div>
     {% empty %}

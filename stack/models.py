@@ -34,7 +34,9 @@ class Stack(Slugged, TimeStamped):
     content = RichTextField(null=True, blank=(not getattr(settings, "Stack_REQUIRED", False)))
     rating = RatingField(null=True, blank=True, verbose_name='评价')
     hot = models.IntegerField(null=True, blank=True, verbose_name='热度')
-    category = models.ForeignKey(Category, null=True, blank=True, verbose_name='类别')
+    category = models.ManyToManyField("Category",
+                                      verbose_name=_("分类"),
+                                      blank=True, related_name="stack")
     description = models.TextField(_("Description"), blank=True)
 
     def get_absolute_url(self):
@@ -77,7 +79,6 @@ class Stack(Slugged, TimeStamped):
             pass  # Python 3.
         return description
 
-
     def save(self, *args, **kwargs):
         """
         Set the description field on save.
@@ -116,8 +117,12 @@ class Company(Slugged, TimeStamped):
         verbose_name_plural = _('公司')
 
     content = RichTextField(null=True, blank=(not getattr(settings, "Company_REQUIRED", False)))
-    stacks = models.ForeignKey(Stack, blank=True, null=True)
-    jobs = models.ForeignKey(Job, blank=True, null=True)
+    stacks = models.ManyToManyField("Stack",
+                                    verbose_name=_("技术栈"),
+                                    blank=True, related_name="company")
+    jobs = models.ManyToManyField("Job",
+                                  verbose_name=_("相关工作"),
+                                  blank=True, related_name="stack")
 
     def get_absolute_url(self):
         return reverse("company_detail", kwargs={"slug": self.slug})

@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+from django.contrib.messages import info
 from django.http import HttpResponse
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
@@ -40,3 +41,9 @@ class ShowCreate(CreateView):
 
     form_class = ShowForm
     model = Show
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.gen_description = False
+        info(self.request, "Link created")
+        return super(ShowCreate, self).form_valid(form)

@@ -4,11 +4,12 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from imagekit.models import ProcessedImageField
+from mezzanine.core.models import Ownable
 
 from user_profile.models import Profile
 
 
-class Show(models.Model):
+class Show(Ownable):
     class Meta:
         verbose_name = _('秀吧')
         verbose_name_plural = _('秀吧')

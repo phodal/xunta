@@ -14,7 +14,16 @@ USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
 class Category(Slugged, TimeStamped):
-    pass
+    content = RichTextField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = _("Category")
+        verbose_name_plural = _("Categories")
+        ordering = ("title",)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return "blog_post_list_category", (), {"category": self.slug}
 
 
 class Stack(Slugged, TimeStamped):

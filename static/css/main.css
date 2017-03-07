@@ -1429,3 +1429,20 @@ a {
 #username-modal .modal-footer{
     background-color: inherit;
 }
+
+.stack-page h1 {
+    margin: 0 auto;
+    text-align: center;
+    padding: 40px;
+}
+
+.stack-page .company-used {
+    float: right;
+    display: block;
+    padding: 20px;
+}
+
+.stack-page .markdown {
+    clear: both;
+    display: block;
+}

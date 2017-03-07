@@ -3,25 +3,23 @@
 {% load static mezzanine_tags rating_tags keyword_tags drum_tags %}
 
 {% block meta_title %} 全栈技术栈 之{{stack.title}} {% endblock %}
+{% block meta_description %} {{stack.description}} {% endblock %}
 {% block title %}{{ title }}{% endblock %}
 
 {% block main %}
 
 
-<div class="stack">
-    <div class="card">
-        <h1>{{stack.title}}</h1>
-        <img class="card__main-image" src="{{ STATIC_URL}}/media/{{stack.featured_image}} " alt="">
-        <h4>
-            {% for company in companies %}
-                <a href="{% url 'company_detail' company.slug %}">{{company.title}}</a>
-            {% endfor %}
-            等公司正在使用 {{stack.title}}</h4>
+<div class="stack-page">
+    <h1>{{stack.title}}</h1>
+    <div class="company-used">
+        {% for company in companies %}
+            <a href="{% url 'company_detail' company.slug %}">{{company.title}}</a>、
+        {% endfor %} 等公司正在使用 {{stack.title}}
+    </div>
+    <!--<img src="{{ STATIC_URL}}/media/{{stack.featured_image}} " alt="">-->
 
-        <blockquote>{{stack.description}}</blockquote>
-        <div>
-            <p>{{stack.content | safe}}</p>
-        </div>
+    <div class="markdown">
+        <p>{{stack.content | safe}}</p>
     </div>
 </div>
 

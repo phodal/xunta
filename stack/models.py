@@ -99,7 +99,9 @@ class Job(MetaData, TimeStamped):
     address = models.CharField(blank=True, max_length=10, verbose_name="地址")
     salary_start = models.IntegerField(blank=True, default=0, verbose_name="待遇（始）")
     salary_end = models.IntegerField(blank=True, default=0, verbose_name="待遇（到）")
-
+    stacks = models.ManyToManyField("Stack",
+                                    verbose_name=_("技术栈"),
+                                    blank=True, related_name="used_stacks")
 
 class GitHubInfo(models.Model):
     class Meta:

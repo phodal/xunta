@@ -33,6 +33,7 @@ class ProgrammerAdmin(ModelAdmin):
 class JobAdmin(ModelAdmin):
     list_display = ("id", "name", "salary_start", "salary_end")
     list_display_links = ("id", )
+    filter_horizontal = ("stacks",)
 
 admin.site.register(Stack, StackAdmin)
 admin.site.register(Company, CompanyAdmin)

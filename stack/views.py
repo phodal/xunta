@@ -28,8 +28,6 @@ class StackDetail(StackView, DetailView):
     def get_context_data(self, **kwargs):
         context = super(StackDetail, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.filter(stacks__id=context["stack"].id)
-        context["programmer_current"] = Programmer.objects.filter(current_stack__id=context["stack"].id)
-        context["programmer_future"] = Programmer.objects.filter(future_stack__id=context["stack"].id)
         return context
 
 

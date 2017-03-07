@@ -104,7 +104,7 @@ class Job(MetaData, TimeStamped):
     salary_end = models.IntegerField(blank=True, default=0, verbose_name="待遇（到）")
     stacks = models.ManyToManyField("Stack",
                                     verbose_name=_("技术栈"),
-                                    blank=True, related_name="used_stacks")
+                                    blank=True, related_name="job_stacks")
 
 class GitHubInfo(models.Model):
     class Meta:
@@ -124,7 +124,7 @@ class Company(Slugged, TimeStamped):
     content = RichTextField(null=True, blank=(not getattr(settings, "Company_REQUIRED", False)))
     stacks = models.ManyToManyField("Stack",
                                     verbose_name=_("技术栈"),
-                                    blank=True, related_name="stacks")
+                                    blank=True, related_name="company_stacks")
     jobs = models.ManyToManyField("Job",
                                   verbose_name=_("相关工作"),
                                   blank=True, related_name="jobs")

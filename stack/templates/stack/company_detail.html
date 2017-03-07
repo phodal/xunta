@@ -12,6 +12,13 @@
     <div class="card">
         <h1>{{company.title}}</h1>
         <p>{{company.content}}</p>
+        他们当前正在使用:
+        {% for stack in company.stacks.all %}
+            {% for category in stack.category.all %}
+                <h2>{{ category.title }}</h2>
+            {% endfor %}
+            <a href="{% url 'stack_detail' stack.slug %}">{{stack.title}}</a>
+        {% endfor %}
     </div>
 </div>
 

@@ -8,15 +8,24 @@
 {% block main %}
 
 
-<div class="stack">
-    {% for stack in stacks %}
-        <div class="card">
+<div class="stack-list">
+    <div class="container grid">
+        {% for stack in stacks %}
+        <div class="card item">
             <h1><a href="{% url 'stack_detail' stack.slug %}">{{stack.title}}</a></h1>
             <p>{{stack.description}}</p>
         </div>
-    {% empty %}
-    <p>{{ no_data }}</p>
-    {% endfor %}
+        {% empty %}
+        <p>{{ no_data }}</p>
+        {% endfor %}
+    </div>
 </div>
 
+<script>
+    var grid = document.querySelector('.grid');
+    waterfall(grid);
+    window.addEventListener('resize', function () {
+    waterfall(grid);
+});
+</script>
 {% endblock %}

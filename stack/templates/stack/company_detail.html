@@ -8,16 +8,17 @@
 {% block main %}
 
 
-<div class="stack">
+<div class="company-detail-page">
     <div class="card">
-        <h1>{{company.title}}</h1>
-        <p>{{company.content}}</p>
+        <h1>{{ company.title }}</h1>
+        <p>{{ company.content | safe }}</p>
         他们当前正在使用:
         {% for stack in company.stacks.all %}
-            {% for category in stack.category.all %}
-                <h2>{{ category.title }}</h2>
-            {% endfor %}
             <a href="{% url 'stack_detail' stack.slug %}">{{stack.title}}</a>
+            {% if stack.category.all %}
+                （分类:
+                    {% for category in stack.category.all %}<span>『{{ category.title }}』</span>{% endfor %}）
+            {% endif %}
         {% endfor %}
     </div>
 </div>

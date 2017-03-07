@@ -1436,6 +1436,7 @@ a {
     box-shadow: none;
 }
 
+.company-detail-page h1,
 .stack-page h1 {
     margin: 0 auto;
     text-align: center;
@@ -1448,6 +1449,7 @@ a {
     padding: 20px;
 }
 
+.company-detail-page .markdown,
 .stack-page .markdown {
     clear: both;
     display: block;

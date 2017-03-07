@@ -13,17 +13,7 @@ USER_PROFILE_RELATED_NAME = get_profile_model().user.field.related_query_name()
 
 
 def index(request):
-    if not request.user.is_authenticated():
-        return redirect('login')
-
-    if not hasattr(request.user, 'profile'):
-        return redirect('/')
-
-    # Only return posts from users that are being followed, test this later
-    # for performance / improvement
-    users_followed = request.user.profile.follows.all()
-    shows = Show.objects.filter(
-        user_profile__in=users_followed).order_by('-posted_on')
+    shows = Show.objects.all()
 
     return render(request, 'show/show_list.html', {
         'shows': shows
@@ -49,8 +39,4 @@ class ShowCreate(CreateView):
 
 
 class ShowDetail(DetailView):
-    """
-    Link detail view - threaded comments and rating are implemented
-    in its template.
-    """
     pass

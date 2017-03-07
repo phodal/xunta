@@ -2,6 +2,7 @@ from django.template.defaultfilters import truncatewords_html
 from django.urls import reverse
 from django.db import models
 from django.utils.html import strip_tags
+from imagekit.models import ProcessedImageField
 from mezzanine.core.fields import RichTextField
 from mezzanine.core.models import Displayable, TimeStamped, MetaData, Slugged
 from mezzanine.generic.fields import RatingField
@@ -34,6 +35,7 @@ class Stack(Slugged, TimeStamped):
     content = RichTextField(null=True, blank=(not getattr(settings, "Stack_REQUIRED", False)))
     rating = RatingField(null=True, blank=True, verbose_name='评价')
     hot = models.IntegerField(null=True, blank=True, verbose_name='热度')
+    featured_image = ProcessedImageField(null=True, blank=True, upload_to='stack', format='JPEG', options={'quality': 100})
     category = models.ManyToManyField("Category",
                                       verbose_name=_("分类"),
                                       blank=True, related_name="category")

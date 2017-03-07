@@ -11,6 +11,7 @@
 <div class="stack">
     <div class="card">
         <h1>{{stack.title}}</h1>
+        <img class="card__main-image" src="{{ STATIC_URL}}/media/{{stack.featured_image}} " alt="">
         <h4>
             {% for company in companies %}
                 <a href="{% url 'company_detail' company.slug %}">{{company.title}}</a>

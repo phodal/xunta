@@ -10,7 +10,7 @@ class StackAdmin(ModelAdmin):
     exclude = ('description',)
     filter_horizontal = ("category",)
     fieldsets = [
-        (None, {'fields': [('title', "category", 'slug', "content", "hot")]}),
+        (None, {'fields': [('title', "category", 'slug', "content", "hot", "featured_image")]}),
     ]
 
     def save_model(self, request, obj, form, change):

@@ -94,6 +94,7 @@ class Job(MetaData, TimeStamped):
         verbose_name = _('工作')
         verbose_name_plural = _('工作')
 
+    content = models.TextField(_("内容"), blank=True)
     name = models.CharField(max_length=50, verbose_name="一行介绍")
     province = models.CharField(blank=True, max_length=10, verbose_name="省")
     cities = models.CharField(blank=True, max_length=10, verbose_name="市")

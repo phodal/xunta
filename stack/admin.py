@@ -34,6 +34,10 @@ class JobAdmin(ModelAdmin):
     list_display = ("id", "name", "salary_start", "salary_end")
     list_display_links = ("id", )
     filter_horizontal = ("stacks",)
+    fieldsets = [
+        (None, {'fields': [('name', "content", "province", 'cities', "zone", "address", "salary_start", "salary_end", "stacks")]}),
+    ]
+
 
 admin.site.register(Stack, StackAdmin)
 admin.site.register(Company, CompanyAdmin)

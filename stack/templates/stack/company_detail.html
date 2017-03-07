@@ -12,15 +12,38 @@
     <div class="card">
         <h1>{{ company.title }}</h1>
         <p>{{ company.content | safe }}</p>
+    </div>
+    <section>
+        <h2>技术栈</h2>
         他们当前正在使用:
         {% for stack in company.stacks.all %}
+            <p>
             <a href="{% url 'stack_detail' stack.slug %}">{{stack.title}}</a>
             {% if stack.category.all %}
                 （分类:
                     {% for category in stack.category.all %}<span>『{{ category.title }}』</span>{% endfor %}）
             {% endif %}
+            </p>
         {% endfor %}
-    </div>
+        </section>
+    <section>
+        <h2>相关岗位</h2>
+        他们正在招聘以下的岗位:
+        <div class="grid">
+        {% for job in company.jobs.all %}
+            <div class="card item" style="width: 20rem;">
+                <h3>{{job.name}}</h3>
+                <p>{{job.description}}</p>
+                技术栈:
+                <p>
+                    {% for stack in job.stacks.all %}
+                        {{ stack.title }}
+                    {% endfor %}
+                </p>
+            </div>
+        {% endfor %}
+        </div>
+    </section>
 </div>
 
 {% endblock %}

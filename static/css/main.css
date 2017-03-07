@@ -1453,9 +1453,12 @@ a {
     display: block;
 }
 
+.stack-list .card p {
+    padding: 10px;
+}
 .stack-list .card {
-    display: inline-block;
     width: 20rem;
+    margin-bottom: 25px;
 }
 
 .stack-list h1 {

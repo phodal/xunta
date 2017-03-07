@@ -13,7 +13,7 @@
         <h1>{{stack.title}}</h1>
         <h4>
             {% for company in companies %}
-                {{company.title}}
+            <a href="{% url 'company_detail' company.slug %}">{{company.title}}</a>
             {% endfor %}
             正在使用 {{stack.title}}</h4>
         <blockquote>{{stack.description}}</blockquote>

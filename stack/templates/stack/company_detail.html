@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static mezzanine_tags rating_tags keyword_tags drum_tags %}
+
+{% block meta_title %} 首页 {% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block main %}
+
+
+<div class="stack">
+    <div class="card">
+        <h1>{{company.title}}</h1>
+        <p>{{company.content}}</p>
+    </div>
+</div>
+
+{% endblock %}

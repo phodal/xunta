@@ -29,3 +29,9 @@ class StackDetail(StackView, DetailView):
         context = super(StackDetail, self).get_context_data(**kwargs)
         context["companies"] = Company.objects.filter(stacks__id=context["stack"].id)
         return context
+
+
+class CompanyDetail(DetailView):
+    model = Company
+
+    pass

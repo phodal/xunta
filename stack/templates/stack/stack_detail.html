@@ -10,13 +10,14 @@
 
 
 <div class="stack-page">
+    <img class="featured-image" src="{{ MEDIA_URL}}{{stack.featured_image}} " alt="">
+
     <h1>{{stack.title}}</h1>
     <div class="company-used">
         {% for company in companies %}
             <a href="{% url 'company_detail' company.slug %}">{{company.title}}</a>、
         {% endfor %} 等公司正在使用 {{stack.title}}
     </div>
-    <!--<img src="{{ STATIC_URL}}/media/{{stack.featured_image}} " alt="">-->
 
     <div class="markdown">
         <p>{{stack.content | safe}}</p>

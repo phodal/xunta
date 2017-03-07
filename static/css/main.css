@@ -1430,6 +1430,12 @@ a {
     background-color: inherit;
 }
 
+.stack-page img.featured-image {
+    margin: 0 auto;
+    display: block;
+    box-shadow: none;
+}
+
 .stack-page h1 {
     margin: 0 auto;
     text-align: center;

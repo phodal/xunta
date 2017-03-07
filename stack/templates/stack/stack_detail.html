@@ -16,6 +16,17 @@
             <a href="{% url 'company_detail' company.slug %}">{{company.title}}</a>
             {% endfor %}
             正在使用 {{stack.title}}</h4>
+        <h4>
+            {% for programmer in programmer_current %}
+                {{programmer.title}}
+            {% endfor %}
+            正在使用 {{stack.title}}</h4>
+        <h4>
+            {% for programmer in programmer_future.future_stack %}
+                {{programmer.title}}
+            {% endfor %}
+            未来将使用 {{stack.title}}</h4>
+
         <blockquote>{{stack.description}}</blockquote>
         <div>
             <p>{{stack.content | safe}}</p>

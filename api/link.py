@@ -9,6 +9,7 @@ from links.models import Link
 class LinkDetailSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.SerializerMethodField('get_username_by_id')
     date = serializers.SerializerMethodField('get_special_date')
+    url = serializers.SerializerMethodField('get_link_url')
 
     @staticmethod
     def get_username_by_id(model):
@@ -18,6 +19,10 @@ class LinkDetailSerializer(serializers.HyperlinkedModelSerializer):
     @staticmethod
     def get_special_date(model):
         return model.publish_date.strftime('%Y-%m-%d')
+
+    @staticmethod
+    def get_link_url(model):
+        return model.get_absolute_url()
 
     class Meta:
         model = Link

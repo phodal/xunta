@@ -8,11 +8,15 @@ from user_profile.models import Profile
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer(required=True)
+    constellate = serializers.SerializerMethodField()
     images = ProfileImageSerializer(many=True, required=False, read_only=True)
+
+    def get_constellate(self, obj):
+        return obj.get_constellate_display()
 
     class Meta:
         model = Profile
-        fields = ('user', 'birthday', 'constellate', 'height', 'interest', 'images')
+        fields = ('user', 'birthday', 'constellate', 'bio', 'height', 'interest', 'images')
 
 
 class ProfileSet(viewsets.ModelViewSet):

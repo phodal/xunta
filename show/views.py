@@ -10,9 +10,11 @@ from show.models import Show
 
 USER_PROFILE_RELATED_NAME = get_profile_model().user.field.related_query_name()
 
+
 class ShowView(object):
     def get_queryset(self):
         return Show.objects.all()
+
 
 class ShowList(ShowView, ListView):
     def get_queryset(self):

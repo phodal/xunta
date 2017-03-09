@@ -5,6 +5,7 @@ from api.blog import BlogPostDetailSet
 from api.juba import JubaDetailSet
 from api.link import LinkDetailSet
 from api.profile import ProfileSet
+from api.show import ShowSet
 from api.stack import StackSet
 from api.views import AllListView
 
@@ -14,6 +15,7 @@ router.register(r'blog', BlogPostDetailSet)
 router.register(r'juba', JubaDetailSet)
 router.register(r'link', LinkDetailSet)
 router.register(r'stack', StackSet)
+router.register(r'show', ShowSet)
 router.register(r'profile', ProfileSet)
 
 router.register(r'home', AllListView, 'home')

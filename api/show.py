@@ -2,7 +2,7 @@ from rest_framework import filters
 from rest_framework import serializers, viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from api.common_serializer import UserSerializer
+from api.common_serializer import UserSerializer, AvatarSerializer
 from show.models import Show
 
 

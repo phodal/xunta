@@ -15,5 +15,4 @@ urlpatterns = [
     url("^show/(?P<slug>.*)/$",
         ShowDetail.as_view(),
         name="show_detail"),
-
 ]

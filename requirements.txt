@@ -1,6 +1,5 @@
 drum
 feedparser
-django-avatar
 markdown
 django-uuslug
 gunicorn

@@ -72,7 +72,7 @@ def find_extension(format):
 
 
 class Avatar(models.Model):
-    user = models.ForeignKey(getattr(settings, 'AUTH_USER_MODEL', 'auth.User'))
+    user = models.ForeignKey(getattr(settings, 'AUTH_USER_MODEL', 'auth.User'), related_name="avatar")
     primary = models.BooleanField(default=False)
     avatar = models.ImageField(max_length=1024,
                                upload_to=avatar_file_path,

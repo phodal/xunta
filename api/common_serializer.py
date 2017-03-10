@@ -8,11 +8,11 @@ from user_profile.models import ProfileImage
 class AvatarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Avatar
-        fields = ("avatar", )
+        fields = ("avatar", "date_uploaded")
 
 
-class UserSerializer(serializers.ModelSerializer):
-    avatar = AvatarSerializer(many=False, required=False, read_only=True)
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    avatar = AvatarSerializer(many=True, required=False, read_only=True)
 
     class Meta:
         model = User

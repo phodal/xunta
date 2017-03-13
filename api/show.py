@@ -20,3 +20,6 @@ class ShowSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ('title', )
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

@@ -31,3 +31,6 @@ class JubaDetailSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ('title', 'slug')
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

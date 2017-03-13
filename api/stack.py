@@ -31,3 +31,6 @@ class StackSet(viewsets.ModelViewSet):
     serializer_class = StackSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_backends = (filters.SearchFilter,)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

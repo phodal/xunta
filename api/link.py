@@ -8,7 +8,7 @@ from links.models import Link
 
 class LinkDetailSerializer(serializers.HyperlinkedModelSerializer):
     date = serializers.SerializerMethodField('get_special_date')
-    
+
     @staticmethod
     def get_special_date(model):
         return model.publish_date.strftime('%Y-%m-%d')
@@ -24,3 +24,6 @@ class LinkDetailSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ('title', 'slug')
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

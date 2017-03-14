@@ -15,7 +15,6 @@ class Show(Ownable):
         verbose_name = _('秀吧')
         verbose_name_plural = _('秀吧')
 
-    user_profile = models.ForeignKey(Profile, null=True, blank=True)
     title = models.CharField(max_length=100)
     image = ProcessedImageField(upload_to='show',
                                 format='JPEG',

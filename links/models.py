@@ -34,7 +34,7 @@ class Link(Displayable, Ownable):
         verbose_name = _('推荐')
         verbose_name_plural = _('推荐')
 
-    link = models.URLField(null=False, blank=False)
+    link = models.URLField(null=False, blank=False, default='https://www.phodal.com/')
     rating = RatingField()
     comments = CommentsField()
 

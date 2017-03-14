@@ -8,7 +8,7 @@ from django import forms
 from django.utils.http import int_to_base36
 from django.utils.translation import ugettext, ugettext_lazy as _
 
-from mezzanine.accounts import (get_profile_model, get_profile_user_fieldname,
+from accounts import (get_profile_model, get_profile_user_fieldname,
                                 get_profile_for_user, ProfileNotConfigured)
 from mezzanine.conf import settings
 from mezzanine.core.forms import Html5Mixin

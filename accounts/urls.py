@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from django.conf.urls import url
 
-from mezzanine.accounts import views
+from accounts import views
 from mezzanine.conf import settings
 
 

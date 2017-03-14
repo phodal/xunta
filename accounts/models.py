@@ -1,6 +1,6 @@
 from django.db import DatabaseError, connection
 from django.db.models.signals import post_save
-from mezzanine.accounts import get_profile_for_user
+from accounts import get_profile_for_user
 from mezzanine.conf import settings
 
 

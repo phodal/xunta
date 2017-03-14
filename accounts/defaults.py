@@ -1,5 +1,5 @@
 """
-Default settings for all mezzanine.accounts app. Each of these can be
+Default settings for all accounts app. Each of these can be
 overridden in your project's settings module, just like regular
 Django settings. The ``editable`` argument for each controls whether
 the setting is editable via Django's admin.
@@ -57,9 +57,9 @@ register_setting(
     name="ACCOUNTS_PROFILE_FORM_CLASS",
     description=_("Dotted package path and class name of profile form to use "
         "for users signing up and updating their profile, when "
-        "``mezzanine.accounts`` is installed."),
+        "``accounts`` is installed."),
     editable=False,
-    default="mezzanine.accounts.forms.ProfileForm",
+    default="accounts.forms.ProfileForm",
 )
 
 register_setting(

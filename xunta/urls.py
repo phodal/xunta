@@ -49,6 +49,7 @@ urlpatterns = [
 
     url(r'^api/token/auth/', obtain_jwt_token),
     url(r'^api/token/refresh/', refresh_jwt_token),
+    url(r'^accounts/', include('registration.backends.default.urls')),
 
     url('', include('social_django.urls', namespace='social')),
     url(r'', include('social_django.urls', namespace='social')),

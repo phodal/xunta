@@ -10,7 +10,7 @@
 {% block main  %}
 
 <div id="username-modal">
-    <form action="{% url "social:complete" "username" %}" method="post" role="form">{% csrf_token %}
+    <form action="{% url 'social:complete' 'username' %}" method="post" role="form">{% csrf_token %}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

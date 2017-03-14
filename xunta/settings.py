@@ -251,6 +251,7 @@ INSTALLED_APPS = (
     "homepage",
     "imagekit",
     "show",
+    "registration",
     "stack",
 )
 

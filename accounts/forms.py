@@ -14,22 +14,17 @@ from mezzanine.conf import settings
 from mezzanine.core.forms import Html5Mixin
 from mezzanine.utils.urls import slugify, unique_slug
 
+from user_profile.models import Profile
 
 User = get_user_model()
 
 _exclude_fields = tuple(getattr(settings,
                                 "ACCOUNTS_PROFILE_FORM_EXCLUDE_FIELDS", ()))
 
-# If a profile model has been configured with the ``ACCOUNTS_PROFILE_MODEL``
-# setting, create a model form for it that will have its fields added to
-# ``ProfileForm``.
-try:
-    class ProfileFieldsForm(forms.ModelForm):
-        class Meta:
-            model = get_profile_model()
-            exclude = (get_profile_user_fieldname(),) + _exclude_fields
-except ProfileNotConfigured:
-    pass
+class ProfileFieldsForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = (get_profile_user_fieldname(), "following", "follows") + _exclude_fields
 
 
 if settings.ACCOUNTS_NO_USERNAME:

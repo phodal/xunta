@@ -8,7 +8,7 @@
         init: function() {
             $('#djDebug').show();
             var current = null;
-            $(document).on('click', '#djDebugPanelList li a', function() {
+            $('#djDebugPanelList').on('click', 'li a', function() {
                 if (!this.className) {
                     return false;
                 }
@@ -44,12 +44,12 @@
                 }
                 return false;
             });
-            $(document).on('click', '#djDebug a.djDebugClose', function() {
+            $('#djDebug').on('click', 'a.djDebugClose', function() {
                 $(document).trigger('close.djDebug');
                 $('#djDebugToolbar li').removeClass('djdt-active');
                 return false;
             });
-            $(document).on('click', '#djDebug .djDebugPanelButton input[type=checkbox]', function() {
+            $('#djDebug').on('click', '.djDebugPanelButton input[type=checkbox]', function() {
                 djdt.cookie.set($(this).attr('data-cookie'), $(this).prop('checked') ? 'on' : 'off', {
                     path: '/',
                     expires: 10
@@ -57,23 +57,23 @@
             });
 
             // Used by the SQL and template panels
-            $(document).on('click', '#djDebug .remoteCall', function() {
+            $('#djDebug').on('click', '.remoteCall', function() {
                 var self = $(this);
                 var name = self[0].tagName.toLowerCase();
                 var ajax_data = {};
 
                 if (name == 'button') {
                     var form = self.parents('form:eq(0)');
-                    ajax_data['url'] = self.attr('formaction');
+                    ajax_data.url = self.attr('formaction');
 
                     if (form.length) {
-                        ajax_data['data'] = form.serialize();
-                        ajax_data['type'] = form.attr('method') || 'POST';
+                        ajax_data.data = form.serialize();
+                        ajax_data.type = form.attr('method') || 'POST';
                     }
                 }
 
                 if (name == 'a') {
-                    ajax_data['url'] = self.attr('href');
+                    ajax_data.url = self.attr('href');
                 }
 
                 $.ajax(ajax_data).done(function(data){
@@ -83,7 +83,7 @@
                         $('#djDebugWindow').html(message).show();
                 });
 
-                $(document).on('click', '#djDebugWindow a.djDebugBack', function() {
+                $('#djDebugWindow').on('click', 'a.djDebugBack', function() {
                     $(this).parent().parent().hide();
                     return false;
                 });
@@ -92,7 +92,7 @@
             });
 
             // Used by the cache, profiling and SQL panels
-            $(document).on('click', '#djDebug a.djToggleSwitch', function(e) {
+            $('#djDebug').on('click', 'a.djToggleSwitch', function(e) {
                 e.preventDefault();
                 var btn = $(this);
                 var id = btn.attr('data-toggle-id');
@@ -141,13 +141,13 @@
                     // due to djdt.handleDragged being set to true.
                     if (djdt.handleDragged || event.pageY != startPageY) {
                         var top = baseY + event.clientY;
-                        
+
                         if (top < 0) {
                             top = 0;
                         } else if (top + handle.height() > windowHeight) {
                             top = windowHeight - handle.height();
                         }
-                        
+
                         handle.css({top: top});
                         djdt.handleDragged = true;
                     }
@@ -213,11 +213,13 @@
             $('#djDebugToolbar li').removeClass('djdt-active');
             // finally close toolbar
             $('#djDebugToolbar').hide('fast');
-            $('#djDebugToolbarHandle').show();
+            handle = $('#djDebugToolbarHandle');
+            handle.show();
             // set handle position
             var handleTop = djdt.cookie.get('djdttop');
             if (handleTop) {
-                $('#djDebugToolbarHandle').css({top: handleTop + 'px'});
+                handleTop = Math.min(handleTop, window.innerHeight - handle.outerHeight() - 10);
+                handle.css({top: handleTop + 'px'});
             }
             // Unbind keydown
             $(document).unbind('keydown.djDebug');
@@ -285,13 +287,21 @@
 
                 return value;
             }
+        },
+        applyStyle: function(name) {
+            $('#djDebug [data-' + name + ']').each(function() {
+                var css = {};
+                css[name] = $(this).data(name);
+                $(this).css(css);
+            });
         }
     };
     $.extend(publicAPI, {
         show_toolbar: djdt.show_toolbar,
         hide_toolbar: djdt.hide_toolbar,
         close: djdt.close,
-        cookie: djdt.cookie
+        cookie: djdt.cookie,
+        applyStyle: djdt.applyStyle
     });
     $(document).ready(djdt.init);
 })(djdt.jQuery, djdt);

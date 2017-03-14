@@ -31,6 +31,7 @@ if settings.USE_MODELTRANSLATION:
         url('^i18n/$', set_language, name='set_language'),
     ]
 
+
 urlpatterns = [
     url(r'^$', home_view.homepage, name='home'),
     url(r'^comment/$', comment_views.comment),
@@ -49,12 +50,19 @@ urlpatterns = [
 
     url(r'^api/token/auth/', obtain_jwt_token),
     url(r'^api/token/refresh/', refresh_jwt_token),
-    url(r'^accounts/', include('registration.backends.default.urls')),
 
     url('', include('social_django.urls', namespace='social')),
     url(r'', include('social_django.urls', namespace='social')),
+    url(r'^accounts/', include('registration.backends.default.urls')),
     url(r"^", include("mezzanine.urls")),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns = [
+                      url(r'^__debug__/', include(debug_toolbar.urls)),
+                  ] + urlpatterns
 
 # Adds ``STATIC_URL`` to the context of error pages, so that error
 # pages can use JS, CSS and images.

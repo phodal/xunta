@@ -251,6 +251,7 @@ INSTALLED_APPS = (
     "homepage",
     "imagekit",
     "show",
+    'debug_toolbar',
     "registration",
     "stack",
 )
@@ -333,6 +334,7 @@ MIDDLEWARE_CLASSES = (
     "mezzanine.pages.middleware.PageMiddleware",
     "mezzanine.core.middleware.FetchFromCacheMiddleware",
     'social_django.middleware.SocialAuthExceptionMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 SOCIAL_AUTH_PIPELINE = (

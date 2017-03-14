@@ -25,7 +25,7 @@ class JubaDetailSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('title', 'slug', 'description', 'content', 'id', 'date', 'user')
 
 
-class JubaDetailSet(viewsets.ModelViewSet):
+class JubaSet(viewsets.ModelViewSet):
     queryset = Juba.objects.filter(status=2)
     serializer_class = JubaDetailSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)

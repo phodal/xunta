@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from rest_framework import routers
 
 from api.blog import BlogPostDetailSet
-from api.juba import JubaDetailSet
+from api.juba import JubaSet
 from api.link import LinkSet
 from api.profile import ProfileSet
 from api.show import ShowSet
@@ -13,7 +13,7 @@ from api.views import AllListView
 router = routers.DefaultRouter()
 
 router.register(r'blog', BlogPostDetailSet)
-router.register(r'juba', JubaDetailSet)
+router.register(r'juba', JubaSet)
 router.register(r'link', LinkSet)
 router.register(r'stack', StackSet)
 router.register(r'show', ShowSet)

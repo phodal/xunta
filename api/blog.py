@@ -23,7 +23,7 @@ class BlogpostDetailSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('title', 'slug', 'description', 'content', 'id', 'date', 'user')
 
 
-class BlogPostDetailSet(viewsets.ModelViewSet):
+class BlogSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.filter(status=2)
     serializer_class = BlogpostDetailSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)

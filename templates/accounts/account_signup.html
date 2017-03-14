@@ -1,12 +1,36 @@
-{% extends "accounts/account_form.html" %}
-{% load i18n %}
+{% extends "base.html" %}
+{% load i18n mezzanine_tags %}
+
+{% block meta_title %}{{ title }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block body_id %}account{% endblock %}
+
+{% block breadcrumb_menu %}
+{{ block.super }}
+<li>{{ title }}</li>
+{% endblock %}
 
 {% block main %}
 
 {% if request.user.is_authenticated %}
     <p>{% trans "You're already logged in. If you'd like to create a new account, you'll need to log out first." %}</p>
 {% else %}
-    {{ block.super }}
+    <div class="span12">
+    {% errors_for form %}
+
+    <form method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+        <fieldset>
+        <legend>{{ title }}</legend>
+        {% fields_for form %}
+        <div class="form-actions">
+            {% block account_form_actions %}
+            <input class="btn btn-primary btn-lg pull-right" type="submit" value="{{ title }}">
+            {% endblock %}
+        </div>
+        </fieldset>
+    </form>
+    </div>
+
     {% if settings.ACCOUNTS_APPROVAL_REQUIRED %}
     <p>{% trans "After signing up, your account will be reviewed for approval. You'll receive an email when your account is activated." %}</p>
     {% elif settings.ACCOUNTS_VERIFICATION_REQUIRED %}

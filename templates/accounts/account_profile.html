@@ -15,8 +15,14 @@
 <div class="clearfix">
 
     {% if request.user.is_authenticated %}
-        {% avatar user %}
-        <a href="{% url 'avatar_change' %}">修改头像</a>
+        {% if request.user.has_avatar %}
+            {% avatar user %}
+            <a href="{% url 'avatar_change' %}">修改头像</a>
+        {% endif %}
+        {% if request.user.has_avatar == false %}
+            <a href="{% url 'avatar_add' %}">添加头像</a>
+        {% endif %}
+
         {% with profile_user.profile as profile %}
             {% if profile.bio %}
             <p class="bio">{{ profile.bio|urlize|linebreaks }}</p>

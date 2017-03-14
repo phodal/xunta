@@ -11,8 +11,20 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('username', 'email')
 
 
+class UserPostSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+
+
 class UserSet(viewsets.ModelViewSet):
     queryset = User.objects.filter()
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_backends = (filters.SearchFilter,)
+
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return UserPostSerializer
+        return UserSerializer

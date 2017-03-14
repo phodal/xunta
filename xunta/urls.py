@@ -53,8 +53,8 @@ urlpatterns = [
 
     url('', include('social_django.urls', namespace='social')),
     url(r'', include('social_django.urls', namespace='social')),
+    url(r'^', include('accounts.urls')),
     url(r"^", include("mezzanine.urls")),
-    url(r'^accounts/', include('registration.backends.default.urls')),
 ]
 
 if settings.DEBUG:

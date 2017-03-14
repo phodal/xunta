@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import redirect
 from django.contrib.auth import login
 from mezzanine.accounts import get_profile_form
-from mezzanine.accounts.forms import LoginForm
+from mezzanine.accounts.forms import LoginForm, ProfileForm
 from mezzanine.utils.urls import login_redirect
 from social.backends.oauth import BaseOAuth1, BaseOAuth2
 from social.backends.utils import load_backends
@@ -59,7 +59,7 @@ def newuser(request, template="accounts/account_profile_update.html"):
     """
     Profile update form.
     """
-    profile_form = get_profile_form()
+    profile_form = ProfileForm
     form = profile_form(request.POST or None, request.FILES or None,
                         instance=request.user)
     if request.method == "POST" and form.is_valid():

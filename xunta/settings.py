@@ -238,7 +238,7 @@ INSTALLED_APPS = (
     "mezzanine.conf",
     "mezzanine.core",
     "mezzanine.generic",
-    "mezzanine.accounts",
+    "accounts",
     "mezzanine.blog",
     "mezzanine.forms",
     "mezzanine.pages",

@@ -13,6 +13,8 @@ from __future__ import absolute_import, unicode_literals
 
 # Controls the ordering and grouping of the admin menu.
 #
+import datetime
+
 ADMIN_MENU_ORDER = (
     ("Content", ("blog.BlogPost", "juba.Juba", "links.Link", "show.Show")),
     ("Users", ("user_profile.Profile", ("用户管理", "auth.User"))),
@@ -468,6 +470,11 @@ if os.path.exists(f):
     module.__file__ = f
     sys.modules[module_name] = module
     exec(open(f, "rb").read())
+
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
+}
 
 
 ####################

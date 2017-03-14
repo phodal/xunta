@@ -21,6 +21,7 @@ User = get_user_model()
 _exclude_fields = tuple(getattr(settings,
                                 "ACCOUNTS_PROFILE_FORM_EXCLUDE_FIELDS", ()))
 
+
 class ProfileFieldsForm(forms.ModelForm):
     class Meta:
         model = Profile
@@ -52,7 +53,7 @@ class LoginForm(Html5Mixin, forms.Form):
         self._user = authenticate(username=username, password=password)
         if self._user is None:
             raise forms.ValidationError(
-                             ugettext("Invalid username/email and password"))
+                ugettext("Invalid username/email and password"))
         elif not self._user.is_active:
             raise forms.ValidationError(ugettext("Your account is inactive"))
         return self.cleaned_data
@@ -87,7 +88,7 @@ class ProfileForm(Html5Mixin, forms.ModelForm):
         user_fields = set([f.name for f in User._meta.get_fields()])
         try:
             self.fields["username"].help_text = ugettext(
-                        "Only letters, numbers, dashes or underscores please")
+                "Only letters, numbers, dashes or underscores please")
         except KeyError:
             pass
         for field in self.fields:
@@ -103,8 +104,8 @@ class ProfileForm(Html5Mixin, forms.ModelForm):
                     self.fields[field].required = False
                     if field == "password1":
                         self.fields[field].help_text = ugettext(
-                                               "Leave blank unless you want "
-                                               "to change your password")
+                            "Leave blank unless you want "
+                            "to change your password")
 
         # Add any profile fields to the form.
         try:
@@ -139,7 +140,7 @@ class ProfileForm(Html5Mixin, forms.ModelForm):
         except User.DoesNotExist:
             return username
         raise forms.ValidationError(
-                            ugettext("This username is already registered"))
+            ugettext("This username is already registered"))
 
     def clean_password2(self):
         """
@@ -155,8 +156,8 @@ class ProfileForm(Html5Mixin, forms.ModelForm):
                 errors.append(ugettext("Passwords do not match"))
             if len(password1) < settings.ACCOUNTS_MIN_PASSWORD_LENGTH:
                 errors.append(
-                        ugettext("Password must be at least %s characters") %
-                        settings.ACCOUNTS_MIN_PASSWORD_LENGTH)
+                    ugettext("Password must be at least %s characters") %
+                    settings.ACCOUNTS_MIN_PASSWORD_LENGTH)
             if errors:
                 self._errors["password1"] = self.error_class(errors)
         return password2
@@ -170,7 +171,7 @@ class ProfileForm(Html5Mixin, forms.ModelForm):
         if len(qs) == 0:
             return email
         raise forms.ValidationError(
-                                ugettext("This email is already registered"))
+            ugettext("This email is already registered"))
 
     def save(self, *args, **kwargs):
         """
@@ -249,7 +250,7 @@ class PasswordResetForm(Html5Mixin, forms.Form):
             user = User.objects.get(username_or_email, is_active=True)
         except User.DoesNotExist:
             raise forms.ValidationError(
-                             ugettext("Invalid username/email"))
+                ugettext("Invalid username/email"))
         else:
             self._user = user
         return self.cleaned_data

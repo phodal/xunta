@@ -276,8 +276,6 @@ REST_FRAMEWORK = {
     ),
 }
 
-SOCIAL_AUTH_STORAGE = 'social.apps.django_app.me.models.DjangoStorage'
-
 # List of processors used by RequestContext to populate the context.
 # Each one should be a callable that takes the request object as its
 # only parameter and returns a dictionary to add to the context.
@@ -413,9 +411,7 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 # DRUM #
 ########
 
-# Drum-specific Mezzanine settings
 ACCOUNTS_PROFILE_MODEL = "user_profile.Profile"
-AUTH_PROFILE_MODULE = "user_profile.Profile"
 SITE_TITLE = "玩我"
 RATINGS_RANGE = (-1, 1)
 RATINGS_ACCOUNT_REQUIRED = True

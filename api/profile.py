@@ -3,6 +3,7 @@ from rest_framework import serializers, viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from api.common_serializer import UserSerializer, ProfileImageSerializer
+from api.permissions.is_admin_or_self import IsAdminOrIsSelf
 from user_profile.models import Profile
 
 
@@ -22,5 +23,5 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 class ProfileSet(viewsets.ModelViewSet):
     queryset = Profile.objects.filter()
     serializer_class = ProfileSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsAdminOrIsSelf,)
     filter_backends = (filters.SearchFilter,)

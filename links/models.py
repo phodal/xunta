@@ -34,8 +34,7 @@ class Link(Displayable, Ownable):
         verbose_name = _('推荐')
         verbose_name_plural = _('推荐')
 
-    link = models.URLField(null=True,
-        blank=(not getattr(settings, "LINK_REQUIRED", False)))
+    link = models.URLField(null=False, blank=False)
     rating = RatingField()
     comments = CommentsField()
 

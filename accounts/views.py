@@ -10,7 +10,7 @@ from django.template.response import TemplateResponse
 from django.utils.translation import ugettext_lazy as _
 
 from accounts import get_profile_form
-from accounts.forms import LoginForm, PasswordResetForm
+from accounts.forms import LoginForm, PasswordResetForm, ProfileForm, SignupForm
 from mezzanine.conf import settings
 from mezzanine.utils.email import send_verification_mail, send_approve_mail
 from mezzanine.utils.urls import login_redirect, next_url
@@ -49,7 +49,7 @@ def signup(request, template="accounts/account_signup.html",
     """
     Signup form.
     """
-    profile_form = get_profile_form()
+    profile_form = SignupForm
     form = profile_form(request.POST or None, request.FILES or None)
     if request.method == "POST" and form.is_valid():
         new_user = form.save()

@@ -18,7 +18,7 @@ class LinkDetailSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('title', 'slug', 'link', 'id', 'date')
 
 
-class LinkDetailSet(viewsets.ModelViewSet):
+class LinkSet(viewsets.ModelViewSet):
     queryset = Link.objects.filter(status=2)
     serializer_class = LinkDetailSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)

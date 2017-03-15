@@ -3,17 +3,13 @@ from __future__ import unicode_literals
 from django.conf.urls import include, url
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
-from django.views.decorators.cache import cache_page
+from django.contrib.sitemaps import views as sitemap_views
 from django.views.i18n import set_language
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
-from homepage import views as home_view
 from comment import views as comment_views
-from django.contrib.auth import views as auth_views
-
+from homepage import views as home_view
 from sitemaps.sitemaps import DisplayableSitemap
-from django.contrib.sitemaps import views as sitemap_views
-
 from xunta import settings
 
 admin.autodiscover()

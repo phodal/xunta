@@ -1,65 +1,17 @@
 {% extends "accounts/account_form.html" %}
-{% load i18n backend_utils staticfiles %}
+{% load i18n %}
 
-{% block main  %}
-<div class="span12">
-    <div class="buttons">
-      {% if user.is_authenticated %}
-        <div class="user-details">
-          You are logged in as <code>{{ user.username }}</code>!
-        </div>
-      {% endif %}
+{% block main %}
 
-      <div class="social">
-              <a class="col-md-2 btn btn-default" name="qq" href="{% url "social:begin" backend="qq" %}">
-                  <i class="fa fa-qq"></i>
-              </a>
-              <a class="col-md-2 btn btn-default" name="douban oauth2" href="{% url "social:begin" backend="douban-oauth2" %}">
-                  <i class="fa fa-douban"></i>
-                  豆
-              </a>
-              <a class="col-md-2 btn btn-default" name="google oauth2" href="{% url "social:begin" backend="google-oauth2" %}">
-                  <i class="fa fa-google"></i>
-              </a>
-              <a class="col-md-2 btn btn-default" name="weibo" href="{% url "social:begin" backend="weibo" %}">
-                  <i class="fa fa-weibo"></i>
-              </a>
-              <a class="btn btn-default" name="username" href="{% url "social:begin" backend="username" %}">
-                  <i class="fa fa-user"></i>
-                  用户名
-               </a>
-      </div>
-    </div>
-
-    <div id="username-modal" class="modal fade">
-      <form action="{% url "social:complete" "username" %}" method="post" role="form">{% csrf_token %}
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">用户登录</h4>
-            </div>
-
-            <div class="modal-body">
-              <div class="form-group">
-                <label class="control-label" for="username">用户名:</label>
-                <input class="form-control" id="username" type="text" name="username" value="" />
-              </div>
-
-              <div class="form-group">
-                <label class="control-label" for="password">密码:</label>
-                <input class="form-control" id="password" type="password" name="password" value="" />
-              </div>
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-              <button type="button" class="btn btn-primary">登录</button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-</div>
+{% if request.user.is_authenticated %}
+    <p>{% trans "You're already logged in. If you'd like to log in as a different user, you'll need to log out first." %}</p>
+{% else %}
+    {{ block.super }}
+    {% url "signup" as signup_url %}
+    <p>{% blocktrans with request.GET.next as next %}If you don't have an account you can <a href="{{ signup_url }}?next={{ next }}">sign up</a> for one now.{% endblocktrans %}</p>
+    {% url "mezzanine_password_reset" as password_reset_url %}
+    {% url "profile_update" as profile_update_url %}
+    {% blocktrans %}<p>You can also <a href="{{ password_reset_url }}?next={{ profile_update_url }}">reset your password</a> if you've forgotten it.</p>{% endblocktrans %}</p>
+{% endif %}
 
 {% endblock %}

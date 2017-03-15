@@ -6,58 +6,58 @@
 {% block body_id %}account{% endblock %}
 
 {% block main %}
-<div class="span12">
-{% if profile_user == request.user %}
-<div class="pull-right">
-    <a class="btn btn-large btn-primary btn-profile" href="{% url "profile_update" %}">更新信息</a>
-</div>
-{% endif %}
-<div class="clearfix">
-
-    {% if request.user.is_authenticated %}
-
-        {% avatar user %}
-        <a href="{% url 'avatar_change' %}">修改头像</a>
-
-        {% with profile_user.profile as profile %}
-            {% if profile.bio %}
-            <p class="bio">{{ profile.bio|urlize|linebreaks }}</p>
-            {% endif %}
-            {% if profile.website %}
-            <p class="bio">Website: {{ profile.website|urlize }}</p>
-            {% endif %}
-            <p>{{ profile_user.last_name }} {{ profile_user.first_name }} {% if profile.job %} -  职业：{{ profile.job }} {% endif %}</p>
-            {% if profile.address %}
-            <p>城市：{{ profile.address}}</p>
-            {% endif %}
-            {% if profile.interest %}
-            <p>爱好：{{ profile.interest}}</p>
-            {% endif %}
-            {% if profile.constellate %}
-            <p>星座：{{ profile.constellate}}</p>
-            {% endif %}
-            <div>
-                {%  for image in profile.images.all %}
-                    <img src="/static/media/{{ image.image }}" />
-                    {{ image.comments }}
-                {% endfor %}
+    <div class="span12">
+        {% if profile_user == request.user %}
+            <div class="pull-right">
+                <a class="btn btn-large btn-primary btn-profile" href="{% url "profile_update" %}">更新信息</a>
             </div>
-        {% endwith %}
+        {% endif %}
+        <div class="clearfix">
 
-        <a href="{% url "comment_list_user" profile_user.username %}">评论 ({{ profile_user.comment_comments.count }})</a> |
-        <a href="{% url "link_list_user" profile_user.username %}">推啦 ({{ profile_user.links.published.count }})</a> |
-        <a href="{% url "juba_list_user" profile_user.username %}">聚啊 ({{ profile_user.jubas.published.count }})</a>
+            {% if request.user.is_authenticated %}
 
-        {% blog_authors as authors %}
-        {% for author in authors %}
-            {% if author.username == profile_user.username %}
-                | <a href="{% url "blog_post_list_author" profile_user.username %}">博客({{ author.post_count }})</a>
-            {% endif %}
-        {% endfor %}
-    {% else %}
-        <p>{{ profile_user.username }} 的首页</p>
-        <p> 当前，你只能查看到这些内容</p>
-    {%  endif %}
-</div>
-</div>
+                {% avatar user %}
+                <a href="{% url 'avatar_change' %}">修改头像</a>
+
+                {% with profile_user.profile as profile %}
+                    {% if profile.bio %}
+                        <p class="bio">{{ profile.bio|urlize|linebreaks }}</p>
+                    {% endif %}
+                    {% if profile.website %}
+                        <p class="bio">Website: {{ profile.website|urlize }}</p>
+                    {% endif %}
+                    <p>{{ profile_user.last_name }} {{ profile_user.first_name }} {% if profile.job %} -  职业：{{ profile.job }} {% endif %}</p>
+                    {% if profile.address %}
+                        <p>城市：{{ profile.address}}</p>
+                    {% endif %}
+                    {% if profile.interest %}
+                        <p>爱好：{{ profile.interest}}</p>
+                    {% endif %}
+                    {% if profile.constellate %}
+                        <p>星座：{{ profile.constellate}}</p>
+                    {% endif %}
+                    <div>
+                        {%  for image in profile.images.all %}
+                            <img src="/static/media/{{ image.image }}" />
+                            {{ image.comments }}
+                        {% endfor %}
+                    </div>
+                {% endwith %}
+
+                <a href="{% url "comment_list_user" profile_user.username %}">评论 ({{ profile_user.comment_comments.count }})</a> |
+                <a href="{% url "link_list_user" profile_user.username %}">推啦 ({{ profile_user.links.published.count }})</a> |
+                <a href="{% url "juba_list_user" profile_user.username %}">聚啊 ({{ profile_user.jubas.published.count }})</a>
+
+                {% blog_authors as authors %}
+                {% for author in authors %}
+                    {% if author.username == profile_user.username %}
+                        | <a href="{% url "blog_post_list_author" profile_user.username %}">博客({{ author.post_count }})</a>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p>{{ profile_user.username }} 的首页</p>
+                <p> 当前，你只能查看到这些内容</p>
+            {%  endif %}
+        </div>
+    </div>
 {% endblock %}

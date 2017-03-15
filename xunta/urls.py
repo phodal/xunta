@@ -9,7 +9,6 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 from homepage import views as home_view
 from comment import views as comment_views
-from django.contrib.auth import views as auth_views
 
 from sitemaps.sitemaps import DisplayableSitemap
 from django.contrib.sitemaps import views as sitemap_views
@@ -45,8 +44,6 @@ urlpatterns = [
     url("^avatar/", include("avatar.urls")),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^login/$', auth_views.login),
-    url(r'^logout/$', auth_views.logout),
 
     url(r'^api/token/auth/', obtain_jwt_token),
     url(r'^api/token/refresh/', refresh_jwt_token),

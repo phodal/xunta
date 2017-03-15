@@ -45,8 +45,6 @@ urlpatterns = [
     url("^avatar/", include("avatar.urls")),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^login/$', auth_views.login),
-    url(r'^logout/$', auth_views.logout),
 
     url(r'^api/token/auth/', obtain_jwt_token),
     url(r'^api/token/refresh/', refresh_jwt_token),

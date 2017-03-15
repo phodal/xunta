@@ -13,3 +13,13 @@ class IsAdminOrIsSelf(permissions.BasePermission):
     @classmethod
     def has_object_permission(cls, request, view, obj):
         return request.user.is_staff or request.user == obj
+
+
+class IsReadyOnlyRequest(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.method in permissions.SAFE_METHODS
+
+
+class IsPostRequest(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.method == "POST"

@@ -1,8 +1,11 @@
 from django.contrib.auth.models import User
-from mezzanine.blog.models import BlogPost
+from rest_condition import permissions, And, Or
 from rest_framework import filters
 from rest_framework import serializers, viewsets
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAdminUser
+
+from api.permissions.is_admin_or_self import IsPostRequest
+from api.permissions.is_admin_or_self import IsReadyOnlyRequest
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -20,7 +23,7 @@ class UserPostSerializer(serializers.HyperlinkedModelSerializer):
 class UserSet(viewsets.ModelViewSet):
     queryset = User.objects.filter()
     serializer_class = UserSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = [Or(IsAdminUser, IsPostRequest)]
     filter_backends = (filters.SearchFilter,)
 
 

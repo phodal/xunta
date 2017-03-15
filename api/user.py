@@ -26,8 +26,10 @@ class UserSet(viewsets.ModelViewSet):
     permission_classes = [Or(IsAdminUser, IsPostRequest)]
     filter_backends = (filters.SearchFilter,)
 
-
     def get_serializer_class(self):
         if self.request.method == 'POST':
             return UserPostSerializer
         return UserSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

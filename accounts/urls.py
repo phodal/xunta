@@ -4,7 +4,7 @@ from django.conf.urls import url
 
 from accounts import views
 from mezzanine.conf import settings
-from django.contrib.auth import views as auth_views
+
 
 ACCOUNT_URL = getattr(settings, "ACCOUNT_URL", "/accounts/")
 SIGNUP_URL = getattr(settings, "SIGNUP_URL",
@@ -27,9 +27,9 @@ _slash = "/" if settings.APPEND_SLASH else ""
 
 urlpatterns = [
     url("^%s%s$" % (LOGIN_URL.strip("/"), _slash),
-        auth_views.login, name="login"),
+        views.login, name="login"),
     url("^%s%s$" % (LOGOUT_URL.strip("/"), _slash),
-        auth_views.logout, name="logout"),
+        views.logout, name="logout"),
     url("^%s%s$" % (SIGNUP_URL.strip("/"), _slash),
         views.signup, name="signup"),
     url("^%s%s%s$" % (SIGNUP_VERIFY_URL.strip("/"), _verify_pattern, _slash),

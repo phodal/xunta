@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 from django.contrib.auth import (login as auth_login, authenticate,
                                  logout as auth_logout, get_user_model)
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.messages import info, error
 from django.core.urlresolvers import NoReverseMatch, get_script_prefix
 from django.shortcuts import get_object_or_404, redirect
@@ -16,7 +15,33 @@ from mezzanine.conf import settings
 from mezzanine.utils.email import send_verification_mail, send_approve_mail
 from mezzanine.utils.urls import login_redirect, next_url
 
+
 User = get_user_model()
+
+
+def login(request, template="accounts/account_login.html",
+          form_class=LoginForm, extra_context=None):
+    """
+    Login form.
+    """
+    form = form_class(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        authenticated_user = form.save()
+        info(request, _("Successfully logged in"))
+        auth_login(request, authenticated_user)
+        return login_redirect(request)
+    context = {"form": form, "title": _("Log in")}
+    context.update(extra_context or {})
+    return TemplateResponse(request, template, context)
+
+
+def logout(request):
+    """
+    Log the user out.
+    """
+    auth_logout(request)
+    info(request, _("Successfully logged out"))
+    return redirect(next_url(request) or get_script_prefix())
 
 
 def signup(request, template="accounts/account_signup.html",

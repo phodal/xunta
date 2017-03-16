@@ -1,11 +1,10 @@
 from django.contrib.auth.models import User
-from rest_condition import permissions, And, Or
+from rest_condition import Or
 from rest_framework import filters
 from rest_framework import serializers, viewsets
 from rest_framework.permissions import IsAdminUser
 
 from api.permissions.is_admin_or_self import IsPostRequest
-from api.permissions.is_admin_or_self import IsReadyOnlyRequest
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

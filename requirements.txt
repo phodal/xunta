@@ -14,3 +14,4 @@ djangorestframework-jwt==1.9.0
 django-registration-redux==1.4
 rest_condition==1.0.3
 djoser==0.5.4
+django-debug-toolbar
